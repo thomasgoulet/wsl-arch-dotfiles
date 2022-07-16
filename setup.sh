@@ -25,4 +25,4 @@ fi
 
 # Packages
 
-sudo pacman -S github-cli man-db neofetch
+sudo pacman -S fish github-cli man-db neofetch python
