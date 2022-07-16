@@ -1,3 +1,17 @@
+# Updating config
+
+```bash
+./wsl-arch-dotfiles/setup.sh
+```
+
+## Installing new packages
+
+1. Add package to packages list in ./setup.sh
+1. (*opt*) Move it's config folder inside the repo's folder
+  1. Create symlink (ln -s -f) in the ./setup.sh file
+1. Run setup.sh to make sure everything works
+1. Commit & push changes.
+
 # Arch WSL Install
 
 ## Downloading & Installing Arch
@@ -27,9 +41,17 @@ sudo pacman -Syy archlinux-keyring
 sudo pacman -Syyu
 ```
 
-## Setupping this repo git
+## Setting up git & the repo
 
 ```
 sudo pacman -S git
+git config --global user.email "<email>"
+git config --global user.name "<fullname>"
 git clone https://github.com/thomasgoulet/wsl-arch-dotfiles
 ```
+
+### PAT
+
+1. Github.com > Settings > Developper Settings > Personal Access Tokens
+2. Create one and copy it
+3. Use as password when pushing
