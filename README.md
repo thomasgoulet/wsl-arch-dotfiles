@@ -47,6 +47,7 @@ sudo pacman -Syyu
 sudo pacman -S git
 git config --global user.email "<email>"
 git config --global user.name "<fullname>"
+git config --global credential.helper credential-store
 git clone https://github.com/thomasgoulet/wsl-arch-dotfiles
 ```
 
