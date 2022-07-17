@@ -8,7 +8,7 @@
 
 1. Add package to packages list in ./setup.sh
 1. (*opt*) Move it's config folder inside the repo's folder
-  1. Create symlink (ln -s -f) in the ./setup.sh file
+    1. Create symlink (ln -s -f) in the ./setup.sh file
 1. Run setup.sh to make sure everything works
 1. Commit & push changes.
 
