@@ -60,3 +60,11 @@ gh auth login
 ## Setting up fish
 
 `chsh` and set prompt to `/bin/fish`
+
+## Setting up Docker integration
+
+Enable Arch in Docker Desktop > Settings > Resources > WSL Integration
+
+```bash
+usermod -a -G docker thomas
+```

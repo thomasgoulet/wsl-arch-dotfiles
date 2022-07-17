@@ -2,8 +2,10 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 
+## No greeting
 set fish_greeting
 
+## !! shortcuts to last command
 function bind_bang
     switch (commandline -t)[-1]
         case "!"
