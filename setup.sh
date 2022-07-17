@@ -11,7 +11,7 @@ ln -f --symbolic ~/wsl-arch-dotfiles/.config ~/.config
 
 ## Packages
 
-sudo pacman -S btop fish github-cli kubectl man-db micro neofetch python
+sudo pacman -S btop cargo fish github-cli kubectl man-db micro neofetch neovim node python
 
 ## Azure-CLI
 
@@ -36,4 +36,9 @@ fi
 
 ## Paru Packages
 
-paru -S --skipreview rancher-k3d-bin  
+if [ $INSTALL_K3D -eq 1 ]
+then
+
+  paru -S --skipreview rancher-k3d-bin
+
+fi
