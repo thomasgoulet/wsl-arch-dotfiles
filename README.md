@@ -43,7 +43,7 @@ sudo pacman -Syyu
 
 ## Setting up git & the repo
 
-```
+```bash
 sudo pacman -S git
 git config --global user.email "<email>"
 git config --global user.name "<fullname>"
@@ -51,11 +51,11 @@ git config --global credential.helper store
 git clone https://github.com/thomasgoulet/wsl-arch-dotfiles
 ```
 
-### PAT
+### GitHub login
 
-1. Github.com > Settings > Developper Settings > Personal Access Tokens
-2. Create one and copy it
-3. Use as password when pushing
+```bash
+gh auth login
+```
 
 ## Setting up fish
 
