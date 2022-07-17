@@ -8,7 +8,7 @@ function fish_prompt
     printf ' in '
 
     set_color blue
-    printf '%s' (pwd)
+    printf '%s' (pwd | sed 's+/home/thomas+~+g')
     set_color normal
 
     set -l GIT_BRANCH (git branch --show-current 2>/dev/null)

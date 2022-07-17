@@ -56,3 +56,7 @@ git clone https://github.com/thomasgoulet/wsl-arch-dotfiles
 1. Github.com > Settings > Developper Settings > Personal Access Tokens
 2. Create one and copy it
 3. Use as password when pushing
+
+## Setting up fish
+
+`chsh` and set prompt to `/bin/fish`
