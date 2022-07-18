@@ -1,19 +1,9 @@
 #! /bin/sh
 
-## Set these to 1 if you want to install them
-INSTALL_PARU=0
-INSTALL_AZCLI=0
-INSTALL_LVIM=0
-INSTALL_K3D=0
-
 ## .config symlink
 
 mkdir -p ~/wsl-arch-dotfiles/.config
 ln -f --symbolic ~/wsl-arch-dotfiles/.config ~/.config
-
-## Packages
-
-sudo pacman -S btop cargo fish github-cli kubectl man-db micro neofetch neovim node python
 
 ## Azure-CLI
 
@@ -42,14 +32,7 @@ fi
 if [ $INSTALL_LVIM -eq 1 ]
 then
 
-  paru -S --skipreview win32yank-bin
   bash (curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh | psub)
 
 fi
 
-if [ $INSTALL_K3D -eq 1 ]
-then
-
-  paru -S --skipreview rancher-k3d-bin
-
-fi
