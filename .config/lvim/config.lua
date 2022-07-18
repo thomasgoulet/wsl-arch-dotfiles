@@ -77,6 +77,7 @@ lvim.builtin.treesitter.ensure_installed = {
   "rust",
   "java",
   "yaml",
+  "hcl",
 }
 
 lvim.builtin.treesitter.ignore_install = { "haskell" }
@@ -165,10 +166,3 @@ lvim.builtin.treesitter.highlight.enabled = true
 --     require("nvim-treesitter.highlight").attach(0, "bash")
 --   end,
 -- })
-
-
-local parser_configs = require("nvim-treesitter.parsers").get_parser_configs()
-parser_configs.hcl = {
-  filetype = "hcl", "terraform",
-}
-
