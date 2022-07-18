@@ -1,9 +1,13 @@
 #! /bin/sh
 
+INSTALL_AZCLI=0
+INSTALL_PARU=0
+INSTALL_LVIM=1
+
 ## .config symlink
 
-mkdir -p ~/wsl-arch-dotfiles/.config
-ln -f --symbolic ~/wsl-arch-dotfiles/.config ~/.config
+## mkdir -p ~/wsl-arch-dotfiles/.config
+## ln -f --symbolic ~/wsl-arch-dotfiles/.config ~/.config
 
 ## Azure-CLI
 

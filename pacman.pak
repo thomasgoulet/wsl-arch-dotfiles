@@ -12,6 +12,7 @@ flex
 gcc
 git
 github-cli
+groff
 kubectl
 libtool
 m4
@@ -25,9 +26,9 @@ patch
 pkgconf
 python
 ripgrep
-rust
 sudo
 terraform
 texinfo
 vim
 which
+yarn
