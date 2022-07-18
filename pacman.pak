@@ -13,6 +13,7 @@ gcc
 git
 github-cli
 groff
+k9s
 kubectl
 libtool
 m4
