@@ -13,6 +13,7 @@ gcc
 git
 github-cli
 groff
+jdk11-openjdk
 k9s
 kubectl
 libtool
