@@ -14,19 +14,39 @@ k9s:
     fullScreenLogs: false
     textWrap: false
     showTime: false
-  currentContext: aksdev
-  currentCluster: aksdev
+  currentContext: akstest
+  currentCluster: akstest
   clusters:
     aksdev:
       namespace:
-        active: all
+        active: iwls
         favorites:
+        - all
         - ingress-nginx
         - monitoring
         - iwls
         - default
       view:
-        active: pod
+        active: pods
+      featureGates:
+        nodeShell: false
+      shellPod:
+        image: busybox:1.31
+        command: []
+        args: []
+        namespace: default
+        limits:
+          cpu: 100m
+          memory: 100Mi
+      portForwardAddress: localhost
+    aksprod-b:
+      namespace:
+        active: all
+        favorites:
+        - all
+        - default
+      view:
+        active: namespaces
       featureGates:
         nodeShell: false
       shellPod:
@@ -45,7 +65,7 @@ k9s:
         - iwls
         - default
       view:
-        active: pod
+        active: pods
       featureGates:
         nodeShell: false
       shellPod:
