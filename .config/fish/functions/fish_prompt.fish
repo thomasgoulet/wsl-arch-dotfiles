@@ -12,7 +12,7 @@ function fish_prompt
     set_color normal
 
     # Kubectl Context
-    set -l KUBE_CONTEXT (cat ~/.kube/config | grep 'current-context:' | sed 's/current-context: //')
+    set -l KUBE_CONTEXT (cat ~/.kube/config 2>/dev/null | grep 'current-context:' | sed 's/current-context: //')
     if test -n "$KUBE_CONTEXT"
         printf ' ['
         set_color purple 
