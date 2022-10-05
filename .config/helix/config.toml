@@ -1,0 +1,36 @@
+[editor]
+line-number = "relative"
+mouse = false
+idle-timeout = 0 # Time for auto-completion to pop-up
+
+[editor.statusline]
+left = ["mode"]
+center = ["file-name"]
+right = ["diagnostics", "file-type"]
+separator = "-=-"
+
+[editor.lsp]
+display-messages = true
+
+[editor.cursor-shape]
+select = "underline"
+insert = "bar"
+normal = "block"
+
+[editor.whitespace.render]
+tab = "all"
+
+
+[editor.whitespace.characters]
+tab = "→"
+tabpad = "·"
+
+# [editor.indent-guides]
+# render = true
+# character = "|"
+
+[keys.normal]
+
+";" = "command_palette"
+C-s = ":wq"
+
