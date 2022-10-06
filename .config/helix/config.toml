@@ -29,4 +29,4 @@ tabpad = "·"
 [keys.normal]
 ";" = "command_palette"
 C-s = ":wq"
-"space" = {"c" = [":w", ":buffer-close"], "q" = [":w", ":q"]}
+"space" = {"c" = [":w", ":buffer-close"], "q" = [":w", ":q"], "Q" = ":q!"}
