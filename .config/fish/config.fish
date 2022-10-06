@@ -17,4 +17,5 @@ end
 
 function fish_user_key_bindings
     bind ! bind_bang
+    bind \cr 'commandline -i "$(history | fzf --height 40% --reverse --inline-info +s --bind \'tab:down\' --bind \'shift-tab:up\')"'
 end
