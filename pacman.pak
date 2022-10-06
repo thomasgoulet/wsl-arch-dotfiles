@@ -15,6 +15,7 @@ git
 github-cli
 k9s
 kubectl
+lazygit
 libtool
 m4
 make
