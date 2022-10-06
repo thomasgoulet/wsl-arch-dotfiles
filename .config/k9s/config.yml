@@ -14,38 +14,17 @@ k9s:
     fullScreenLogs: false
     textWrap: false
     showTime: false
-  currentContext: aksdev
-  currentCluster: aksdev
+  currentContext: docker-desktop
+  currentCluster: docker-desktop
   clusters:
-    aksdev:
+    docker-desktop:
       namespace:
         active: all
         favorites:
-        - ingress-nginx
-        - monitoring
-        - iwls
+        - all
         - default
       view:
-        active: pod
-      featureGates:
-        nodeShell: false
-      shellPod:
-        image: busybox:1.31
-        command: []
-        args: []
-        namespace: default
-        limits:
-          cpu: 100m
-          memory: 100Mi
-      portForwardAddress: localhost
-    akstest:
-      namespace:
-        active: iwls
-        favorites:
-        - iwls
-        - default
-      view:
-        active: pod
+        active: namespace
       featureGates:
         nodeShell: false
       shellPod:
