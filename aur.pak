@@ -1,5 +1,6 @@
-jdtls
-mongosh-bin
+cloudflared-bin
+helix-git
+libvterm01
 paru
 rancher-k3d-bin
 terraform-ls
