@@ -8,7 +8,7 @@ idle-timeout = 0 # Time for auto-completion to pop-up
 left = ["mode", "spinner"]
 center = ["file-name"]
 right = ["diagnostics", "selections", "position", "file-encoding", "file-line-ending", "file-type"]
-separator = "-=-"
+separator = "-"
 
 [editor.lsp]
 display-messages = true
@@ -18,9 +18,11 @@ select = "underline"
 insert = "bar"
 normal = "block"
 
+[editor.file-picker]
+hidden = false
+
 [editor.whitespace.render]
 tab = "all"
-
 
 [editor.whitespace.characters]
 tab = "→"

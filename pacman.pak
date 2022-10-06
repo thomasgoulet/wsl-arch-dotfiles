@@ -9,10 +9,13 @@ exa
 fakeroot
 figlet
 fish
+fisher
 flex
+fzf
 gcc
 git
 github-cli
+jq
 k9s
 kubectl
 lazygit
