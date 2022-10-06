@@ -1,7 +1,10 @@
 cloudflared-bin
 helix-git
 lazydocker
+jdtls
+k6
 libvterm01
+mongosh-bin
 paru
 rancher-k3d-bin
 terraform-ls

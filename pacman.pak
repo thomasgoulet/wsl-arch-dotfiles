@@ -5,6 +5,7 @@ base
 binutils
 bison
 btop
+cloudflared
 exa
 fakeroot
 figlet
@@ -15,6 +16,9 @@ fzf
 gcc
 git
 github-cli
+groff
+helix
+jdk11-openjdk
 jq
 k9s
 kubectl
@@ -33,7 +37,6 @@ pkgconf
 python
 ranger
 ripgrep
-rust
 sudo
 terraform
 terragrunt
