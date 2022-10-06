@@ -14,12 +14,11 @@ k9s:
     fullScreenLogs: false
     textWrap: false
     showTime: false
-  currentContext: akstest
-  currentCluster: akstest
+  currentContext: docker-desktop
+  currentCluster: docker-desktop
   clusters:
-    aksdev:
+    docker-desktop:
       namespace:
-        active: iwls
         favorites:
         - all
         - ingress-nginx
@@ -65,23 +64,4 @@ k9s:
         - iwls
         - default
       view:
-        active: pods
-      featureGates:
-        nodeShell: false
-      shellPod:
-        image: busybox:1.31
-        command: []
-        args: []
-        namespace: default
-        limits:
-          cpu: 100m
-          memory: 100Mi
-      portForwardAddress: localhost
-  thresholds:
-    cpu:
-      critical: 90
-      warn: 70
-    memory:
-      critical: 90
-      warn: 70
-  screenDumpDir: /tmp/k9s-screens-thomas
+        active: namespace
