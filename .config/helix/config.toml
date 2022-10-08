@@ -1,6 +1,7 @@
 theme = "base16_terminal"
 [editor]
 line-number = "relative"
+true-color = true
 mouse = false
 idle-timeout = 0 # Time for auto-completion to pop-up
 
