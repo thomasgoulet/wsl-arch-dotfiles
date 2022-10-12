@@ -1,3 +1,4 @@
 .config/gh/hosts.yml
 .config/k9s/config.yml
 .config/yarn/global/*
+.config/btop/btop.log
