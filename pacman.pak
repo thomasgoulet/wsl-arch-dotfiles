@@ -19,6 +19,7 @@ github-cli
 groff
 helix
 jdk11-openjdk
+jdk17-openjdk
 jq
 k9s
 kubectl
