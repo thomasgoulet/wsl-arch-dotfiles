@@ -16,11 +16,11 @@ fzf
 gcc
 git
 github-cli
-groff
 helix
 jdk11-openjdk
 jdk17-openjdk
 jq
+jre17-openjdk
 k9s
 kubectl
 lazygit
@@ -38,6 +38,7 @@ pkgconf
 python
 ranger
 ripgrep
+rust
 sudo
 terraform
 terragrunt
