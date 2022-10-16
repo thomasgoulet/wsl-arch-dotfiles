@@ -1,5 +1,5 @@
 #! /bin/sh
 
-pacman -S --needed --noconfirm - < pacman.pak
-paru -S --needed - < aur.pak
+pacman -S --needed - < pacman.pak
+# paru -S --needed - < aur.pak
 

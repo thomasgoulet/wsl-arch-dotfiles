@@ -1,22 +1,9 @@
 #! /bin/sh
 
-INSTALL_AZCLI=0
-INSTALL_PARU=0
-INSTALL_LVIM=1
-
 ## .config symlink
 
-## mkdir -p ~/wsl-arch-dotfiles/.config
-## ln -f --symbolic ~/wsl-arch-dotfiles/.config ~/.config
-
-## Azure-CLI
-
-if [ $INSTALL_AZCLI -eq 1 ]
-then
-	curl -L https://aka.ms/InstallAzureCli | bash
-fi
-
-## Paru
+mkdir -p ~/wsl-arch-dotfiles/.config
+ln -f --symbolic ~/wsl-arch-dotfiles/.config ~/.config
 
 if [ $INSTALL_PARU -eq 1 ]
 then
@@ -29,14 +16,3 @@ then
 	rm -R -f paru
 
 fi
-
-## Paru Packages
-
-
-if [ $INSTALL_LVIM -eq 1 ]
-then
-
-  bash (curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh | psub)
-
-fi
-

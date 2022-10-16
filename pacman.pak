@@ -6,8 +6,8 @@ binutils
 bison
 btop
 cloudflared
+debugedit
 exa
-fakeroot
 figlet
 fish
 fisher
@@ -16,11 +16,11 @@ fzf
 gcc
 git
 github-cli
+glow
 helix
 jdk11-openjdk
 jdk17-openjdk
 jq
-jre17-openjdk
 k9s
 kubectl
 lazygit
@@ -45,6 +45,7 @@ terragrunt
 texinfo
 unzip
 vim
+wget
 which
 whois
 yarn
