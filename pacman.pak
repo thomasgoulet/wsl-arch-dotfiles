@@ -3,6 +3,7 @@ autoconf
 automake
 base
 binutils
+bat
 bison
 btop
 cloudflared

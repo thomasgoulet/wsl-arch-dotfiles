@@ -80,6 +80,48 @@ kubectl completion fish | source
 function kcon
     kubectl config use-context (kubectl config get-contexts | fzf --height 10% --reverse --inline-info --bind 'tab:down' --bind 'shift-tab:up' --delimiter=' ' --nth=2.. --header-lines=1 | cut -c 2- | awk '{print $1}')
 end
+
+## Note taking
+
+function notes
+    
+    set -f notes_dir "/home/thomas/notes"
+    
+    # Open today's note
+    if test (count $argv) = 0
+        notes n journal/(date +%Y-%m-%d)
+        return
+    end
+    
+    # Install
+    if test "$argv[1]" = "install"
+        curl https://raw.githubusercontent.com/pimterry/notes/latest-release/notes > /usr/local/bin/notes && chmod +x /usr/local/bin/notes
+        return
+    end
+    
+    # Todos
+    if test "$argv[1]" = "todo"
+        for s in (rg --line-number --no-heading "\[ \]" $notes_dir | fzf -m --with-nth=3 --delimiter : --preview 'bat --theme OneHalfDark --style="changes,header,numbers" {1} --highlight-line {2} --color=always' --height 40% --reverse --bind 'tab:down' --bind 'shift-tab:up' --bind 'space:select' --bind 'ctrl-space:deselect')
+            set -l fileinfo (string split ':' "$s")
+            sed -i $fileinfo[2]'s/\[ \]/\[x\]/' $fileinfo[1]
+        end
+        return
+    end
+    
+    # Undo Todos
+    
+    if test "$argv[1]" = "doto"
+        for s in (rg --line-number --no-heading "\[x\]" $notes_dir | fzf -m --with-nth=3 --delimiter : --preview 'bat --theme OneHalfDark --style="changes,header,numbers" {1} --highlight-line {2} --color=always' --height 40% --reverse --bind 'tab:down' --bind 'shift-tab:up' --bind 'space:select' --bind 'ctrl-space:deselect')
+            set -l fileinfo (string split ':' "$s")
+            sed -i $fileinfo[2]'s/\[x\]/\[ \]/' $fileinfo[1]
+        end
+        return
+    end
+
+    
+    command notes $argv
+
+end
     
 ## Package Management
 
