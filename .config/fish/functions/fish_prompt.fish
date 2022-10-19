@@ -11,8 +11,19 @@ function fish_prompt
     printf '%s' $USER
     set_color normal
 
+    #Job count
+    set -f NUM_JOBS (jobs | wc -l)
+    if test $NUM_JOBS -gt 0
+        printf ' ['
+        set_color 9478DD 
+        printf '%s' $NUM_JOBS
+        set_color normal
+        printf ']'
+    end
+    
+    
     # Kubectl Context
-    set -l KUBE_CONTEXT (cat ~/.kube/config 2>/dev/null | grep 'current-context:' | sed 's/current-context: //')
+    set -f KUBE_CONTEXT (cat ~/.kube/config 2>/dev/null | grep 'current-context:' | sed 's/current-context: //')
     if test -n "$KUBE_CONTEXT"
         printf ' ['
         set_color purple 
@@ -24,12 +35,14 @@ function fish_prompt
     printf ' in '
 
     # Pwd
+    printf '['
     set_color blue
-    printf '%s ' (pwd | sed 's+/home/thomas+~+g')
+    printf '%s' (pwd | sed 's+/home/thomas+~+g')
     set_color normal
+    printf '] '
 
     # Git Branch
-    set -l GIT_BRANCH (git branch --show-current 2>/dev/null)
+    set -f GIT_BRANCH (git branch --show-current 2>/dev/null)
     if test -n "$GIT_BRANCH"
         printf '['
         set_color yellow
