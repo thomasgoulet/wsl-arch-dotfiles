@@ -45,8 +45,16 @@ function fish_prompt
     set -f GIT_BRANCH (git branch --show-current 2>/dev/null)
     if test -n "$GIT_BRANCH"
         printf '['
-        set_color yellow
-        printf '%s' $GIT_BRANCH
+        git diff-index --quiet HEAD
+        if test $status -eq 1
+            set_color red
+            printf '±'
+            set_color yellow
+        else
+            set_color yellow
+            printf ''
+        end
+        printf '%s' $GIT_BRANCH
         set_color normal
         printf '] '
     end
