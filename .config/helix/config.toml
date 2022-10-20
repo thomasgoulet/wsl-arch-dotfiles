@@ -1,6 +1,7 @@
-theme = "base16_terminal"
+theme = "thom"
 
 [editor]
+color-modes = true
 line-number = "relative"
 true-color = true
 mouse = false
@@ -29,6 +30,10 @@ tab = "all"
 [editor.whitespace.characters]
 tab = "→"
 tabpad = "·"
+
+[editor.indent-guides]
+render = true
+character = "|"
 
 [keys.normal]
 ";" = "command_palette"
