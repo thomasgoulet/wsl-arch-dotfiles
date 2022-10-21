@@ -38,4 +38,4 @@ character = "|"
 [keys.normal]
 ";" = "command_palette"
 C-s = ":wq"
-"space" = {"c" = [":w", ":buffer-close"], "q" = [":w", ":q"], "Q" = ":q!", "z" = [":w", "suspend"]}
+"space" = {"space" = ":wa", "c" = ":buffer-close", "q" = ":q", "Q" = ":qa!", "z" = [":w", "suspend"]}

@@ -32,27 +32,25 @@ end
 ## Helix
 
 function hx
-    if test (count $argv) = 0
-        set -f hx_directory (z -l 2>&1 | sed "s/^[0-9, .]* * //" | fzf --height 40% --reverse --inline-info --tiebreak length --bind 'tab:down' --bind 'shift-tab:up' --preview "exa -lah --no-user --no-permissions --no-time --git --ignore-glob='*.git*' --icons {}")
-        if test "$hx_directory" = ""
-            return
-        end
-        helix $hx_directory
-        return
-    end
     helix $argv
 end
 
-function hxd
-    if test (count $argv) = 0
-        set -f hx_directory (fd --type directory -H -E "*.git*" | fzf --height 40% --reverse --inline-info --tiebreak length --bind "tab:down" --bind "shift-tab:up" --preview "exa -lah --no-user --no-permissions --no-time --git --ignore-glob='*.git*' --icons {}")
-        if test "$hx_directory" = ""
-            return
-        end
-        helix $hx_directory
+function hxj
+    set -f hx_directory (z -l 2>&1 | sed "s/^[0-9, .]* * //" | fzf --height 40% --reverse --inline-info --tiebreak length --bind 'tab:down' --bind 'shift-tab:up' --preview "exa -lah --no-user --no-permissions --no-time --git --ignore-glob='*.git*' --icons {}")
+    if test "$hx_directory" = ""
         return
     end
-    helix $argv
+    helix $hx_directory
+    return
+end
+
+function hxd
+    set -f hx_directory (fd --type directory -H -E "*.git*" | fzf --height 40% --reverse --inline-info --tiebreak length --bind "tab:down" --bind "shift-tab:up" --preview "exa -lah --no-user --no-permissions --no-time --git --ignore-glob='*.git*' --icons {}")
+    if test "$hx_directory" = ""
+        return
+    end
+    helix $hx_directory
+    return
 end
 
 ## Jump / Navigation
