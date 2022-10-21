@@ -22,6 +22,7 @@ github-cli
 glow
 groff
 helix
+helm
 jdk11-openjdk
 jdk17-openjdk
 jq
@@ -40,6 +41,7 @@ net-tools
 npm
 patch
 pkgconf
+python
 ranger
 ripgrep
 rust
