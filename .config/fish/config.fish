@@ -84,20 +84,25 @@ end
 
 function notes
     
-    set -f notes_dir "/home/thomas/notes"
+    set -f notes_dir "/home/thomas/notes/Journal"
     
     # Open today's note
     if test (count $argv) = 0
           
         set -l todays_date (date +%Y-%m-%d)
               
-        if not test -e $HOME/notes/journal/$todays_date.md
-            echo > $HOME/notes/journal/$todays_date.md "\
+        if not test -e $notes_dir/$todays_date.md
+            echo > $notes_dir/$todays_date.md "\
+---
+created: $todays_date
+updated: $todays_date
+---
+#journal
 # $todays_date
-            
-## Todos
-            
- - [ ]"
+---
+
+  - [ ]
+"
         end
         
         notes n journal/(date +%Y-%m-%d)
