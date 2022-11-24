@@ -50,6 +50,7 @@ sudo
 terraform
 terragrunt
 texinfo
+trivy
 unzip
 vim
 vscode-css-languageserver
