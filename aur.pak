@@ -3,6 +3,7 @@ jdtls
 k6
 lazydocker
 mongosh-bin
+omnisharp-roslyn
 paru
 rancher-k3d-bin
 terraform-ls

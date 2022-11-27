@@ -10,6 +10,8 @@ bison
 btop
 cloudflared
 debugedit
+docker
+dotnet-sdk
 exa
 figlet
 fish
