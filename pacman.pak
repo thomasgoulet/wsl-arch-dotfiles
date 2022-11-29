@@ -13,6 +13,7 @@ debugedit
 docker
 dotnet-sdk
 exa
+fd
 figlet
 fish
 fisher
@@ -41,6 +42,7 @@ neofetch
 neovim
 net-tools
 npm
+openssl-1.1
 patch
 pkgconf
 python

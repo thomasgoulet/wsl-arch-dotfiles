@@ -4,7 +4,7 @@ theme = "thom"
 color-modes = true
 line-number = "relative"
 true-color = true
-mouse = false
+mouse = true
 idle-timeout = 0 # Time for auto-completion to pop-up
 
 [editor.statusline]
