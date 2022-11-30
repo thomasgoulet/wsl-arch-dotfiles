@@ -9,6 +9,7 @@ SETUVAR Z_DATA_DIR:/home/thomas/\x2elocal/share/z
 SETUVAR Z_EXCLUDE:\x5e/home/thomas\x24
 SETUVAR __fish_initialized:3400
 SETUVAR _fish_abbr_c:clear
+SETUVAR _fish_abbr_expl:explorer\x2eexe\x20\x2e
 SETUVAR _fish_abbr_g:git
 SETUVAR _fish_abbr_ga:git\x20add\x20
 SETUVAR _fish_abbr_gb:git\x20branch\x20\x2da
@@ -21,11 +22,13 @@ SETUVAR _fish_abbr_k:kubectl
 SETUVAR _fish_abbr_ki:kubectl\x20\x2dn\x20iwls
 SETUVAR _fish_abbr_lg:lazygit
 SETUVAR _fish_abbr_pacman:sudo\x20pacman
+SETUVAR _fish_abbr_podman:sudo\x20podman
 SETUVAR _fish_abbr_r:ranger
 SETUVAR _fish_abbr_subl:subl\x2eexe
 SETUVAR _fish_abbr_tf:terraform
 SETUVAR _fish_abbr_tg:terragrunt
 SETUVAR _fish_abbr_vpnkit:wsl\x2eexe\x20\x2dd\x20wsl\x2dvpnkit\x20service\x20wsl\x2dvpnkit\x20start
+SETUVAR _fish_abbr_wttr:curl\x20\x22wttr\x2ein/Rimouski\x3fFA\x22
 SETUVAR _fisher_jethrokuan_2F_z_files:\x7e/\x2econfig/fish/functions/__z\x2efish\x1e\x7e/\x2econfig/fish/functions/__z_add\x2efish\x1e\x7e/\x2econfig/fish/functions/__z_clean\x2efish\x1e\x7e/\x2econfig/fish/functions/__z_complete\x2efish\x1e\x7e/\x2econfig/fish/conf\x2ed/z\x2efish
 SETUVAR _fisher_plugins:jethrokuan/z
 SETUVAR _fisher_upgraded_to_4_4:\x1d

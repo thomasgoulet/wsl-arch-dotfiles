@@ -33,6 +33,7 @@ k9s
 kubectl
 lazygit
 libtool
+lua
 lua-language-server
 m4
 make
@@ -46,6 +47,7 @@ openssl-1.1
 patch
 pkgconf
 python
+podman
 ranger
 ripgrep
 rust

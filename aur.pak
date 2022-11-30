@@ -6,5 +6,6 @@ mongosh-bin
 omnisharp-roslyn
 paru
 rancher-k3d-bin
+rnix-lsp
 terraform-ls
 win32yank-bin
