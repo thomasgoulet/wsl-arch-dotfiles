@@ -1,5 +1,7 @@
 function fish_prompt
 
+    echo ''
+    
     set -l promptstatus $status
 
     if not set -q VIRTUAL_ENV_DISABLE_PROMPT
