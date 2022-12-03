@@ -23,6 +23,7 @@ gcc
 git
 github-cli
 glow
+gopls
 groff
 helix
 helm
