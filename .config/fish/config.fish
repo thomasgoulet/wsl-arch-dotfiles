@@ -152,17 +152,17 @@ end
 ## Listing content of directories
 
 function ll
-    exa -lah@ -tmodified --no-user --time-style iso --git --ignore-glob="*.git*" --icons
+    exa -lah@ -tmodified --no-user --time-style iso --git --ignore-glob="*.git*" --icons $argv
 end
 
 function ll.
-    exa -lah@ -tmodified --no-user --time-style iso --git --ignore-glob=".?*" --icons
+    exa -lah@ -tmodified --no-user --time-style iso --git --ignore-glob=".?*" --icons $argv
 end
 
 function lld
-    exa -lahD@ -tmodified --no-user --time-style iso --git --ignore-glob="*.git*" --icons -L2
+    exa -lahD@ -tmodified --no-user --time-style iso --git --ignore-glob="*.git*" --icons -L2 $argv
 end
 
 function llt
-    exa -laTh@ -tmodified --no-user --time-style iso --git --ignore-glob="*.git*" --icons -L2
+    exa -laTh@ -tmodified --no-user --time-style iso --git --ignore-glob="*.git*" --icons -L2 $argv
 end
