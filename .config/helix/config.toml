@@ -2,6 +2,7 @@ theme = "thom"
 
 [editor]
 color-modes = true
+bufferline = "always"
 line-number = "relative"
 true-color = true
 mouse = false
