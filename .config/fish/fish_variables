@@ -21,6 +21,7 @@ SETUVAR _fish_abbr_gs:git\x20status
 SETUVAR _fish_abbr_k:kubectl
 SETUVAR _fish_abbr_ki:kubectl\x20\x2dn\x20iwls
 SETUVAR _fish_abbr_lg:lazygit
+SETUVAR _fish_abbr_ls:ls\x20\x2dla
 SETUVAR _fish_abbr_pacman:sudo\x20pacman
 SETUVAR _fish_abbr_podman:sudo\x20podman
 SETUVAR _fish_abbr_r:ranger
