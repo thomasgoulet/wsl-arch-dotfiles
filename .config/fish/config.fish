@@ -80,6 +80,9 @@ function kcon
     kubectl config use-context (kubectl config get-contexts | fzf --height 10% --reverse --inline-info --bind 'tab:down' --bind 'shift-tab:up' --delimiter=' ' --nth=2.. --header-lines=1 | cut -c 2- | awk '{print $1}')
 end
 
+function azsub
+    az account set -s (az account list | jq -r '.[] | [(if .isDefault then "*" else " " end), .name]|@tsv' | fzf --height 10% --reverse --inline-info --bind 'tab:down' --bind 'shift-tab:up' | cut -f 2)
+end
 ## Note taking
 
 function notes
