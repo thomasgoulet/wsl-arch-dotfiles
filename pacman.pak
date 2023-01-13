@@ -49,6 +49,7 @@ patch
 pkgconf
 python
 podman
+python-lsp-server
 ranger
 ripgrep
 rust
