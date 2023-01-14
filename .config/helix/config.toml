@@ -39,13 +39,12 @@ character = "|"
 [keys.normal]
 "\\" = "command_palette"
 C-s = ":wq"
-# "space" = {
-#   "space" = ":wa", 
-#   "c" = ":buffer-close", 
-#   "q" = ":q", 
-#   "Q" = ":qa!", 
-#   "z" = [":w", "suspend"]
-# }
-"space" = {"space" = ":wa", "c" = ":buffer-close", "q" = ":q", "Q" = ":qa!", "z" = [":w", "suspend"]}
 X = "extend_line_above"
 D = "delete_char_backward"
+
+[keys.normal.space]
+"space" = ":wa"
+"c" = ":buffer-close"
+"q" = ":q"
+"Q" = ":qa!"
+"z" = [":w", "suspend"]
