@@ -48,3 +48,5 @@ D = "delete_char_backward"
 "q" = ":q"
 "Q" = ":qa!"
 "z" = [":w", "suspend"]
+"[" = "jump_view_left"
+"]" = "jump_view_right"
