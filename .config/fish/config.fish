@@ -22,6 +22,24 @@ end
 
 # Macros / Shortcuts
 
+## Listing content of directories
+
+function ll
+    exa -lah@ -tmodified --no-user --time-style iso --git --ignore-glob="*.git*" --icons $argv
+end
+
+function ll.
+    exa -lah@ -tmodified --no-user --time-style iso --git --ignore-glob=".?*" --icons $argv
+end
+
+function lld
+    exa -lahD@ -tmodified --no-user --time-style iso --git --ignore-glob="*.git*" --icons -L2 $argv
+end
+
+function llt
+    exa -laTh@ -tmodified --no-user --time-style iso --git --ignore-glob="*.git*" --icons -L2 $argv
+end
+
 ## Git
 
 function gpsup
@@ -36,7 +54,7 @@ function hx
 end
 
 function hxj
-    set -f hx_directory (z -l 2>&1 | sed "s/^[0-9, .]* * //" | fzf --height 40% --reverse --inline-info --tiebreak length --bind 'tab:down' --bind 'shift-tab:up' --preview "exa -lah --no-user --no-permissions --no-time --git --ignore-glob='*.git*' --icons {}")
+    set -f hx_directory (z -l 2>&1 | sed "s/^[0-9, .]* * //" | fzf --height 40% --reverse --inline-info --tiebreak length --bind 'tab:down' --bind 'shift-tab:up' --preview "llt {}")
     if test "$hx_directory" = ""
         return
     end
@@ -44,8 +62,8 @@ function hxj
     return
 end
 
-function hxd
-    set -f hx_directory (fd --type directory -H -E "*.git*" | fzf --height 40% --reverse --inline-info --tiebreak length --bind "tab:down" --bind "shift-tab:up" --preview "exa -lah --no-user --no-permissions --no-time --git --ignore-glob='*.git*' --icons {}")
+function hxf
+    set -f hx_directory (fd --type directory -H -E "*.git*" | fzf --height 40% --reverse --inline-info --tiebreak length --bind "tab:down" --bind "shift-tab:up" --preview "llt {}")
     if test "$hx_directory" = ""
         return
     end
@@ -56,7 +74,7 @@ end
 ## Jump / Navigation
 
 function j
-    set -f j_directory (z -l 2>&1 | sed "s/^[0-9, .]* * //" | fzf --height 40% --reverse --inline-info --tiebreak length --bind 'tab:down' --bind 'shift-tab:up' --preview "exa -lah --no-user --no-permissions --no-time --git --ignore-glob='*.git*' --icons {}")
+    set -f j_directory (z -l $argv 2>&1 | cut -d " " -f 2- | tr -d " " | fzf --height 40% --reverse --inline-info --tiebreak length --bind 'tab:down' --bind 'shift-tab:up' --preview "llt {}")
     if test "$j_directory" = ""
         return
     end
@@ -64,7 +82,7 @@ function j
 end
 
 function jf
-    set -f j_directory (fd --type directory -H -E "*.git*" | fzf --height 40% --reverse --inline-info --tiebreak length --bind 'tab:down' --bind 'shift-tab:up' --preview "exa -lah --no-user --no-permissions --no-time --git --ignore-glob='*.git*' --icons {}")
+    set -f j_directory (fd --type directory -H -E "*.git*" | fzf --height 40% --reverse --inline-info --tiebreak length --bind 'tab:down' --bind 'shift-tab:up' --preview "llt {}")
     if test "$j_directory" = ""
         return
     end
@@ -150,22 +168,4 @@ end
 
 function pac
     pacman -Slq | fzf -q "$1" -m --preview 'pacman -Si {1}' --height 50% --reverse --bind 'tab:down' --bind 'shift-tab:up' --bind 'space:select' --bind 'ctrl-space:deselect' | xargs -ro sudo pacman -S
-end
-
-## Listing content of directories
-
-function ll
-    exa -lah@ -tmodified --no-user --time-style iso --git --ignore-glob="*.git*" --icons $argv
-end
-
-function ll.
-    exa -lah@ -tmodified --no-user --time-style iso --git --ignore-glob=".?*" --icons $argv
-end
-
-function lld
-    exa -lahD@ -tmodified --no-user --time-style iso --git --ignore-glob="*.git*" --icons -L2 $argv
-end
-
-function llt
-    exa -laTh@ -tmodified --no-user --time-style iso --git --ignore-glob="*.git*" --icons -L2 $argv
 end
