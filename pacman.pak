@@ -21,6 +21,7 @@ flex
 fzf
 gcc
 git
+git-delta
 github-cli
 glow
 gopls
@@ -59,6 +60,7 @@ terraform
 terragrunt
 texinfo
 trivy
+typescript-language-server
 unzip
 vim
 vscode-css-languageserver
