@@ -89,7 +89,7 @@ k9s:
       colonColor: *grey
       valueColor: *grey
     logs:
-      fgColor: *grey
+      fgColor: default
       bgColor: default
       indicator:
         fgColor: *blue
