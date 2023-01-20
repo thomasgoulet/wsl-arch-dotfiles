@@ -39,8 +39,9 @@ character = "|"
 [keys.normal]
 "\\" = "command_palette"
 C-s = ":wq"
-X = "extend_line_above"
 D = "delete_char_backward"
+S = ["select_all", "select_regex"]
+X = "extend_line_above"
 
 [keys.normal.space]
 "space" = ":wa"
