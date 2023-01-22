@@ -6,6 +6,7 @@ color-modes = true
 idle-timeout = 0 # Time for auto-completion to pop-up
 line-number = "relative"
 mouse = false
+shell = ["fish", "-c"]
 true-color = true
 
 [editor.statusline]
