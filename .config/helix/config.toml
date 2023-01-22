@@ -64,6 +64,6 @@ X = "extend_line_above"
 "c" = ":buffer-close"
 "q" = ":q"
 "Q" = ":qa!"
-"z" = [":w", "suspend"]
+"t" = [":w", "suspend"]
 "[" = "jump_view_left"
 "]" = "jump_view_right"
