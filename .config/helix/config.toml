@@ -1,29 +1,41 @@
 theme = "thom"
 
 [editor]
-color-modes = true
 bufferline = "always"
-line-number = "relative"
-true-color = true
-mouse = false
+color-modes = true
 idle-timeout = 0 # Time for auto-completion to pop-up
+line-number = "relative"
+mouse = false
+true-color = true
 
 [editor.statusline]
 left = ["mode", "spinner"]
 center = ["file-name"]
-right = ["diagnostics", "selections", "position", "file-encoding", "file-line-ending", "file-type"]
+right = ["diagnostics", "selections", "position", "position-percentage", "file-encoding", "file-line-ending", "file-type"]
 separator = "-"
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
 
 [editor.lsp]
 display-messages = true
 
 [editor.cursor-shape]
-select = "underline"
 insert = "bar"
 normal = "block"
+select = "underline"
 
 [editor.file-picker]
 hidden = false
+
+[editor.auto-pairs]
+"(" = ")"
+"{" = "}"
+"[" = "]"
+"'" = "'"
+'"' = '"'
+"`" = "`"
+"<" = ">"
 
 [editor.whitespace.render]
 tab = "all"
@@ -33,14 +45,17 @@ tab = "→"
 tabpad = "·"
 
 [editor.indent-guides]
-render = true
 character = "|"
+render = true
 
 [keys.normal]
 "\\" = "command_palette"
 C-s = ":wq"
 D = "delete_char_backward"
+H = ":bp"
+L = ":bn"
 S = ["select_all", "select_regex"]
+y = ["yank", ":clipboard-yank"]
 X = "extend_line_above"
 
 [keys.normal.space]
