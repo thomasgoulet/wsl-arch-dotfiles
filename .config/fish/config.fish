@@ -71,6 +71,11 @@ function hxf
     return
 end
 
+function hxgd
+    set -f git_directory (git rev-parse --show-toplevel)
+    hx (git diff --name-only | sed "s;^;$git_directory/;")
+end
+
 ## Jump / Navigation
 
 function j
@@ -87,6 +92,12 @@ function jf
         return
     end
     cd $j_directory
+end
+
+function r
+    ranger --choosedir ~/ranger_folder.tmp
+    cd (cat ~/ranger_folder.tmp)
+    rm ~/ranger_folder.tmp
 end
 
 ## Kubernetes
