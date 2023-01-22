@@ -2,6 +2,7 @@
 # VERSION: 3.0
 SETUVAR --export EDITOR:helix
 SETUVAR --export --path KUBE_CONFIG_PATH:/home/thomas/\x2ekube/config
+SETUVAR --export PAGER:less\x20\x2dRF\x20\x2d\x2dno\x2dinit
 SETUVAR ZO_CMD:zo
 SETUVAR Z_CMD:z
 SETUVAR Z_DATA:/home/thomas/\x2elocal/share/z/data
