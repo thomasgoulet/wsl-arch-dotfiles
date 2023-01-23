@@ -3,3 +3,4 @@
 .config/yarn/global/*
 .config/btop/btop.log
 .config/lazygit/state.yml
+.config/ranger/**/__pycache__/*
