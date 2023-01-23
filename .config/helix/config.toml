@@ -53,6 +53,7 @@ render = true
 "\\" = "command_palette"
 C-s = ":wq"
 D = "delete_char_backward"
+G = "goto_last_line"
 H = ":bp"
 L = ":bn"
 S = ["select_all", "select_regex"]
