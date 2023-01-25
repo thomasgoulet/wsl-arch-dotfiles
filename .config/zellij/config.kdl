@@ -43,7 +43,8 @@ keybinds clear-defaults=true {
         bind "l" "Right" { MoveFocus "Right"; }
         bind "j" "Down" { MoveFocus "Down"; }
         bind "k" "Up" { MoveFocus "Up"; }
-        bind "c" { CloseFocus; SwitchToMode "Normal"; }
+        bind "c" { CloseFocus; SwitchToMode "Locked"; }
+        bind "n" { NewPane; SwitchToMode "Locked"; }
     }
     
     resize {

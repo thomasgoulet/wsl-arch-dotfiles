@@ -5,14 +5,13 @@ layout {
                 command "helix"
                 args "."
                 name "EDITOR"
-				size "60%"
-			}
+                size "60%"
+            }
             pane split_direction="horizontal" {
                 pane {
                     command "lazygit"
-                    size "60%"
+                    name "GIT"
                 }
-                pane
             }
         }
 
@@ -20,5 +19,4 @@ layout {
             plugin location="zellij:compact-bar"
         }
     }
-
 }

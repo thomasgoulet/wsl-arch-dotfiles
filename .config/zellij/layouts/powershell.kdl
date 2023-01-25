@@ -1,0 +1,17 @@
+layout {
+	pane_template name="powershell" {
+		command "powershell.exe"
+		args "-NoExit" "-Command" "Set-Location $env:USERPROFILE"
+	}
+
+	tab name="PSHELL" {
+		pane split_direction="vertical" {
+			powershell name="POWERSHELL"
+			powershell name="POWERSHELL"
+		}
+
+		pane size=1 borderless=true {
+			plugin location="zellij:compact-bar"
+		}
+	}
+}
