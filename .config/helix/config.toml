@@ -65,6 +65,6 @@ X = "extend_line_above"
 "c" = ":buffer-close"
 "q" = ":q"
 "Q" = ":qa!"
-"t" = [":w", "suspend"]
+"t" = [":w", ":sh zellij action toggle-floating-panes"]
 "[" = "jump_view_left"
 "]" = "jump_view_right"

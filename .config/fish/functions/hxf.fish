@@ -5,5 +5,4 @@ function hxf
         return
     end
     helix $hx_directory
-    return
 end
