@@ -12,6 +12,7 @@ cloudflared
 debugedit
 docker
 dotnet-sdk
+dotnet-sdk-6.0
 exa
 fd
 figlet
@@ -71,3 +72,5 @@ which
 whois
 yaml-language-server
 yarn
+zellij
+zoxide
