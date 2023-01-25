@@ -3,11 +3,7 @@
 SETUVAR --export EDITOR:helix
 SETUVAR --export --path KUBE_CONFIG_PATH:/home/thomas/\x2ekube/config
 SETUVAR --export PAGER:less\x20\x2dRF\x20\x2d\x2dno\x2dinit
-SETUVAR ZO_CMD:zo
-SETUVAR Z_CMD:z
-SETUVAR Z_DATA:/home/thomas/\x2elocal/share/z/data
-SETUVAR Z_DATA_DIR:/home/thomas/\x2elocal/share/z
-SETUVAR Z_EXCLUDE:\x5e/home/thomas\x24
+SETUVAR --export _ZO_FZF_OPTS:\x2d\x2dheight\x2040\x25\x20\x2d\x2dreverse\x20\x2d\x2dinline\x2dinfo\x20\x2d\x2dtiebreak\x20length\x20\x2d\x2dbind\x20\x27tab\x3adown\x27\x20\x2d\x2dbind\x20\x27shift\x2dtab\x3aup\x27\x20\x2d\x2dpreview\x20\x27llt\x20\x7b2\x7d\x27
 SETUVAR __fish_initialized:3400
 SETUVAR _fish_abbr_c:clear
 SETUVAR _fish_abbr_expl:explorer\x2eexe\x20\x2e
