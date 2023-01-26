@@ -25,9 +25,9 @@ keybinds clear-defaults=true {
         bind "s" { SwitchToMode "Scroll"; }
         bind "S" { SwitchToMode "Session"; }
         bind "t" { SwitchToMode "Tab"; }
-        bind "m" { MovePane; } // bind "m" { SwitchToMode "Move"; }
+        bind "m" { SwitchToMode "Move"; }
 
-        bind "W" { ToggleFloatingPanes; SwitchToMode "Locked"; }
+        bind "f" { ToggleFloatingPanes; SwitchToMode "Locked"; }
         bind "1" { GoToTab 1; SwitchToMode "Locked"; }
         bind "2" { GoToTab 2; SwitchToMode "Locked"; }
         bind "3" { GoToTab 3; SwitchToMode "Locked"; }
@@ -74,6 +74,14 @@ keybinds clear-defaults=true {
         bind "r" { SwitchToMode "RenamePane"; PaneNameInput 0;}
     }
 
+    move {
+        bind "m" { MovePane; }    
+        bind "h" "Left" { MovePane "Left"; }
+        bind "j" "Down" { MovePane "Down"; }
+        bind "k" "Up" { MovePane "Up"; }
+        bind "l" "Right" { MovePane "Right"; }
+    }
+    
     tab {
         bind "r" { SwitchToMode "RenameTab"; TabNameInput 0; }
         bind "h" "Left" "Up" "j" { GoToPreviousTab; }
@@ -146,8 +154,6 @@ plugins {
     status-bar { path "status-bar"; }
     compact-bar { path "compact-bar"; }
 }
-
-simplified_ui true
 
 ui {
     pane_frames {
