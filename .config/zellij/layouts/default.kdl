@@ -15,10 +15,14 @@ layout {
     }
     
     tab name="K9S" {
-        pane {
-            command "k9s"
-            name "k9s"
-            start_suspended true
+        pane split_direction="horizontal" {
+            pane {
+                command "k9s"
+                name "k9s"
+                start_suspended true
+                size "70%"
+            }
+            pane
         }
     }
     
