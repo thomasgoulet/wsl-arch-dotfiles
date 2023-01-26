@@ -61,10 +61,11 @@ y = ["yank", ":clipboard-yank"]
 X = "extend_line_above"
 
 [keys.normal.space]
-"space" = ":wa"
-"c" = ":buffer-close"
-"q" = ":q"
-"Q" = ":qa!"
-"t" = [":w", ":sh zellij action toggle-floating-panes"]
+space = ":wa"
+C = ":config-open"
+c = ":buffer-close"
+q = ":q"
+Q = ":qa!"
+t = [":w", ":sh zellij action toggle-floating-panes"]
 "[" = "jump_view_left"
 "]" = "jump_view_right"

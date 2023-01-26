@@ -45,6 +45,12 @@ keybinds clear-defaults=true {
         bind "k" "Up" { MoveFocus "Up"; }
         bind "c" { CloseFocus; SwitchToMode "Locked"; }
         bind "n" { NewPane; SwitchToMode "Locked"; }
+
+        bind "C" {
+            Run "zellij" "edit" "~/.config/zellij/config.kdl"{
+                close_on_exit true
+            }
+        }
     }
     
     resize {
