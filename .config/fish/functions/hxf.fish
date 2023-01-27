@@ -1,8 +1,11 @@
 # Open helix inside a sub-directory chosen via fzf
 function hxf
-    set -f hx_directory (fd --type directory -H -E "*.git*" | fzf --height 40% --reverse --inline-info --tiebreak length --bind "tab:down" --bind "shift-tab:up" --preview "llt {}")
-    if test "$hx_directory" = ""
+    set -f hx_file (rg -n -H . |\
+        fzf --height 70% --reverse --inline-info --tiebreak length --bind "tab:down" --bind "shift-tab:up" -d : \
+        --preview "bat -n --color=always -r (math max 0, {2}-10): -H {2} {1}" |\
+        cut -d : -f 1,2)
+    if test "$hx_file" = ""
         return
     end
-    helix $hx_directory
+    helix $hx_file
 end
