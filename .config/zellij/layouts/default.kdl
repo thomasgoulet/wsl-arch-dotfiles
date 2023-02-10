@@ -11,6 +11,7 @@ layout {
         pane {
             command "btop"
             name "btop"
+            start_suspended true
         }
     }
     

@@ -16,7 +16,8 @@ SETUVAR _fish_abbr_gca:git\x20commit\x20\x2dam
 SETUVAR _fish_abbr_gd:git\x20diff
 SETUVAR _fish_abbr_gpl:git\x20pull\x20\x2d\x2dprune
 SETUVAR _fish_abbr_gps:git\x20push
-SETUVAR _fish_abbr_gs:git\x20status
+SETUVAR _fish_abbr_gs:git\x20status\x20\x2d\x2dshort
+SETUVAR _fish_abbr_gss:git\x20status
 SETUVAR _fish_abbr_k:kubectl
 SETUVAR _fish_abbr_ki:kubectl\x20\x2dn\x20iwls
 SETUVAR _fish_abbr_lg:lazygit
