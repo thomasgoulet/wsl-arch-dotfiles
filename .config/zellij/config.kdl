@@ -14,6 +14,7 @@ keybinds clear-defaults=true {
 
     locked {
         // Master key is F1
+        bind "Ctrl g" { SwitchToMode "Normal"; }
         bind "F1" { SwitchToMode "Normal"; }
     }
 
