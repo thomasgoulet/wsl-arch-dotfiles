@@ -8,5 +8,5 @@ function gl
     if test "$commit" = ""
         return
     end
-    git show --color=always (echo {} | grep -o "[a-f0-9]\{7\}")
+    git show --color=always (echo $commit | grep -o "[a-f0-9]\{7\}")
 end
