@@ -68,5 +68,6 @@ G = [":wa", ":sh zellij run -f -c -- lazygit"]
 q = ":q"
 Q = ":qa!"
 t = ":sh zellij action toggle-floating-panes"
+z = "suspend"
 "[" = "jump_view_left"
 "]" = "jump_view_right"
