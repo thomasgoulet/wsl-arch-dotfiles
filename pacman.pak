@@ -1,15 +1,9 @@
 arch-install-scripts
-autoconf
-automake
 base
-binutils
 bash-language-server
 bat
-binutils
-bison
 btop
 cloudflared
-debugedit
 docker
 dotnet-sdk
 dotnet-sdk-6.0
@@ -26,7 +20,6 @@ git-delta
 github-cli
 glow
 gopls
-groff
 helix
 helm
 jdk11-openjdk
@@ -35,11 +28,9 @@ jq
 k9s
 kubectl
 lazygit
-libtool
+lf
 lua
 lua-language-server
-m4
-make
 man-db
 nano
 neofetch
@@ -47,10 +38,8 @@ neovim
 net-tools
 npm
 openssl-1.1
-patch
-pkgconf
-python
 podman
+python
 python-lsp-server
 ranger
 ripgrep
@@ -63,6 +52,7 @@ texinfo
 trivy
 typescript-language-server
 unzip
+vi
 vim
 vscode-css-languageserver
 vscode-html-languageserver
