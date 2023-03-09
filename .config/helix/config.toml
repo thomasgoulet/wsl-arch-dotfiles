@@ -62,12 +62,12 @@ X = "extend_line_above"
 
 [keys.normal.space]
 space = ":wa"
-C = ":config-open"
-c = ":buffer-close"
-f = [":new", ":insert-output lfpick", ":theme default", "select_all", "split_selection_on_newline", "goto_file", "goto_last_modified_file", ":bc!", ":theme thom"]
+C = ":bc!"
+c = ":bc"
+F = [":new", ":insert-output lfpick", ":theme base16_terminal", "select_all", "split_selection_on_newline", "goto_file", "goto_last_modified_file", ":bc!", ":theme base16_default", ":theme thom"]
 G = [":wa", ":sh zellij run -f -c -- lazygit"]
 q = ":q"
-Q = ":qa!"
+Q = [":theme default", ":theme thom", ":qa!"]
 t = ":sh zellij action toggle-floating-panes"
 z = "suspend"
 "[" = "jump_view_left"

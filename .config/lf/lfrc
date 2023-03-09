@@ -1,0 +1,8 @@
+set hidden
+set icons
+set previewer ~/.config/lf/preview.sh
+set ratios 1:1:5
+set shell fish
+
+cmd open $hx $fx
+cmd on-quit cd $fx

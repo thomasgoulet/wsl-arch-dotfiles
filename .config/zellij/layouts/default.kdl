@@ -1,7 +1,6 @@
 layout {
     default_tab_template {
         children
-
         pane size=1 borderless=true {
             plugin location="zellij:compact-bar"
         }
@@ -14,23 +13,11 @@ layout {
             start_suspended true
         }
     }
-    
-    tab name="K9S" {
-        pane split_direction="horizontal" {
-            pane {
-                command "k9s"
-                name "k9s"
-                start_suspended true
-                size "70%"
-            }
-            pane
-        }
-    }
-    
+
     tab name="CONFIG" cwd="/home/thomas/.config" {
         pane {
             command "fish"
-            args "-c" "r"
+            args "-c" "lf"
             name "~/.config"
         }
     }
