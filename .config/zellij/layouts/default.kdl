@@ -1,20 +1,78 @@
 layout {
-    default_tab_template {
+
+    cwd "/home/thomas"
+
+    default_tab_template name="default_tab" {
+        children
+        pane size=1 borderless=true {
+            plugin location="zellij:compact-bar"
+        }
+    }
+    
+    tab_template name="default_tab" {
         children
         pane size=1 borderless=true {
             plugin location="zellij:compact-bar"
         }
     }
 
-    tab name="BTOP" {
-        pane {
-            command "btop"
-            name "btop"
-            start_suspended true
+    swap_tiled_layout name="STACK" {
+        default_tab max_panes=2 {
+            pane {
+                pane
+            }
+        }
+        default_tab max_panes=3 {
+            pane split_direction="vertical" {
+                pane size="60%"
+                pane
+            }
+        }
+        default_tab max_panes=4 {
+            pane split_direction="vertical" {
+                pane size="60%"
+                pane stacked=true {
+                    pane
+                    pane
+                }
+            }
+        }
+        default_tab max_panes=5 {
+            pane split_direction="vertical" {
+                pane size="60%"
+                pane stacked=true {
+                    pane
+                    pane
+                    pane
+                }
+            }
+        }
+        default_tab max_panes=6 {
+            pane split_direction="vertical" {
+                pane size="60%"
+                pane stacked=true {
+                    pane
+                    pane
+                    pane
+                    pane
+                }
+            }
+        }
+        default_tab max_panes=6 {
+            pane split_direction="vertical" {
+                pane size="60%"
+                pane stacked=true {
+                    pane
+                    pane
+                    pane
+                    pane
+                    pane
+                }
+            }
         }
     }
 
-    tab name="CONFIG" cwd="/home/thomas/.config" {
+    default_tab name="CONFIG" cwd=".config" {
         pane {
             command "fish"
             args "-c" "lf"
@@ -22,10 +80,10 @@ layout {
         }
     }
 
-    tab name="~" cwd="/home/thomas" focus=true {
+    default_tab name="~" focus=true {
         pane split_direction="vertical" {
             pane size="60%"
-            pane split_direction="horizontal" {
+            pane stacked=true {
                 pane
                 pane
             }

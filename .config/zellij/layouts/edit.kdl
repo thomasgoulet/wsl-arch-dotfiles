@@ -5,14 +5,12 @@ layout {
                 command "helix"
                 args "."
                 name "EDITOR"
-                size "70%"
             }
-            pane split_direction="horizontal" {
-                pane {
-                    command "lazygit"
-                    name "GIT"
-                }
+            pane {
+                command "lazygit"
+                name "GIT"
             }
+            pane
         }
 
         pane size=1 borderless=true {

@@ -9,7 +9,6 @@ layout {
 			powershell name="POWERSHELL"
 			powershell name="POWERSHELL"
 		}
-
 		pane size=1 borderless=true {
 			plugin location="zellij:compact-bar"
 		}
