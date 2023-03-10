@@ -18,7 +18,6 @@ gcc
 git
 git-delta
 github-cli
-glow
 gopls
 helix
 helm

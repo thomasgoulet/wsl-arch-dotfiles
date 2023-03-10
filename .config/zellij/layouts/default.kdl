@@ -72,6 +72,27 @@ layout {
         }
     }
 
+    swap_floating_layout {
+        floating_panes max_panes=1 {
+            pane x="10%" y="10%" width="80%" height="80%"
+        }
+        floating_panes max_panes=2 {
+            pane x="10%" y="10%" width="40%" height="80%"
+            pane x="50%" y="10%" width="40%" height="80%"
+        }
+        floating_panes max_panes=3 {
+            pane x="12%" y="10%" width="25%" height="80%"
+            pane x="37%" y="10%" width="25%" height="80%" borderless=true
+            pane x="62%" y="10%" width="25%" height="80%"
+        }
+        floating_panes max_panes=4 {
+            pane x="10%" y="10%" width="40%" height="40%"
+            pane x="50%" y="10%" width="40%" height="40%"
+            pane x="10%" y="50%" width="40%" height="40%"
+            pane x="50%" y="50%" width="40%" height="40%"
+        }
+    }
+
     default_tab name="CONFIG" cwd=".config" {
         pane borderless=true {
             command "fish"
