@@ -1,7 +1,7 @@
 azure-kubelogin
 jdtls
 k6-bin
-lazydocker-bin
+jqp-bin
 marksman-bin
 mongosh-bin
 omnisharp-roslyn-bin
@@ -9,4 +9,3 @@ paru
 rancher-k3d-bin
 rnix-lsp
 terraform-ls
-win32yank-bin

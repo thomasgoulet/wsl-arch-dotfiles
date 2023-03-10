@@ -4,7 +4,6 @@ bash-language-server
 bat
 btop
 cloudflared
-docker
 dotnet-sdk
 dotnet-sdk-6.0
 exa
@@ -19,6 +18,7 @@ git
 git-delta
 github-cli
 gopls
+grex
 helix
 helm
 jdk11-openjdk
@@ -60,5 +60,6 @@ which
 whois
 yaml-language-server
 yarn
+yq
 zellij
 zoxide
