@@ -1,6 +1,10 @@
 # Output files selected with lf to terminal
 function lfpick
-    lf -selection-path ~/lf_files.tmp
+    zellij run -f -c -- lf -selection-path ~/lf_files.tmp
+    set -l lfpid (pgrep -n lf)
+    while kill -0 $lfpid;
+        sleep 0.2;
+    end
     if test -e ~/lf_files.tmp
         cat ~/lf_files.tmp
         rm ~/lf_files.tmp
