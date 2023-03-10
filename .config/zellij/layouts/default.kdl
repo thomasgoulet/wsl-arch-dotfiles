@@ -58,10 +58,37 @@ layout {
                 }
             }
         }
-        default_tab max_panes=6 {
+        default_tab max_panes=7 {
             pane split_direction="vertical" {
                 pane size="60%"
                 pane stacked=true {
+                    pane
+                    pane
+                    pane
+                    pane
+                    pane
+                }
+            }
+        }
+        default_tab max_panes=8 {
+            pane split_direction="vertical" {
+                pane size="60%"
+                pane stacked=true {
+                    pane
+                    pane
+                    pane
+                    pane
+                    pane
+                    pane
+                }
+            }
+        }
+        default_tab max_panes=9 {
+            pane split_direction="vertical" {
+                pane size="60%"
+                pane stacked=true {
+                    pane
+                    pane
                     pane
                     pane
                     pane
