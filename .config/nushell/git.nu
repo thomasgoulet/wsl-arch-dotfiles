@@ -64,7 +64,7 @@ module git {
   export alias gps = git push
 
   # Show status
-  export alias gs = (git status --short | str replace '  ' ' ' -a | lines | split column " " | rename "Status" "File")
+  export alias gs = ("status file\n" + (git status --short) | from ssv -m 1)
 
 }
 

@@ -122,8 +122,7 @@ layout {
 
     default_tab name="CONFIG" cwd=".config" {
         pane borderless=true {
-            command "fish"
-            args "-c" "lf"
+            command "lf"
             name "~/.config"
         }
     }
