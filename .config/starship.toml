@@ -1,0 +1,35 @@
+add_newline = true
+
+
+format = '''
+$username$kubernetes [in](white) \[$directory\]$git_status$git_branch
+ $character'''
+
+[username]
+style_user = 'green'
+style_root = 'purple'
+format = '$user($style)'
+show_always = true
+
+[kubernetes]
+style = 'purple'
+symbol = ''
+format = ' \[[$symbol$context\($namespace\)]($style)\]'
+
+[directory]
+style = 'blue'
+format = '[$path]($style)'
+truncate_to_repo = false
+
+[git_status]
+style = 'red'
+format = ' \[[$all_status]($style)'
+
+[git_branch]
+style = 'yellow'
+symbol = ''
+format = '[$branch]($style)\]'
+
+[character]
+success_symbol = '[❯](white)'
+error_symbol = '[❯](red)'
