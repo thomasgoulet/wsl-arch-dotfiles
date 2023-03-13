@@ -103,8 +103,8 @@ let theme = {
     shape_variable: purple
 }
 
-let carapace_completer = {
-  |spans| carapace $spans.0 nushell $spans | from json
+let fish_completer = {|spans|
+    fish --command $'complete "--do-complete=($spans | str join " ")"' | str trim | split row "\n" | each { |line| $line | split column "\t" value description } | flatten
 }
 
 let-env config = {
@@ -142,7 +142,7 @@ let-env config = {
     external: {
       enable: true # set to false to prevent nushell looking into $env.PATH to find more suggestions, `false` recommended for WSL users as this look up my be very slow
       max_results: 100 # setting it lower can improve completion performance at the cost of omitting some options
-      completer: $carapace_completer
+      completer: $fish_completer
     }
   }
 
