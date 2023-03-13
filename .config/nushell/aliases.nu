@@ -1,7 +1,6 @@
 module aliases {
   export alias c = clear
   export alias expl = explorer.exe .
-  export alias k = kubectl
   export alias l = lf
   export alias lg = lazygit
   export alias pac = (pacman -Slq | fzf -m --preview 'pacman -Si {1}' --height 50% --reverse --bind 'tab:down' --bind 'shift-tab:up' --bind 'space:select' --bind 'ctrl-space:deselect' | xargs -ro sudo pacman -S)

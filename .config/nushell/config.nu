@@ -18,6 +18,10 @@ use git *
 source ~/.config/nushell/helix.nu
 use helix *
 
+# Source kubectl aliases and functions
+source ~/.config/nushell/kube.nu
+use kube *
+
 # Custom completions
 module completions {}
 use completions *
@@ -99,6 +103,9 @@ let theme = {
     shape_variable: purple
 }
 
+let carapace_completer = {
+  |spans| carapace $spans.0 nushell $spans | from json
+}
 
 let-env config = {
  
@@ -133,9 +140,9 @@ let-env config = {
     partial: true
     algorithm: "fuzzy"
     external: {
-      enable: false # set to false to prevent nushell looking into $env.PATH to find more suggestions, `false` recommended for WSL users as this look up my be very slow
+      enable: true # set to false to prevent nushell looking into $env.PATH to find more suggestions, `false` recommended for WSL users as this look up my be very slow
       max_results: 100 # setting it lower can improve completion performance at the cost of omitting some options
-      completer: null
+      completer: $carapace_completer
     }
   }
 
@@ -188,7 +195,7 @@ let-env config = {
         }
         style: {
             text: yellow
-            selected_text: blue
+            selected_text: blue_reverse
             description_text: blue
         }
       }
@@ -202,7 +209,7 @@ let-env config = {
         }
         style: {
             text: yellow
-            selected_text: blue
+            selected_text: blue_reverse
             description_text: blue
         }
       }
@@ -219,7 +226,7 @@ let-env config = {
         }
         style: {
             text: yellow
-            selected_text: blue
+            selected_text: blue_reverse
             description_text: blue
         }
       }
