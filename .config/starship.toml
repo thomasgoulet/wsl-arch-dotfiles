@@ -8,13 +8,14 @@ $username$kubernetes [in](white) \[$directory\]$git_status$git_branch
 [username]
 style_user = 'green'
 style_root = 'purple'
-format = '$user($style)'
+format = '[$user]($style)'
 show_always = true
 
 [kubernetes]
 style = 'purple'
 symbol = ''
-format = ' \[[$symbol$context\($namespace\)]($style)\]'
+format = ' \[[$symbol$context]($style)\]'
+disabled = false
 
 [directory]
 style = 'blue'
