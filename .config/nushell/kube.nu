@@ -3,7 +3,7 @@ module kube {
   export alias k = kubectl
 
   def "nu-complete kubectl resources" [] {
-    kubectl api-resources | from ssv | get NAME
+    kubectl api-resources | from ssv | get SHORTNAMES NAME | flatten
   }
 
   export def kc [
