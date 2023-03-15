@@ -14,6 +14,7 @@ module kube {
     kubectl api-resources | from ssv | get SHORTNAMES NAME | flatten
   }
 
+  # Change context
   export def "kubectl con" [
     context?: string@"nu-complete kubectl contexts"  # Context
   ] {
@@ -23,6 +24,7 @@ module kube {
     kubectl config use-context $context
   }
 
+  # Change configure namespace in context
   export def "kubectl ns" [
     namespace?: string@"nu-complete kubectl namespaces" # Namespace
   ] {
@@ -35,38 +37,27 @@ module kube {
     kubectl config set-context --current --namespace $namespace
   }
 
+  # Show resources
   export def "kubectl s" [
     resource: string@"nu-complete kubectl resources"  # Resource
-    --namespace (-n): string  # Namespace
-    --all (-A)  # Show resource for all namespaces
-    --full (-f)  # Show full resource info
+    search?: string  # Filter resources name with this value
+    --full (-f)  # Show full resources info. If only one resource is returned you can get data out of it
   ] {
+    mut output = (kubectl get $resource | from ssv)
 
-    if $full {
-
-      mut output = ""
-
-      if $all {
-        $output = (kubectl get $resource -o json -A)
-      } else if $namespace != "" {
-        $output = (kubectl get $resource -o json -n $namespace)
-      } else {
-        $output = (kubectl get $resource -o json)
-      }
-
-      return ($output | from json | get items | get metadata | move namespace name --before creationTimestamp)
-
+    if $search != null {
+        $output = ($output | where NAME =~ $search)
     }
 
-    if $all {
-      return (kubectl get $resource -A | from ssv)
+    if $full and ($output | length) > 1 {
+      return ($output | each { |row|
+        (kubectl get $resource $row.NAME -o json | from json)
+      })
+    } else if $full and ($output | length) == 1 {
+      return (kubectl get $resource ($output | first | get NAME) -o json | from json)
     }
 
-    if $namespace != null {
-      return (kubectl get $resource -n $namespace | from ssv)
-    }
-
-    return (kubectl get $resource | from ssv)
+    return $output
   }
 
 }
