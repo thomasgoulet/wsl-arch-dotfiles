@@ -37,24 +37,32 @@ module kube {
     kubectl config set-context --current --namespace $namespace
   }
 
-  # Show resources
-  export def "kubectl s" [
+  # Explore resources
+  export alias ke = kubectl e
+  
+  export def "kubectl e" [
     resource: string@"nu-complete kubectl resources"  # Resource
     search?: string  # Filter resources name with this value
-    --full (-f)  # Show full resources info. If only one resource is returned you can get data out of it
+    --all (-a)  # Search in all namespaces
+    --definition (-d)  # Output full definitions for resources
   ] {
-    mut output = (kubectl get $resource | from ssv)
 
-    if $search != null {
+    mut output = [[];]
+    let all_arg = (if $all {["-A"]} else {[]})
+
+    if not $definition {
+      $output = (kubectl get $resource $all_arg | from ssv)
+      if $search != null {
         $output = ($output | where NAME =~ $search)
-    }
-
-    if $full and ($output | length) > 1 {
-      return ($output | par-each { |row|
-        (kubectl get $resource $row.NAME -o json | from json)
-      })
-    } else if $full and ($output | length) == 1 {
-      return (kubectl get $resource ($output | first | get NAME) -o json | from json)
+      }
+    } else {
+      $output = (kubectl get $resource -o json $all_arg | from json | get items)
+      if $search != null {
+        $output = ($output | where metadata.name =~ $search)
+      }
+      if ($output | length) == 1 {
+        $output = ($output | into record)
+      }
     }
 
     return $output

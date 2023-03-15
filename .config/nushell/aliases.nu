@@ -5,7 +5,6 @@ module aliases {
   export alias lg = lazygit
   export alias pac = (pacman -Slq | fzf -m --preview 'pacman -Si {1}' --height 50% --reverse --bind 'tab:down' --bind 'shift-tab:up' --bind 'space:select' --bind 'ctrl-space:deselect' | xargs -ro sudo pacman -S)
   export alias par = (paru -Slq | fzf -m --preview 'paru -Si {1}' --height 50% --reverse --bind 'tab:down' --bind 'shift-tab:up' --bind 'space:select' --bind 'ctrl-space:deselect' | xargs -ro paru -S)
-  export alias podman = sudo podman
   export alias pshell = zellij action new-tab -l ~/.config/zellij/layouts/powershell.kdl
   export alias r = zellij run -c --
   export alias rf = zellij run -c -f --
