@@ -1,7 +1,11 @@
 module git {
 
   def "nu-complete git branches" [] {
-    ^git branch | lines | each { |line| $line | str replace '[\*\+] ' '' | str trim }
+    ^git branch | lines | where $it !~ "HEAD" | each { |line| $line | str replace '[\*\+] ' '' | str trim }
+  }
+
+  def "nu-complete git remote branches" [] {
+    ^git branch -a | lines | where $it !~ "HEAD" | each { |line| $line | str replace '[\*\+] ' '' | str trim | str replace 'remotes/' ''}
   }
 
   # Git alias
@@ -22,7 +26,7 @@ module git {
 
   # Check out git branches and files
   export def gc [
-    branch: string@"nu-complete git branches"  # Branch to checkout
+    branch: string@"nu-complete git remote branches"  # Branch to checkout
   ] {
     git checkout $branch
   }

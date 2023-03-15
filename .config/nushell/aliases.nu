@@ -14,9 +14,9 @@ module aliases {
   export alias vpnkit = wsl.exe -d wsl-vpnkit service wsl-vpnkit start
 
   export def ll [
-    path?:string
+    path?:string  # Optional path to list directory for
   ] {
-    if ($path | is-empty) {
+    if $path == null {
       ls -la | select name mode size modified
     } else {
       ls -la $path | select name mode size modified
@@ -24,10 +24,10 @@ module aliases {
   }
 
   export def llt [
-    path?:string
+    path?:string  # Optional path to list directory for
   ] {
     mut result = null
-    if ($path | is-empty) {
+    if $path == null {
       $result = (ls -la | where type == dir and name !~ git)
     } else {
       $result = (ls -la $path | where type == dir and name !~ git)
