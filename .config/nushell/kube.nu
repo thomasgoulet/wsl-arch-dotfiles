@@ -2,27 +2,40 @@ module kube {
 
   export alias k = kubectl
 
+  def "nu-complete kubectl contexts" [] {
+    kubectl config get-contexts | from ssv | get NAME
+  }
+
+  def "nu-complete kubectl namespaces" [] {
+    kubectl get namespaces | from ssv | where NAME != "default" | get NAME | prepend NONE
+  }
+
   def "nu-complete kubectl resources" [] {
     kubectl api-resources | from ssv | get SHORTNAMES NAME | flatten
   }
 
-  export def kc [
-    --list (-l)  # List context instead of switching
+  export def "kubectl con" [
+    context?: string@"nu-complete kubectl contexts"  # Context
   ] {
-    if $list {
-      kubectl config get-contexts | from ssv
-      return
+    if $context == null {
+      return (kubectl config get-contexts | from ssv)
     }
-    let context = (
-      kubectl config get-contexts |
-      fzf --height 10% --reverse --inline-info --bind 'tab:down' --bind 'shift-tab:up' --delimiter=' ' --nth=2.. --header-lines=1
-    )
-    if $context != "" {
-      kubectl config use-context ($context | split row " " | filter {|s| $s != "" and $s != "*"} | first)
-    }
+    kubectl config use-context $context
   }
 
-  export def ks [
+  export def "kubectl ns" [
+    namespace?: string@"nu-complete kubectl namespaces" # Namespace
+  ] {
+    if $namespace == null {
+      return (kubectl get ns | from ssv)
+    }
+    if $namespace == "NONE" {
+      return (kubectl config set-context --current --namespace="")
+    }
+    kubectl config set-context --current --namespace $namespace
+  }
+
+  export def "kubectl s" [
     resource: string@"nu-complete kubectl resources"  # Resource
     --namespace (-n): string  # Namespace
     --all (-A)  # Show resource for all namespaces

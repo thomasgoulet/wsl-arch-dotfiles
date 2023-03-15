@@ -67,4 +67,3 @@ module git {
   export alias gs = ("status file\n" + (git status --short) | from ssv -m 1)
 
 }
-
