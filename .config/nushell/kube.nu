@@ -50,7 +50,7 @@ module kube {
     }
 
     if $full and ($output | length) > 1 {
-      return ($output | each { |row|
+      return ($output | par-each { |row|
         (kubectl get $resource $row.NAME -o json | from json)
       })
     } else if $full and ($output | length) == 1 {
