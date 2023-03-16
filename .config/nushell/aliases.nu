@@ -3,8 +3,6 @@ module aliases {
   export alias expl = explorer.exe .
   export alias l = lf
   export alias lg = lazygit
-  export alias pac = (pacman -Slq | fzf -m --preview 'pacman -Si {1}' --height 50% --reverse --bind 'tab:down' --bind 'shift-tab:up' --bind 'space:select' --bind 'ctrl-space:deselect' | xargs -ro sudo pacman -S)
-  export alias par = (paru -Slq | fzf -m --preview 'paru -Si {1}' --height 50% --reverse --bind 'tab:down' --bind 'shift-tab:up' --bind 'space:select' --bind 'ctrl-space:deselect' | xargs -ro paru -S)
   export alias pshell = zellij action new-tab -l ~/.config/zellij/layouts/powershell.kdl
   export alias r = zellij run -c --
   export alias rf = zellij run -c -f --
@@ -12,6 +10,7 @@ module aliases {
   export alias tg = terragrunt
   export alias vpnkit = wsl.exe -d wsl-vpnkit service wsl-vpnkit start
 
+  # List directory content
   export def ll [
     path?:string  # Optional path to list directory for
   ] {
@@ -22,6 +21,7 @@ module aliases {
     }
   }
 
+  # List subdirectories contents
   export def llt [
     path?:string  # Optional path to list directory for
   ] {
@@ -40,6 +40,20 @@ module aliases {
         )
       }
     }
+  }
+
+  # Search pacman's packages via fzf and install
+  export def pac [] {
+    pacman -Slq |
+      fzf -m --preview 'pacman -Si {1}' --height 50% --reverse --bind 'tab:down' --bind 'shift-tab:up' --bind 'space:select' --bind 'ctrl-space:deselect' |
+      xargs -ro sudo pacman -S
+  }
+
+  # Search AUR's packages via fzf and install
+  export def par [] {
+    paru -Slq |
+     fzf -m --preview 'paru -Si {1}' --height 50% --reverse --bind 'tab:down' --bind 'shift-tab:up' --bind 'space:select' --bind 'ctrl-space:deselect' |
+     xargs -ro paru -S
   }
 
 }
