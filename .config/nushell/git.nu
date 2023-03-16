@@ -15,7 +15,9 @@ module git {
   export alias ga = git add .
 
   # List branches
-  export alias gb = (git branch -a | lines)
+  export def gb [] {
+    git branch -a | lines
+  }
 
   # Delete branches
   export def gbd [
@@ -68,6 +70,8 @@ module git {
   export alias gps = git push
 
   # Show status
-  export alias gs = ("status file\n" + (git status --short) | from ssv -m 1)
+  export def gs [] {
+    "status file\n" + (git status --short) | from ssv -m 1
+  }
 
 }

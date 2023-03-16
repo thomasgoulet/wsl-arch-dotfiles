@@ -15,7 +15,9 @@ module kube {
   }
 
   # Change context
-  export def "kubectl con" [
+  export alias kcon = kubectl context
+  # Change context
+  export def "kubectl context" [
     context?: string@"nu-complete kubectl contexts"  # Context
   ] {
     if $context == null {
@@ -24,8 +26,10 @@ module kube {
     kubectl config use-context $context
   }
 
-  # Change configure namespace in context
-  export def "kubectl ns" [
+  # Change configured namespace in context
+  export alias kns = kubectl namespace
+  # Change configured namespace in context
+  export def "kubectl namespace" [
     namespace?: string@"nu-complete kubectl namespaces" # Namespace
   ] {
     if $namespace == null {
@@ -38,9 +42,9 @@ module kube {
   }
 
   # Explore resources
-  export alias ke = kubectl e
-  
-  export def "kubectl e" [
+  export alias ke = kubectl explore
+  # Explore resources
+  export def "kubectl explore" [
     resource: string@"nu-complete kubectl resources"  # Resource
     search?: string  # Filter resources name with this value
     --all (-a)  # Search in all namespaces
