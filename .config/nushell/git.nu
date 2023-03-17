@@ -28,9 +28,11 @@ module git {
 
   # Check out git branches and files
   export def gc [
-    branch: string@"nu-complete git remote branches"  # Branch to checkout
+    target: string@"nu-complete git remote branches"  # Target to checkout
+    --branch (-b)  # Create branch instead
   ] {
-    git checkout $branch
+    let $args = (if $branch {[-b]} else {[]})
+    git checkout $args $target
   }
 
   # Show git diff
