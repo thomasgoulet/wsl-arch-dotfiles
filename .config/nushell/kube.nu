@@ -49,13 +49,13 @@ module kube {
     search?: string  # Filter resource's name with this value
     ...properties: cell-path  # Output only selected properties
     --all (-a)  # Search in all namespaces
-    --definition (-d)  # Output full definitions for resources
+    --full_definitions (-f)  # Output full definitionss for resources
   ] {
 
     mut output = [[];]
     let all_arg = (if $all {["-A"]} else {[]})
 
-    if not $definition {
+    if not $full_definitions {
       # Populate output with simple get
       $output = (kubectl get $resource $all_arg | from ssv)
       # Refine output by NAME
@@ -86,7 +86,7 @@ module kube {
           $result | select -i $p
         })
         # We get the names so the properties can be mapped to their corresponding results easily then we turn it into a record to remove the nulls
-        if not $definition {
+        if not $full_definitions {
           $new_result | prepend ($result | select NAME) | into record
         } else {
           $new_result | prepend ($result | select metadata.name) | into record
