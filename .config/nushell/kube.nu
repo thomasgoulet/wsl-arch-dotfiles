@@ -47,6 +47,7 @@ module kube {
   export def "kubectl explore" [
     resource: string@"nu-complete kubectl resources"  # Resource
     search?: string  # Filter resources name with this value
+    ...properties: cell-path  # Output only selected properties
     --all (-a)  # Search in all namespaces
     --definition (-d)  # Output full definitions for resources
   ] {
@@ -64,12 +65,26 @@ module kube {
       if $search != null {
         $output = ($output | where metadata.name =~ $search)
       }
-      if ($output | length) == 1 {
-        $output = ($output | into record)
-      }
     }
 
+    if not ($properties | is-empty) {
+      $output = ($output | each { |result|
+        let new_result = ($properties | each { |p|
+          $result | select $p
+        })
+        if not $definition {
+          $new_result | prepend ($result | select NAME) | into record
+        } else {
+          $new_result | prepend ($result | select metadata.name) | into record
+        }
+      } | flatten)
+    }
+
+    if ($output | length) == 1 {
+      $output = ($output | into record)
+    }
     return $output
+
   }
 
 }

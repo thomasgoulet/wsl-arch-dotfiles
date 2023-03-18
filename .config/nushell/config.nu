@@ -1,31 +1,5 @@
 # Nushell Config File
 
-# Use zoxide
-source ~/.cache/zoxide/init.nu
-
-# Use starship
-source ~/.cache/starship/init.nu
-
-# Source aliases
-source ~/.config/nushell/aliases.nu
-use aliases *
-
-# Git aliases and completion
-source ~/.config/nushell/git.nu
-use git *
-
-# Helix aliases and functions
-source ~/.config/nushell/helix.nu
-use helix *
-
-# Source kubectl aliases and functions
-source ~/.config/nushell/kube.nu
-use kube *
-
-# Custom completions
-module completions {}
-use completions *
-
 let theme = {
     separator: white
     leading_trailing_space_bg: { attr: n }
@@ -167,17 +141,6 @@ let-env config = {
   show_banner: false
 
   hooks: {
-    pre_prompt: [{
-      null  # replace with source code to run before the prompt is shown
-    }]
-    pre_execution: [{
-      null  # replace with source code to run before the repl input is run
-    }]
-    env_change: {
-      PWD: [{|before, after|
-        null  # replace with source code to run if the PWD environment is different since the last repl input
-      }]
-    }
     display_output: {
       if (term size).columns >= 100 { table -e } else { table }
     }
@@ -323,6 +286,32 @@ let-env config = {
     }
   ]
 }
+
+# Use zoxide
+source ~/.cache/zoxide/init.nu
+
+# Use starship
+source ~/.cache/starship/init.nu
+
+# Source aliases
+source ~/.config/nushell/aliases.nu
+use aliases *
+
+# Git aliases and completion
+source ~/.config/nushell/git.nu
+use git *
+
+# Helix aliases and functions
+source ~/.config/nushell/helix.nu
+use helix *
+
+# Source kubectl aliases and functions
+source ~/.config/nushell/kube.nu
+use kube *
+
+# Custom completions
+module completions {}
+use completions *
 
 # Open ZelliJ session if not inside one
 if ($env | columns | where $it == ZELLIJ | is-empty) {
