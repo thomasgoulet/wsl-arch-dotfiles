@@ -4,6 +4,7 @@ bash-language-server
 bat
 btop
 cloudflared
+docker
 dotnet-sdk
 dotnet-sdk-6.0
 exa
@@ -36,6 +37,7 @@ neofetch
 neovim
 net-tools
 npm
+nushell
 openssl-1.1
 podman
 python
@@ -43,6 +45,7 @@ python-lsp-server
 ripgrep
 rust
 ruby
+starship
 sudo
 terraform
 terragrunt
