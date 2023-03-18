@@ -91,7 +91,7 @@ module kube {
         } else {
           $new_result | prepend ($result | select metadata.name) | into record
         }
-      } | flatten)
+      } | flatten | rename NAME)
     }
 
     # If there's only one result in the output we return a record
