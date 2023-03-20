@@ -14,6 +14,13 @@ module kube {
     kubectl api-resources | from ssv | get SHORTNAMES NAME | flatten
   }
 
+  def "nu-complete kubectl resource instances" [
+    context: string
+  ] {
+    let resource = ($context | split words | last)
+    (kubectl get $resource | from ssv | get NAME)
+  }
+
   # Change context
   export alias kcon = kubectl context
   # Change context
@@ -46,7 +53,7 @@ module kube {
   # Explore resources
   export def "kubectl explore" [
     resource: string@"nu-complete kubectl resources"  # Resource
-    search?: string  # Filter resource's name with this value
+    search?: string@"nu-complete kubectl resource instances"  # Filter resource's name with this value
     ...properties: cell-path  # Output only selected properties
     --all (-a)  # Search in all namespaces
     --full_definitions (-f)  # Output full definitionss for resources
