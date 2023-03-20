@@ -53,6 +53,7 @@ render = true
 "\\" = "command_palette"
 "esc" = "keep_primary_selection"
 C-s = ":wq"
+C-w = "rotate_view"
 D = "delete_char_backward"
 G = "goto_last_line"
 H = ":bp"
