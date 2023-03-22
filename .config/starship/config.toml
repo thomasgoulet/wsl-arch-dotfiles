@@ -20,6 +20,7 @@ disabled = false
 style = 'blue'
 format = '[$path]($style)'
 truncate_to_repo = false
+fish_style_pwd_dir_length = 1
 
 [git_status]
 style = 'red'
