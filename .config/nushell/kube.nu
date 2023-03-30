@@ -28,7 +28,7 @@ module kube {
     context?: string@"nu-complete kubectl contexts"  # Context
   ] {
     if $context == null {
-      return (kubectl config get-contexts | from ssv)
+      return (kubectl config get-contexts | from ssv -a)
     }
     kubectl config use-context $context
   }
