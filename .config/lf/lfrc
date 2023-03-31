@@ -15,8 +15,8 @@ map J zi
 cmd fzf_search ${{
     res="$( \
         FZF_DEFAULT_COMMAND="rg -n -H ." \
-        fzf --inline-info --tiebreak index --bind "tab:up" --bind "shift-tab:down" | cut -d':' -f1
+        fzf --inline-info --tiebreak index --bind "tab:up" --bind "shift-tab:down" --reverse | cut -d':' -f1
     )"
     [ ! -z "$res" ] && lf -remote "send $id select \"$res\""
 }}
-map S :fzf_search
+map f fzf_search
