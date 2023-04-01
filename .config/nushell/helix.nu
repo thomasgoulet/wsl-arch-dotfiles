@@ -40,7 +40,7 @@ module helix {
     }
   }
 
-  export def lfpick [] {
+  export def hx_lfpick [] {
     zellij run -f -c -- lf -selection-path ~/lf_files.tmp
     let lfpid = (pgrep -n lf)
 
