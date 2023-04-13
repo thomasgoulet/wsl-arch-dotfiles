@@ -5,7 +5,7 @@ let theme = {
     leading_trailing_space_bg: { attr: n }
     header: green_bold
     empty: blue
-    bool: { if $in { 'light_cyan' } else { 'light_gray' } }
+    bool: { || if $in { 'light_cyan' } else { 'light_gray' } }
     int: white
     filesize: {|e|
       if $e == 0b {
@@ -15,7 +15,7 @@ let theme = {
       } else { 'blue' }
     }
     duration: white
-    date: { (date now) - $in |
+    date: { || (date now) - $in |
       if $in < 1hr {
         'light_red'
       } else if $in < 6hr {
@@ -141,7 +141,7 @@ let-env config = {
   show_banner: false
 
   hooks: {
-    display_output: {
+    display_output: { ||
       if (term size).columns >= 100 { table -e } else { table }
     }
   }
