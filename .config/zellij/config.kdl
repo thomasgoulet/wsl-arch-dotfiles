@@ -148,6 +148,7 @@ keybinds clear-defaults=true {
         bind "Alt n" { NewPane; }
         bind "Alt c" { CloseFocus; }
         bind "Alt f" { ToggleFloatingPanes; }
+        bind "Alt F" { ToggleFocusFullscreen; }
         bind "Alt h" "Alt Left" { MoveFocus "Left"; }
         bind "Alt l" "Alt Right" { MoveFocus "Right"; }
         bind "Alt j" "Alt Down" { MoveFocus "Down"; }
