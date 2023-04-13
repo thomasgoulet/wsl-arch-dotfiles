@@ -17,7 +17,7 @@ module helix {
   export def hxf [] {
     let file = (
       rg -n -H . |
-      fzf --inline-info --tiebreak index --preview-window right,60% --bind "tab:up" --bind "shift-tab:down" --reverse -d : --preview "bat -n --color=always -r ([0, ({2} - 15)] | math max): -H {2} {1}"
+      fzf --inline-info --tiebreak index --preview-window right,60% --bind "tab:up" --bind "shift-tab:down" --reverse -d : --preview "bat -n --color=always -r ([0, (({2} | into int) - 15)] | math max) : -H {2} {1}"
     )
     if $file != "" {
       helix ($file | split row ":" | first 2 | reduce {|it, str| $str + ":" + $it })
