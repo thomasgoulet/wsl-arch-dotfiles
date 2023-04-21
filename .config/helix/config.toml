@@ -79,4 +79,4 @@ b = ":sh zellij run -f -c -- btop"
 d = [":wa", ":sh zellij run -f -- git diff"]
 g = [":wa", ":sh zellij run -f -c -- lazygit"]
 k = ":sh zellij run -f -c -- k9s"
-t = ":sh zellij action toggle-floating-panes"
+t = ":sh zellij run -f -c -n '' -- nu -e '$env.config.keybindings = ($env.config.keybindings | append {name: exit modifier: none keycode: esc mode: [emacs] event: {send: ctrld} })'"
