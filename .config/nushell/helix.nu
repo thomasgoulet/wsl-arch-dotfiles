@@ -10,7 +10,7 @@ module helix {
       git diff --name-only |
       split row "\n" |
       where $it != "" |
-      each { |file| $git_root + $file }
+      each { |file| $git_root + "/" + $file }
     )
   }
 
