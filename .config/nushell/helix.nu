@@ -44,14 +44,16 @@ module helix {
     zellij run -f -c -- lf -selection-path ~/lf_files.tmp
     let lfpid = (pgrep -n lf)
 
-    ^kill -0 $lfpid err+out> /dev/null 
-    while $env.LAST_EXIT_CODE == 0 {
-      sleep 0.2sec
-      ^kill -0 $lfpid err+out> /dev/null 
-    } 
-    if ("~/lf_files.tmp" | path exists) {
-      cat ~/lf_files.tmp
-      rm ~/lf_files.tmp
+    try {
+      while true {
+        sleep 0.2sec
+        ^kill -0 $lfpid err+out> /dev/null 
+      } 
+    } catch {
+      if ("~/lf_files.tmp" | path exists) {
+        print (cat ~/lf_files.tmp)
+        rm ~/lf_files.tmp
+      }
     }
   }
   

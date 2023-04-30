@@ -56,4 +56,10 @@ module aliases {
      xargs -ro paru -S
   }
 
+  # Find a sub folder and jump to it
+  export def jf [] {
+    cd ~
+    cd (fd -a | fzf --height 40% --reverse --inline-info --tiebreak length --bind 'tab:down' --bind 'shift-tab:up' --preview 'exa -T -L2 {1}')
+  }
+
 }
