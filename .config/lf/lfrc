@@ -19,7 +19,7 @@ cmd fzf_content_search ${{
     )"
     [ ! -z "$res" ] && lf -remote "send $id select \"$res\""
 }}
-map f fzf_content_search
+map F fzf_content_search
 
 cmd fzf_filefilesearch ${{
     res="$( \
@@ -28,4 +28,4 @@ cmd fzf_filefilesearch ${{
     )"
     [ ! -z "$res" ] && lf -remote "send $id select \"$res\""
 }}
-map F fzf_filefilesearch
+map f fzf_filefilesearch
