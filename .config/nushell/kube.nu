@@ -52,7 +52,7 @@ module kube {
   export alias ke = kubectl explore
   # Explore resources
   export def "kubectl explore" [
-    resource: string@"nu-complete kubectl resources"  # Resource
+    resource?: string@"nu-complete kubectl resources"  # Resource
     search?: string@"nu-complete kubectl resource instances"  # Filter resource's name with this value
     ...properties: cell-path  # Output only selected properties
     --all (-a)  # Search in all namespaces
@@ -61,6 +61,7 @@ module kube {
 
     mut output = [[];]
     let all_arg = (if $all {["-A"]} else {[]})
+    let resource = (if $resource == null {"pods"} else {$resource})
 
     if not $full_definitions {
       # Populate output with simple get

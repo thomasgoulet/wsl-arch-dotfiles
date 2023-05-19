@@ -1,6 +1,7 @@
 module aliases {
   export alias c = clear
   export alias expl = explorer.exe .
+  export alias jf = cd (fd -a | fzf --height 40% --reverse --inline-info --tiebreak length --bind 'tab:down' --bind 'shift-tab:up' --preview 'exa -T -L2 {1}')
   export alias l = lf
   export alias lg = lazygit
   export alias pshell = zellij action new-tab -l ~/.config/zellij/layouts/powershell.kdl
@@ -54,12 +55,6 @@ module aliases {
     paru -Slq |
      fzf -m --preview 'paru -Si {1}' --height 50% --reverse --bind 'tab:down' --bind 'shift-tab:up' --bind 'space:select' --bind 'ctrl-space:deselect' |
      xargs -ro paru -S
-  }
-
-  # Find a sub folder and jump to it
-  export def jf [] {
-    cd ~
-    cd (fd -a | fzf --height 40% --reverse --inline-info --tiebreak length --bind 'tab:down' --bind 'shift-tab:up' --preview 'exa -T -L2 {1}')
   }
 
 }
