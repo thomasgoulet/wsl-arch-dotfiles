@@ -1,5 +1,6 @@
 .config/btop/btop.log
 .config/gh/hosts.yml
+.config/helm/*
 .config/k9s/config.yml
 .config/lazygit/state.yml
 .config/nushell/history.txt
