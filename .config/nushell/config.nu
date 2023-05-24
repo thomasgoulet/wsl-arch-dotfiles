@@ -105,7 +105,7 @@ let-env config = {
   history: {
     max_size: 10000
     sync_on_enter: true
-    file_format: "plaintext"
+    file_format: "sqlite"
   }
 
   completions: {
@@ -237,11 +237,48 @@ let-env config = {
       event: { send: menuprevious }
     }
     {
-      name: history_menu
+      name: fuzzy_history
+      modifier: control
+      keycode: char_h
+      mode: [emacs, vi_normal, vi_insert]
+      event: [
+        {
+          send: ExecuteHostCommand
+          cmd: "commandline (
+            history
+              | where exit_status == 0
+              | get command
+              | uniq
+              | reverse
+              | str join (char -i 0)
+              | fzf --read0 --height 40% --reverse --inline-info --tiebreak length --bind 'tab:down' --bind 'shift-tab:up' -q (commandline)
+              | decode utf-8
+              | str trim
+          )"
+        }
+      ]
+    }
+    {
+      name: fuzzy_local_history
       modifier: control
       keycode: char_r
-      mode: emacs
-      event: { send: menu name: history_menu }
+      mode: [emacs, vi_normal, vi_insert]
+      event: [
+        {
+          send: ExecuteHostCommand
+          cmd: "commandline (
+            history
+              | where exit_status == 0 and cwd == $env.PWD
+              | get command
+              | uniq
+              | reverse
+              | str join (char -i 0)
+              | fzf --read0 --height 40% --reverse --inline-info --tiebreak length --bind 'tab:down' --bind 'shift-tab:up' -q (commandline)
+              | decode utf-8
+              | str trim
+          )"
+        }
+      ]
     }
     {
       name: yank

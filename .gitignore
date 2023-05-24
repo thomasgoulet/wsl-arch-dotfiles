@@ -3,7 +3,7 @@
 .config/helm/*
 .config/k9s/config.yml
 .config/lazygit/state.yml
-.config/nushell/history.txt
+.config/nushell/history.*
 .config/ranger/**/__pycache__/*
 .config/yarn/global/*
 .config/wslu/*
