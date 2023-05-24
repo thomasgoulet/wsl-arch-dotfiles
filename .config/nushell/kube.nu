@@ -10,6 +10,10 @@ module kube {
     kubectl get namespaces | from ssv | where NAME != "default" | get NAME | prepend NONE
   }
 
+  def "nu-complete kubectl pods" [] {
+    kubectl get pods | from ssv | get NAME
+  }
+
   def "nu-complete kubectl resources" [] {
     kubectl api-resources | from ssv | get SHORTNAMES NAME | flatten
   }
@@ -18,7 +22,7 @@ module kube {
     context: string
   ] {
     let resource = ($context | split words | last)
-    (kubectl get $resource | from ssv | get NAME)
+    kubectl get $resource | from ssv | get NAME
   }
 
   # Change context
@@ -111,4 +115,27 @@ module kube {
 
   }
 
+  # View logs via fuzzy search
+  export alias kl = kubectl batlogs
+  # View logs via fuzzy search
+  export def "kubectl batlogs" [
+    pod?: string@"nu-complete kubectl pods"  # Filter resource's name with this value
+  ] {
+    let possible_pods = (kubectl get pods | from ssv | where NAME =~ $pod | get NAME)
+
+    if ($possible_pods | length) < 1 {
+      return "No matching pods"
+    }
+
+    if ($possible_pods | length) == 1 {
+      kubectl logs $possible_pods.0 | bat
+    } else if ($possible_pods | length) > 1 {
+      let pod_name = ( $possible_pods
+        | str join (char -i 0)
+        | fzf --read0 --height 40% --reverse --inline-info --tiebreak length --bind 'tab:down' --bind 'shift-tab:up'
+      )
+      kubectl logs $pod_name | bat
+    }
+
+  }
 }
