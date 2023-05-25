@@ -1,6 +1,6 @@
 # OneDark presets
-foreground: &foreground "#abb2bf"
-background: &background "#282c34"
+foreground: &foreground "#dcdfe4"
+background: &background "#3d4148"
 black: &black "#282c34"
 blue: &blue "#61afef"
 green: &green "#98c379"
@@ -29,24 +29,24 @@ k9s:
     buttonFgColor: *foreground
     buttonBgColor: *green
     buttonFocusFgColor: *black
-    buttonFocusBgColor: *blue
+    buttonFocusBgColor: *green
     labelFgColor: *orange
-    fieldFgColor: *blue
+    fieldFgColor: *green
   frame:
     border:
-      fgColor: *green
-      focusColor: *green
+      fgColor: *background
+      focusColor: *background
     menu:
       fgColor: *grey
       keyColor: *yellow
       numKeyColor: *yellow
     crumbs:
-      fgColor: *black
-      bgColor: default
-      activeColor: *yellow
+      fgColor: *foreground
+      bgColor: *background
+      activeColor: *blue
     status:
-      newColor: *blue
-      modifyColor: *green
+      newColor: *green
+      modifyColor: *blue
       addColor: *grey
       pendingColor: *orange
       errorColor: *red
@@ -61,7 +61,7 @@ k9s:
       filterColor: *blue
   views:
     charts:
-      bgColor: default
+      bgColor: *background
       defaultDialColors:
         - *green
         - *red
@@ -75,19 +75,18 @@ k9s:
       cursorBgColor: *blue
       markColor: *yellow_bright
       header:
-        fgColor: *grey
+        fgColor: *blue
         bgColor: default
         sorterColor: *orange
     xray:
       fgColor: *blue
       bgColor: default
-      cursorColor: *foreground
+      cursorColor: *background
       graphicColor: *yellow_bright
-      showIcons: false
     yaml:
-      keyColor: *red
+      keyColor: *green
       colonColor: *grey
-      valueColor: *grey
+      valueColor: *yellow
     logs:
       fgColor: default
       bgColor: default
@@ -96,6 +95,6 @@ k9s:
         bgColor: default
     help:
       fgColor: *grey
-      bgColor: default
+      bgColor: *background
       indicator:
         fgColor: *blue

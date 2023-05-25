@@ -1,0 +1,7 @@
+alias:
+  p: v1/pods
+  n: v1/namespaces
+  d: apps/v1/deployments
+  s: v1/services
+  i: networking.k8s.io/v1/ingresses
+  c: contexts
