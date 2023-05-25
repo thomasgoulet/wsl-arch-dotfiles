@@ -3,7 +3,7 @@ module kube {
   export alias k = kubectl
 
   def "nu-complete kubectl contexts" [] {
-    kubectl config get-contexts | from ssv | get NAME
+    kubectl config get-contexts | from ssv -a | get NAME
   }
 
   def "nu-complete kubectl namespaces" [] {

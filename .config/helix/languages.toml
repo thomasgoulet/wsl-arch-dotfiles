@@ -13,3 +13,9 @@ language-server = { command = "omnisharp", args = [ "--languageserver" ] }
 [[language]]
 name = "bash"
 language-server = { command = "" }
+
+[[language]]
+name = "yaml"
+file-types = ["yaml", "yml"]
+# https://github.com/redhat-developer/yaml-language-server#language-server-settings
+config = { yaml = { format = { enable = true }, keyOrdering = false } }

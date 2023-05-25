@@ -172,6 +172,7 @@ plugins {
 ui {
     pane_frames {
         rounded_corners true
+        hide_session_name true
     }
 }
 
@@ -181,15 +182,17 @@ themes {
         bg 40 44 52
         black 27 29 35
         red 227 63 76
-        green 152 195 121
         yellow 229 192 123
-        // blue 97 175 239
-        orange 97 175 239 // Map orange to blue
-        magenta 198 120 221
         cyan 86 182 194
         white 233 225 254
+        // magenta 198 120 221
+        magenta 220 223 228 // Magenta UI elements are fg
+        // green 152 195 121
+        green 97 175 239 // Green UI elements are blue
+        // blue 97 175 239
+        blue 217 133 76 // Blue UI elements are orange
         // orange 216 133 76
-        blue 216 133 76 // Map blue to orange
+        orange 152 195 121 // Orange UI elements are green
     }
 }
 
