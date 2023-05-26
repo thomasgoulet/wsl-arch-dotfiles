@@ -68,15 +68,10 @@ C = ":bc!"
 c = ":bc"
 f = [":new", ":insert-output source ~/.config/nushell/config.nu; hx_lfpick", "add_newline_below", "select_all", "split_selection_on_newline", "goto_file", ":new", "goto_last_modified_file", ":bc!"]
 F = "file_picker"
+G = [":wa", ":sh zellij run -f -c -- lazygit", ":reload-all"]
 q = ":q"
 Q = ":qa!"
+t = ":sh zellij run -f -c -n '' -- nu -e '$env.config.keybindings = ($env.config.keybindings | append {name: exit modifier: none keycode: esc mode: [emacs] event: {send: ctrld} })'"
 z = "suspend"
 "[" = "jump_view_left"
 "]" = "jump_view_right"
-
-[keys.normal.space.t]
-b = ":sh zellij run -f -c -- btop"
-d = [":wa", ":sh zellij run -f -- git diff"]
-g = [":wa", ":sh zellij run -f -c -- lazygit", ":reload-all"]
-k = ":sh zellij run -f -c -- k9s"
-t = ":sh zellij run -f -c -n '' -- nu -e '$env.config.keybindings = ($env.config.keybindings | append {name: exit modifier: none keycode: esc mode: [emacs] event: {send: ctrld} })'"
