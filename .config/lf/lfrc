@@ -29,3 +29,8 @@ cmd fzf_filefilesearch ${{
     [ ! -z "$res" ] && lf -remote "send $id select \"$res\""
 }}
 map f fzf_filefilesearch
+
+cmd open_shell ${{
+    nu -e '$env.config.keybindings = ($env.config.keybindings | append {name: exit modifier: none keycode: esc mode: [emacs] event: {send: ctrld} })'
+}}
+map <enter> open_shell

@@ -46,7 +46,7 @@ module helix {
 
     try {
       while true {
-        sleep 0.2sec
+        sleep 0.1sec
         ^kill -0 $lfpid err+out> /dev/null 
       } 
     } catch {

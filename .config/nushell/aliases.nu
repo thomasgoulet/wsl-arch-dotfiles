@@ -1,8 +1,8 @@
 module aliases {
   export alias c = clear
   export alias expl = explorer.exe .
+  export alias f = lf
   export alias jf = cd (fd -a | fzf --height 40% --reverse --inline-info --tiebreak length --bind 'tab:down' --bind 'shift-tab:up' --preview 'exa -T -L2 {1}')
-  export alias l = lf
   export alias lg = lazygit
   export alias pshell = zellij action new-tab -l ~/.config/zellij/layouts/powershell.kdl
   export alias r = zellij run -c --
