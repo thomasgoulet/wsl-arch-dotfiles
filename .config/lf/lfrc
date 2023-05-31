@@ -14,7 +14,7 @@ map J zi
 
 cmd fzf_content_search ${{
     res="$( \
-        FZF_DEFAULT_COMMAND="rg -n -H ." \
+        FZF_DEFAULT_COMMAND="rg -n -H --no-ignore-parent ." \
         fzf --inline-info --tiebreak index --bind "tab:down" --bind "shift-tab:up" --reverse | cut -d':' -f1
     )"
     [ ! -z "$res" ] && lf -remote "send $id select \"$res\""
@@ -23,7 +23,7 @@ map F fzf_content_search
 
 cmd fzf_filefilesearch ${{
     res="$( \
-        FZF_DEFAULT_COMMAND="fd -p" \
+        FZF_DEFAULT_COMMAND="fd -p --no-ignore-parent" \
         fzf --inline-info --tiebreak index --bind "tab:down" --bind "shift-tab:up" --reverse | cut -d':' -f1
     )"
     [ ! -z "$res" ] && lf -remote "send $id select \"$res\""

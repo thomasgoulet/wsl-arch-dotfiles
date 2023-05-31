@@ -248,10 +248,10 @@ let-env config = {
             history
               | where exit_status == 0
               | get command
-              | uniq
               | reverse
+              | uniq
               | str join (char -i 0)
-              | fzf --read0 --height 40% --reverse --inline-info --tiebreak length --bind 'tab:down' --bind 'shift-tab:up' -q (commandline)
+              | fzf --read0 --height 40% --reverse --inline-info +s --bind 'tab:down' --bind 'shift-tab:up' -q (commandline)
               | decode utf-8
               | str trim
           )"
@@ -270,10 +270,10 @@ let-env config = {
             history
               | where exit_status == 0 and cwd == $env.PWD
               | get command
-              | uniq
               | reverse
+              | uniq
               | str join (char -i 0)
-              | fzf --read0 --height 40% --reverse --inline-info --tiebreak length --bind 'tab:down' --bind 'shift-tab:up' -q (commandline)
+              | fzf --read0 --height 40% --reverse --inline-info +s --bind 'tab:down' --bind 'shift-tab:up' -q (commandline)
               | decode utf-8
               | str trim
           )"
