@@ -1,10 +1,12 @@
 set hidden
 set icons
 set previewer ~/.config/lf/preview.sh
-set ratios 1:1:5
+set ratios 2:2:9
 
 cmd open $helix $fx
 cmd on-quit cd $fx
+
+map <delete> delete
 
 cmd zi ${{
 	result="$(zoxide query -i)"
