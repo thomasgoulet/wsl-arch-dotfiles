@@ -75,3 +75,6 @@ t = [":sh zellij run -f -c -n '' -- nu -e 'let-env PROMPT_EXTRA = hx; $env.confi
 z = "suspend"
 "[" = "jump_view_left"
 "]" = "jump_view_right"
+
+[keys.normal.m]
+w = ["move_next_word_end", "move_prev_word_start", "search_selection"]
