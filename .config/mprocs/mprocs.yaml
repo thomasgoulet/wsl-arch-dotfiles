@@ -1,0 +1,10 @@
+procs:
+  "Gradle Run":
+    shell: ./gradlew bootRun
+    autostart: false
+  "Gradle Test":
+    shell: echo TESTING...;./gradlew clean test | rg "FAILED|SUCCESSFUL"
+    autostart: false
+  "Angular Run":
+    shell: npm run ng serve
+    autostart: false

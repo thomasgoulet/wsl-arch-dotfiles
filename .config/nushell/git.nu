@@ -41,10 +41,10 @@ module git {
   # Show git logs
   export def gl [] {
     let commit = (git log --graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" |
-      fzf --ansi --no-sort -m --height 100% --reverse --bind 'tab:down' --bind 'shift-tab:up' --preview 'git show --color=always (echo {} | str substring "2,9")' --preview-window=right:61%
+      fzf --ansi --no-sort -m --height 100% --reverse --bind 'tab:down' --bind 'shift-tab:up' --preview 'git show --color=always (echo {} | str substring 2..9)' --preview-window=right:61%
     )
     if ($commit != "") {
-      git show --color=always ($commit | str substring "2,9")
+      git show --color=always ($commit | str substring 2..9)
     }
   }
 

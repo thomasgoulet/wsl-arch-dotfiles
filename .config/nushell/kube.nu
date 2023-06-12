@@ -26,8 +26,6 @@ module kube {
   }
 
   # Change context
-  export alias kcon = kubectl context
-  # Change context
   export def "kubectl context" [
     context?: string@"nu-complete kubectl contexts"  # Context
   ] {
@@ -36,9 +34,8 @@ module kube {
     }
     kubectl config use-context $context
   }
+  export alias kcon = kubectl context
 
-  # Change configured namespace in context
-  export alias kns = kubectl namespace
   # Change configured namespace in context
   export def "kubectl namespace" [
     namespace?: string@"nu-complete kubectl namespaces" # Namespace
@@ -51,9 +48,8 @@ module kube {
     }
     kubectl config set-context --current --namespace $namespace
   }
+  export alias kns = kubectl namespace
 
-  # Explore resources
-  export alias ke = kubectl explore
   # Explore resources
   export def "kubectl explore" [
     resource?: string@"nu-complete kubectl resources"  # Resource
@@ -114,9 +110,8 @@ module kube {
     return $output
 
   }
+  export alias ke = kubectl explore
 
-  # View logs via fuzzy search
-  export alias kl = kubectl batlogs
   # View logs via fuzzy search
   export def "kubectl batlogs" [
     pod?: string@"nu-complete kubectl pods"  # Filter resource's name with this value
@@ -138,4 +133,6 @@ module kube {
     }
 
   }
+  export alias kl = kubectl batlogs
+
 }
