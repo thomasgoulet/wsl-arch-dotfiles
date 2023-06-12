@@ -1,10 +1,21 @@
 procs:
+  "Git Status":
+    shell: git status --short
+  "Git Diff":
+    shell: git diff
   "Gradle Run":
     shell: ./gradlew bootRun
     autostart: false
   "Gradle Test":
     shell: echo TESTING...;./gradlew clean test | rg "FAILED|SUCCESSFUL"
     autostart: false
-  "Angular Run":
+  "Angular Serve":
     shell: npm run ng serve
     autostart: false
+keymap_procs:
+  <l>: { c: focus-term }
+keymap_term:
+  <h>: { c: focus-procs }
+  <J>: { c: scroll-down }
+  <K>: { c: scroll-up }
+hide_keymap_window: true
