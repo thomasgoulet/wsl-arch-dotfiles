@@ -128,12 +128,8 @@ layout {
     }
 
     default_tab name="~" focus=true {
-        pane split_direction="vertical" {
-            pane size="60%"
-            pane stacked=true {
-                pane
-                pane
-            }
+        pane {
+            name "~"
         }
     }
 
