@@ -176,8 +176,10 @@ ui {
     }
 }
 
+theme "onehalfdark"
+
 themes {
-    one-half-dark {
+    onehalfdark {
         fg 220 223 228
         bg 40 44 52
         black 27 29 35
@@ -195,8 +197,6 @@ themes {
         orange 152 195 121 // Orange UI elements are green
     }
 }
-
-theme "one-half-dark"
 
 default_layout "default"
 
