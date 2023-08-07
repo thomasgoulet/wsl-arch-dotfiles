@@ -33,6 +33,6 @@ cmd fzf_filefilesearch ${{
 map f fzf_filefilesearch
 
 cmd open_shell ${{
-    nu -e 'let-env PROMPT_EXTRA = lf; $env.config.keybindings = ($env.config.keybindings | append {name: exit modifier: none keycode: esc mode: [emacs] event: {send: ctrld} })'
+    nu -e '$env.PROMPT_EXTRA = lf; $env.config.keybindings = ($env.config.keybindings | append {name: exit modifier: none keycode: esc mode: [emacs] event: {send: ctrld} })'
 }}
 map <enter> open_shell

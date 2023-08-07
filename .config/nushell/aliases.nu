@@ -27,7 +27,7 @@ module aliases {
   export def llt [
     path?:string  # Optional path to list directory for
   ] {
-    mut result = null
+    mut result = [[];]
     if $path == null {
       $result = (ls -la | where type == dir and name !~ git)
     } else {

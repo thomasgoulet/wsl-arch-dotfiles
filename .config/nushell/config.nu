@@ -81,7 +81,7 @@ let fish_completer = {|spans|
     fish --command $'complete "--do-complete=($spans | str join " ")"' | str trim | split row "\n" | each { |line| $line | split column "\t" value description } | flatten
 }
 
-let-env config = {
+$env.config = {
  
   ls: {
     use_ls_colors: true
