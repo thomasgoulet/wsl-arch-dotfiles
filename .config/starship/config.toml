@@ -1,7 +1,7 @@
 add_newline = true
 
 format = '''
-$username$kubernetes [in](white) \[$directory\]$git_status$git_branch
+[>](green)[<](cyan)[\)](blue)[\)](purple)[\)](red)[0](yellow)[>](green)$kubernetes [in](white) \[$directory\]$git_status$git_branch
  $env_var$character'''
 
 right_format = '$time'
