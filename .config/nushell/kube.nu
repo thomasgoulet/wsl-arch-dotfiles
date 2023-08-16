@@ -112,6 +112,9 @@ module kube {
   }
   export alias ke = kubectl explore
 
+  # With https://github.com/keisku/kubectl-explore renamed to kubectl-explain
+  export alias kex = kubectl-explain
+
   # View logs via fuzzy search
   export def "kubectl batlogs" [
     pod?: string@"nu-complete kubectl pods"  # Filter resource's name with this value
