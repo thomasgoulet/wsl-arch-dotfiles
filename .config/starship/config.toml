@@ -1,7 +1,7 @@
 add_newline = true
 
 format = '''
-[>](blue)[<](blue)[\)](red)[\)](white)[\)](red)[0](blue)[>](blue)$kubernetes [in](white) \[$directory\]$git_status$git_branch
+[>](blue)[<](blue)[\)](red)[\)](white)[\)](red)[0](blue)[>](blue)$kubernetes \[$directory\]$git_status$git_branch
  $env_var$character'''
 
 right_format = '$time'
@@ -18,7 +18,7 @@ format = '[$user]($style)'
 show_always = true
 
 [kubernetes]
-style = 'purple'
+style = 'green'
 symbol = ''
 format = ' \[[$symbol$context(:$namespace)]($style)\]'
 disabled = false
