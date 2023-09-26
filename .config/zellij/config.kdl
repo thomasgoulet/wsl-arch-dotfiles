@@ -97,6 +97,9 @@ keybinds clear-defaults=true {
         bind "n" { NewTab; SwitchToMode "RenameTab"; TabNameInput 0; }
         bind "c" { CloseTab; SwitchToMode "Locked"; }
         bind "s" { ToggleActiveSyncTab; SwitchToMode "Locked"; }
+        bind "b" { BreakPane; SwitchToMode "Locked"; }
+        bind "]" { BreakPaneRight; SwitchToMode "Locked"; }
+        bind "[" { BreakPaneLeft; SwitchToMode "Locked"; }
     }
 
     scroll {
@@ -153,8 +156,16 @@ keybinds clear-defaults=true {
         bind "Alt l" "Alt Right" { MoveFocus "Right"; }
         bind "Alt j" "Alt Down" { MoveFocus "Down"; }
         bind "Alt k" "Alt Up" { MoveFocus "Up"; }
-        bind "Alt s" { ToggleActiveSyncTab; }
+        bind "Alt s" {
+            LaunchOrFocusPlugin "zellij:session-manager" {
+                floating true
+                move_to_focused_tab true
+            };
+            SwitchToMode "Locked"
+        }
+        bind "Alt S" { ToggleActiveSyncTab; }
         bind "Alt t" { NewTab; SwitchToMode "RenameTab"; TabNameInput 0; }
+        bind "Alt T" { BreakPane; SwitchToMode "RenameTab"; TabNameInput 0; }
         bind "Alt H" { GoToPreviousTab; }
         bind "Alt L" { GoToNextTab; }
         bind "Alt =" "Alt +" { Resize "Increase"; }
@@ -167,6 +178,7 @@ plugins {
     tab-bar { path "tab-bar"; }
     status-bar { path "status-bar"; }
     compact-bar { path "compact-bar"; }
+    session-manager { path "session-manager"; }
 }
 
 ui {
