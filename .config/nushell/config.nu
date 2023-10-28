@@ -88,10 +88,6 @@ $env.config = {
     clickable_links: false
   }
 
-  cd: {
-    abbreviations: true
-  }
-
   table: {
     mode: rounded
     index_mode: auto

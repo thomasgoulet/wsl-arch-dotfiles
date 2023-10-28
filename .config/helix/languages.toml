@@ -1,4 +1,8 @@
-## Python
+[language-server]
+omnisharp = { command = "omnisharp", args = [ "--languageserver" ] }
+# https://github.com/redhat-developer/yaml-language-server#language-server-settings
+yaml = { command = "yaml-language-server", args = ["--stdio"], config = { yaml = { format = { enable = true }, keyOrdering = false } } }
+none = { command = "" }
 
 [[language]]
 name = "python"
@@ -8,14 +12,13 @@ formatter = { command = "black", args = ["-", "-l160"]}
 
 [[language]]
 name = "c-sharp"
-language-server = { command = "omnisharp", args = [ "--languageserver" ] }
+language-servers = ["omnisharp"]
 
 [[language]]
 name = "bash"
-language-server = { command = "" }
+language-servers = ["none"]
 
 [[language]]
 name = "yaml"
 file-types = ["yaml", "yml"]
-# https://github.com/redhat-developer/yaml-language-server#language-server-settings
-config = { yaml = { format = { enable = true }, keyOrdering = false } }
+language-servers = ["yaml"]
