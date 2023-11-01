@@ -45,6 +45,9 @@ tab = "all"
 tab = "→"
 tabpad = "·"
 
+[editor.gutters]
+layout = ["diagnostics", "spacer", "diff", "line-numbers", "spacer"]
+
 [editor.indent-guides]
 character = "|"
 render = true
