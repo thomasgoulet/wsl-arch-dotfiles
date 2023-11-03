@@ -1,4 +1,5 @@
 module aliases {
+  export alias bye = wsl.exe --shutdown
   export alias c = clear
   export alias expl = explorer.exe .
   export alias f = lf
