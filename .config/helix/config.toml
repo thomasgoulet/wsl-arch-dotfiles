@@ -11,8 +11,8 @@ true-color = true
 
 [editor.statusline]
 left = ["mode", "spinner"]
-center = ["file-name", "file-modification-indicator"]
-right = ["diagnostics", "selections", "position", "position-percentage", "file-encoding", "file-line-ending", "file-type"]
+center = ["file-name", "file-modification-indicator", "spacer", "version-control"]
+right = ["register", "diagnostics", "selections", "position", "position-percentage", "file-encoding", "file-line-ending", "file-type"]
 separator = "-"
 mode.normal = "NORMAL"
 mode.insert = "INSERT"
