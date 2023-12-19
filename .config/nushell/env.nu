@@ -2,7 +2,7 @@
 
 # Use zoxide
 mkdir ~/.cache/zoxide
-zoxide init nushell --cmd j | save -f ~/.cache/zoxide/init.nu
+# zoxide init nushell --cmd j | save -f ~/.cache/zoxide/init.nu
 
 # Use starship
 mkdir ~/.cache/starship

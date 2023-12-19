@@ -210,6 +210,8 @@ themes {
     }
 }
 
+session_serialization false
+
 default_layout "default"
 
 default_mode "locked"
