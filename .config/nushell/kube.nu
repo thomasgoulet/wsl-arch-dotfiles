@@ -72,7 +72,7 @@ module kube {
       }
     } else {
       # Populate output with json
-      $output = (kubectl get $resource -o json $all_arg | from json | get items)
+      $output = (kubectl get $resource -o json ...$all_arg | from json | get items)
       # Refine output by metadata.name
       if $search != null {
         $output = ($output | where metadata.name =~ $search)
