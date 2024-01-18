@@ -65,7 +65,7 @@ module kube {
 
     if not $full_definitions {
       # Populate output with simple get
-      $output = (kubectl get $resource $all_arg | from ssv)
+      $output = (kubectl get $resource ...$all_arg | from ssv)
       # Refine output by NAME
       if $search != null {
         $output = ($output | where NAME =~ $search)

@@ -1,4 +1,4 @@
-alias:
+aliases:
   p: v1/pods
   n: v1/namespaces
   d: apps/v1/deployments

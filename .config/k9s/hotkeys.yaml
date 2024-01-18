@@ -1,5 +1,5 @@
 # $XDG_CONFIG_HOME/k9s/hotkey.yml
-hotKey:
+hotKeys:
   q:
     shortCut:    q
     description: Quit
