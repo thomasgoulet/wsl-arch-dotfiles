@@ -5,7 +5,7 @@ module git {
   }
 
   def "nu-complete git remote branches" [] {
-    ^git branch -a | lines | where $it !~ "HEAD" | each { |line| $line | str replace '[\*\+] ' '' | str trim | str replace 'remotes/' ''}
+    ^git branch -a | lines | where $it !~ "HEAD" | where $it !~ \* | each { |line| $line | str replace '[\*\+] ' '' | str trim | str replace 'remotes/' '' | str replace 'origin/' ''} | uniq
   }
 
   # Git alias
@@ -26,13 +26,11 @@ module git {
     git branch -D $branch
   }
 
-  # Check out git branches and files
-  export def gc [
-    target: string@"nu-complete git remote branches"  # Target to checkout
-    --branch (-b)  # Create branch instead
+  # Switch branch
+  export def gsw [
+    target: string@"nu-complete git remote branches"  # Target to switch to
   ] {
-    let $args = (if $branch {[-b]} else {[]})
-    git checkout $args $target
+    git checkout $target
   }
 
   # Show git diff

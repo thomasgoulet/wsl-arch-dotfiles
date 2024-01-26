@@ -32,7 +32,11 @@ module kube {
     if $context == null {
       return (kubectl config get-contexts | from ssv -a)
     }
-    kubectl config use-context $context
+    let match = (kubectl config get-contexts | from ssv -a | select NAME | where NAME =~ $context)
+    if ($match | length) != 1  {
+      return "No matching context"
+    }
+    kubectl config use-context ($match | get NAME | to text)
   }
   export alias kcon = kubectl context
 
@@ -85,7 +89,7 @@ module kube {
       return ($output | into record | get $properties.0)
     }
 
-    # This selects the specifid properties for each result in the output
+    # This selects the specific properties for each result in the output
     if not ($properties | is-empty) {
       # Output will become a table with all the records once flattened
       $output = ($output | each { |result|
