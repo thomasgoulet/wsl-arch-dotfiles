@@ -7,3 +7,4 @@
 .config/ranger/**/__pycache__/*
 .config/yarn/global/*
 .config/wslu/*
+.config/go/telemetry/*
