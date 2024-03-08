@@ -30,7 +30,7 @@ module git {
   export def gsw [
     target: string@"nu-complete git remote branches"  # Target to switch to
   ] {
-    git checkout $target
+    git switch $target
   }
 
   # Show git diff
