@@ -75,7 +75,6 @@ G = [":wa", ":sh zellij run -f -c -- lazygit", ":reload-all"]
 q = ":q"
 Q = ":qa!"
 t = [":sh zellij run -f -c -n '' -- nu -e '$env.PROMPT_EXTRA = hx; $env.config.keybindings = ($env.config.keybindings | append {name: exit modifier: none keycode: esc mode: [emacs] event: {send: ctrld} })'"]
-z = "suspend"
 "[" = "jump_view_left"
 "]" = "jump_view_right"
 
