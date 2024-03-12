@@ -1,4 +1,5 @@
 module aliases {
+
   export alias bye = wsl.exe --shutdown
   export alias c = clear
   export alias expl = explorer.exe .
@@ -21,27 +22,6 @@ module aliases {
       ls -la | select name mode size modified
     } else {
       ls -la $path | select name mode size modified
-    }
-  }
-
-  # List subdirectories contents
-  export def llt [
-    path?:string  # Optional path to list directory for
-  ] {
-    mut result = [[];]
-    if $path == null {
-      $result = (ls -la | where type == dir and name !~ git)
-    } else {
-      $result = (ls -la $path | where type == dir and name !~ git)
-    }
-
-    $result | par-each { |dir| 
-      {
-        name: $dir.name, 
-        subdirs: (
-          ls -la $dir.name | where type == dir and name !~ git | select name mode modified
-        )
-      }
     }
   }
 

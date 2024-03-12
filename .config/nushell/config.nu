@@ -342,10 +342,6 @@ use helix *
 source ~/.config/nushell/kube.nu
 use kube *
 
-# Source websearch aliases and functions
-source ~/.config/nushell/search.nu
-use search *
-
 # Custom completions
 module completions {}
 use completions *

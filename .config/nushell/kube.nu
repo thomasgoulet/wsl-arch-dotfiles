@@ -120,7 +120,7 @@ module kube {
   export alias kex = kubectl-explain
 
   # View logs via fuzzy search
-  export def "kubectl batlogs" [
+  export def "kubectl flogs" [
     pod?: string@"nu-complete kubectl pods"  # Filter resource's name with this value
   ] {
     let possible_pods = (kubectl get pods | from ssv | where NAME =~ $pod | get NAME)
@@ -140,6 +140,6 @@ module kube {
     }
 
   }
-  export alias kl = kubectl batlogs
+  export alias kl = kubectl flogs
 
 }

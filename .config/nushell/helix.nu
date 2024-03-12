@@ -25,35 +25,32 @@ module helix {
   }
 
   # Open folder from zoxide picker
-  export def hxj [] {
-    let dir = (zoxide query -i)
+  export def hxj [
+    hint?: string
+  ] {
+    mut dir = ""
+    if $hint != null {
+      $dir = (zoxide query $hint)
+    } else {
+      $dir = (zoxide query -i)
+    }
     if $dir != "" {
       helix $dir
     }
   }
 
   # Open folder from zoxide picker in a different zellij tab
-  export def hxt [] {
-    let dir = (zoxide query -i)
+  export def hxt [
+    hint?: string
+  ] {
+    mut dir = ""
+    if $hint != null {
+      $dir = (zoxide query $hint)
+    } else {
+      $dir = (zoxide query -i)
+    }
     if $dir != "" {
       zellij action new-tab -c $dir -n (basename $dir) -l ~/.config/zellij/layouts/edit.kdl
-    }
-  }
-
-  export def hx_lfpick [] {
-    zellij run -f -c -- lf -selection-path ~/lf_files.tmp
-    let lfpid = (pgrep -n lf)
-
-    try {
-      while true {
-        sleep 0.1sec
-        ^kill -0 $lfpid err+out> /dev/null 
-      } 
-    } catch {
-      if ("~/lf_files.tmp" | path exists) {
-        print (cat ~/lf_files.tmp)
-        rm ~/lf_files.tmp
-      }
     }
   }
   

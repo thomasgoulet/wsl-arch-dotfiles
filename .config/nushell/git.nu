@@ -26,6 +26,13 @@ module git {
     git branch -D $branch
   }
 
+  # Switch to a new branch
+  export def gsc [
+    name: string
+  ] {
+    git switch -c $name
+  }
+  
   # Switch branch
   export def gsw [
     target: string@"nu-complete git remote branches"  # Target to switch to
