@@ -1,7 +1,6 @@
 [language-server]
 omnisharp = { command = "omnisharp", args = [ "--languageserver" ] }
-# https://github.com/redhat-developer/yaml-language-server#language-server-settings
-yaml = { command = "yaml-language-server", args = ["--stdio"], config = { yaml = { format = { enable = true }, keyOrdering = false } } }
+yaml = { command = "yaml-language-server", args = ["--stdio"], config = { yaml = { format = { enable = true }, keyOrdering = false } } } # https://github.com/redhat-developer/yaml-language-server#language-server-settings
 none = { command = "" }
 
 [[language]]
