@@ -24,13 +24,13 @@ layout {
         }
         default_tab max_panes=3 {
             pane split_direction="vertical" {
-                pane size="60%"
+                pane size="70%"
                 pane
             }
         }
         default_tab max_panes=4 {
             pane split_direction="vertical" {
-                pane size="60%"
+                pane size="70%"
                 pane stacked=true {
                     pane
                     pane
@@ -39,7 +39,7 @@ layout {
         }
         default_tab max_panes=5 {
             pane split_direction="vertical" {
-                pane size="60%"
+                pane size="70%"
                 pane stacked=true {
                     pane
                     pane
@@ -49,7 +49,7 @@ layout {
         }
         default_tab max_panes=6 {
             pane split_direction="vertical" {
-                pane size="60%"
+                pane size="70%"
                 pane stacked=true {
                     pane
                     pane
@@ -60,7 +60,7 @@ layout {
         }
         default_tab max_panes=7 {
             pane split_direction="vertical" {
-                pane size="60%"
+                pane size="70%"
                 pane stacked=true {
                     pane
                     pane
@@ -72,7 +72,7 @@ layout {
         }
         default_tab max_panes=8 {
             pane split_direction="vertical" {
-                pane size="60%"
+                pane size="70%"
                 pane stacked=true {
                     pane
                     pane
@@ -85,7 +85,7 @@ layout {
         }
         default_tab max_panes=9 {
             pane split_direction="vertical" {
-                pane size="60%"
+                pane size="70%"
                 pane stacked=true {
                     pane
                     pane
@@ -117,13 +117,6 @@ layout {
             pane x="50%" y="10%" width="40%" height="40%"
             pane x="10%" y="50%" width="40%" height="40%"
             pane x="50%" y="50%" width="40%" height="40%"
-        }
-    }
-
-    default_tab name="CONFIG" cwd=".config" {
-        pane borderless=true {
-            command "lf"
-            name "~/.config"
         }
     }
 
