@@ -1,4 +1,34 @@
 layout {
+
+    tab_template name="default_tab" {
+        children
+        pane size=1 borderless=true {
+            plugin location="zellij:compact-bar"
+        }
+    }
+    
+    swap_tiled_layout name="STACK" {
+        default_tab max_panes=2 {
+            pane {
+                pane
+            }
+        }
+        default_tab max_panes=9 {
+            pane split_direction="vertical" {
+                pane size="70%"
+                pane stacked=true {
+                    pane
+                    pane
+                    pane
+                    pane
+                    pane
+                    pane
+                    pane
+                }
+            }
+        }
+    }
+
     tab {
         pane split_direction="vertical" {
             pane size="70%" {
@@ -6,13 +36,13 @@ layout {
                 args "."
                 name "EDITOR"
             }
-            pane {
+            pane borderless=true {
                 command "lazygit"
                 name "GIT"
             }
         }
 
-        pane size=1 borderless=true {
+        pane size=1 {
             plugin location="zellij:compact-bar"
         }
     }

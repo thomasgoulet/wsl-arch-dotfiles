@@ -22,70 +22,9 @@ layout {
                 pane
             }
         }
-        default_tab max_panes=3 {
-            pane split_direction="vertical" {
-                pane size="70%"
-                pane
-            }
-        }
-        default_tab max_panes=4 {
-            pane split_direction="vertical" {
-                pane size="70%"
-                pane stacked=true {
-                    pane
-                    pane
-                }
-            }
-        }
-        default_tab max_panes=5 {
-            pane split_direction="vertical" {
-                pane size="70%"
-                pane stacked=true {
-                    pane
-                    pane
-                    pane
-                }
-            }
-        }
-        default_tab max_panes=6 {
-            pane split_direction="vertical" {
-                pane size="70%"
-                pane stacked=true {
-                    pane
-                    pane
-                    pane
-                    pane
-                }
-            }
-        }
-        default_tab max_panes=7 {
-            pane split_direction="vertical" {
-                pane size="70%"
-                pane stacked=true {
-                    pane
-                    pane
-                    pane
-                    pane
-                    pane
-                }
-            }
-        }
-        default_tab max_panes=8 {
-            pane split_direction="vertical" {
-                pane size="70%"
-                pane stacked=true {
-                    pane
-                    pane
-                    pane
-                    pane
-                    pane
-                    pane
-                }
-            }
-        }
         default_tab max_panes=9 {
             pane split_direction="vertical" {
-                pane size="70%"
+                pane size="60%"
                 pane stacked=true {
                     pane
                     pane
@@ -96,27 +35,6 @@ layout {
                     pane
                 }
             }
-        }
-    }
-
-    swap_floating_layout {
-        floating_panes max_panes=1 {
-            pane x="10%" y="10%" width="80%" height="80%"
-        }
-        floating_panes max_panes=2 {
-            pane x="10%" y="10%" width="40%" height="80%"
-            pane x="50%" y="10%" width="40%" height="80%"
-        }
-        floating_panes max_panes=3 {
-            pane x="12%" y="10%" width="25%" height="80%"
-            pane x="37%" y="10%" width="25%" height="80%" borderless=true
-            pane x="62%" y="10%" width="25%" height="80%"
-        }
-        floating_panes max_panes=4 {
-            pane x="10%" y="10%" width="40%" height="40%"
-            pane x="50%" y="10%" width="40%" height="40%"
-            pane x="10%" y="50%" width="40%" height="40%"
-            pane x="50%" y="50%" width="40%" height="40%"
         }
     }
 
