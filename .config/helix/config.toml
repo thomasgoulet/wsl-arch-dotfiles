@@ -55,7 +55,7 @@ render = true
 [keys.normal]
 "\\" = "command_palette"
 "esc" = "keep_primary_selection"
-C-s = ":wq"
+C-s = "split_selection_on_newline"
 C-w = "rotate_view"
 D = "delete_char_backward"
 G = "goto_last_line"
@@ -64,6 +64,8 @@ L = ":bn"
 S = ["select_all", "select_regex"]
 y = ["yank", ":clipboard-yank"]
 X = "extend_line_above"
+tab = "jump_backward"
+S-tab = "jump_forward"
 
 [keys.normal.space]
 space = ":wa"
@@ -77,6 +79,7 @@ Q = ":qa!"
 t = [":sh zellij run -f -c -n '' -- nu -e '$env.PROMPT_EXTRA = hx; $env.config.keybindings = ($env.config.keybindings | append {name: exit modifier: none keycode: esc mode: [emacs] event: {send: ctrld} })'"]
 "[" = "jump_view_left"
 "]" = "jump_view_right"
+tab = "save_selection"
 
 [keys.normal.m]
-w = ["move_next_word_end", "move_prev_word_start", "search_selection"]
+w = ["move_prev_word_start", "move_next_word_end", "search_selection"]
