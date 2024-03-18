@@ -29,7 +29,7 @@ layout {
         }
     }
 
-    tab {
+    default_tab {
         pane split_direction="vertical" {
             pane size="70%" {
                 command "helix"
@@ -40,10 +40,6 @@ layout {
                 command "lazygit"
                 name "GIT"
             }
-        }
-
-        pane size=1 {
-            plugin location="zellij:compact-bar"
         }
     }
 }
