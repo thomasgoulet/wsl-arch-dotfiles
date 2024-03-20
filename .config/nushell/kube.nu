@@ -26,7 +26,7 @@ module kube {
   }
 
   # Change context
-  export def "kubectl context" [
+  export def kcon [
     context?: string@"nu-complete kubectl contexts"  # Context
   ] {
     if $context == null {
@@ -38,10 +38,9 @@ module kube {
     }
     kubectl config use-context ($match | get NAME | to text)
   }
-  export alias kcon = kubectl context
 
   # Change configured namespace in context
-  export def "kubectl namespace" [
+  export def kns [
     namespace?: string@"nu-complete kubectl namespaces" # Namespace
   ] {
     if $namespace == null {
@@ -52,10 +51,9 @@ module kube {
     }
     kubectl config set-context --current --namespace $namespace
   }
-  export alias kns = kubectl namespace
 
   # Explore resources
-  export def "kubectl explore" [
+  export def ke [
     resource?: string@"nu-complete kubectl resources"  # Resource
     search?: string@"nu-complete kubectl resource instances"  # Filter resource's name with this value
     --all (-a)  # Search in all namespaces
@@ -97,13 +95,12 @@ module kube {
     return $output
 
   }
-  export alias ke = kubectl explore
 
   # With https://github.com/keisku/kubectl-explore renamed to kubectl-explain
   export alias kex = kubectl-explain
 
   # View logs via fuzzy search
-  export def "kubectl find-logs" [
+  export def kl [
     pod?: string@"nu-complete kubectl pods"  # Filter resource's name with this value
   ] {
     let possible_pods = (kubectl get pods | from ssv | where NAME =~ $pod | get NAME)
@@ -120,10 +117,9 @@ module kube {
     }
 
   }
-  export alias kl = kubectl find-logs
 
   # Get a specific YAML property from a resource
-  export def "kubectl get-property" [
+  export def kgp [
     property: cell-path # Cell-path to the property
     resource: string@"nu-complete kubectl resources"  # Resource
     search: string@"nu-complete kubectl resource instances"  # Filter resource's name with this value
@@ -149,6 +145,5 @@ module kube {
     }
 
   }
-  export alias kgp = kubectl get-property
 
 }
