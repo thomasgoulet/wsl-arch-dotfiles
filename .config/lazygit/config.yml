@@ -1,7 +1,7 @@
 notARepository: 'skip'
 gui:
   timeFormat: '2006-01-02 / 15h04m'
-  nerdFontsVersion: '3'
+  nerdFontsVersion: '2'
   showBottomLine: false
 os:
   editPreset: 'vscode'
