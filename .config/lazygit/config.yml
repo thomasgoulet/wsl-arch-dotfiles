@@ -3,5 +3,9 @@ gui:
   timeFormat: '2006-01-02 / 15h04m'
   nerdFontsVersion: '2'
   showBottomLine: false
+  theme:
+    activeBorderColor:
+      - blue
+      - bold
 os:
   editPreset: 'vscode'
