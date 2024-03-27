@@ -44,7 +44,9 @@ module helix {
     hint?: string
   ] {
     mut dir = ""
-    if $hint != null {
+    if $hint == "." {
+      $dir = $env.PWD
+    } else if $hint != null {
       $dir = (zoxide query $hint)
     } else {
       $dir = (zoxide query -i)
