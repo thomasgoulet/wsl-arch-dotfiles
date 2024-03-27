@@ -150,6 +150,7 @@ keybinds clear-defaults=true {
     shared {
         bind "Alt n" { NewPane; }
         bind "Alt c" { CloseFocus; }
+        bind "Alt q" { CloseTab; }
         bind "Alt f" { ToggleFloatingPanes; }
         bind "Alt F" { ToggleFocusFullscreen; }
         bind "Alt h" "Alt Left" { MoveFocus "Left"; }

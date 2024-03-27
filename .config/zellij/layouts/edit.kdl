@@ -36,9 +36,19 @@ layout {
                 args "."
                 name "EDITOR"
             }
-            pane borderless=true {
-                command "lazygit"
-                name "GIT"
+            pane stacked=true {
+                pane {
+                    name "TERM"
+                } 
+                pane {
+                    command "lf"
+                    args "-config" "/home/thomas/.config/lf/lfrc-zellij"
+                    name "FILES"
+                }
+                pane {
+                    command "lazygit"
+                    name "GIT"
+                }
             }
         }
     }

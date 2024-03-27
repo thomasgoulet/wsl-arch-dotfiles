@@ -1,0 +1,45 @@
+set hidden
+set icons
+set previewer ~/.config/lf/preview.sh
+set ratios 1:3
+
+cmd open &{{
+    zellij ac move-focus left
+    for f in $fx
+    do
+        zellij ac write-chars ":o ${f}"; zellij ac write 13
+    done
+}}
+
+cmd on-quit cd $fx
+
+map <delete> delete
+
+cmd zi ${{
+	result="$(zoxide query -i)"
+	lf -remote "send $id cd $result"
+}}
+map J zi
+
+cmd fzf_content_search ${{
+    res="$( \
+        FZF_DEFAULT_COMMAND="rg -n -H --no-ignore-parent ." \
+        fzf --inline-info --tiebreak index --bind "tab:down" --bind "shift-tab:up" --reverse | cut -d':' -f1
+    )"
+    [ ! -z "$res" ] && lf -remote "send $id select \"$res\""
+}}
+map F fzf_content_search
+
+cmd fzf_filefilesearch ${{
+    res="$( \
+        FZF_DEFAULT_COMMAND="fd -p --no-ignore-parent" \
+        fzf --inline-info --tiebreak index --bind "tab:down" --bind "shift-tab:up" --reverse | cut -d':' -f1
+    )"
+    [ ! -z "$res" ] && lf -remote "send $id select \"$res\""
+}}
+map f fzf_filefilesearch
+
+cmd open_shell ${{
+    nu -e '$env.PROMPT_EXTRA = lf; $env.config.keybindings = ($env.config.keybindings | append {name: exit modifier: none keycode: esc mode: [emacs] event: {send: ctrld} })'
+}}
+map <enter> open_shell
