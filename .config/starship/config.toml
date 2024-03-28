@@ -1,13 +1,11 @@
 add_newline = true
 
 format = '''
-[>](blue)[<](blue)[\)](red)[\)](white)[\)](red)[º](blue)[>](blue)$kubernetes \[$directory\]$git_status$git_branch
+[\[](white)$directory\]$kubernetes$git_status$git_branch
  $env_var$character'''
 
-right_format = '$time'
-
 [env_var.PROMPT_EXTRA]
-style = 'yellow'
+style = 'purple'
 variable = 'PROMPT_EXTRA'
 format = '\[[$env_value]($style)\] '
 
@@ -23,26 +21,39 @@ symbol = ''
 format = ' \[[$symbol$context(:$namespace)]($style)\]'
 disabled = false
 
+[[kubernetes.contexts]]
+context_pattern = '.*sandbox.*'
+context_alias = 'sb'
+
+[[kubernetes.contexts]]
+context_pattern = '.*dev.*'
+context_alias = 'dev'
+
+[[kubernetes.contexts]]
+context_pattern = '.*test.*'
+context_alias = 'test'
+
+[[kubernetes.contexts]]
+context_pattern = '.*prod.*'
+context_alias = 'prod'
+style = 'red'
+
 [directory]
 style = 'blue'
 format = '[$path]($style)'
-truncate_to_repo = false
-fish_style_pwd_dir_length = 1
+truncate_to_repo = true
 
 [git_status]
 style = 'red'
-format = ' \[[$all_status]($style)'
+deleted = 'x'
+diverged = '[⇡⇣](purple)'
+format = ' \[[$all_status$ahead_behind]($style)'
 
 [git_branch]
 style = 'yellow'
 symbol = ''
 format = '[$branch]($style)\]'
 
-[time]
-style = 'black'
-format = '[$time]($style)'
-disabled = false
-
 [character]
-success_symbol = '[❯](white)'
-error_symbol = '[❯](red)'
+success_symbol = '[->](white)'
+error_symbol = '[->](red)'
