@@ -7,7 +7,7 @@ format = '''
 [env_var.PROMPT_EXTRA]
 style = 'purple'
 variable = 'PROMPT_EXTRA'
-format = '\[[$env_value]($style)\] '
+format = '[$env_value]($style) '
 
 [username]
 style_user = 'green'
