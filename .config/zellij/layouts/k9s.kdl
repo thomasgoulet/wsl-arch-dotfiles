@@ -1,0 +1,53 @@
+layout {
+
+    tab_template name="default_tab" {
+        children
+        pane size=1 borderless=true {
+            plugin location="zellij:compact-bar"
+        }
+    }
+    
+    swap_tiled_layout name="STACK" {
+        default_tab max_panes=2 {
+            pane {
+                pane
+            }
+        }
+        default_tab max_panes=9 {
+            pane stacked=true {
+                pane
+                pane
+                pane
+                pane
+                pane
+                pane
+                pane
+                pane
+                pane
+            }
+        }
+    }
+
+    default_tab {
+        pane stacked=true {
+            pane {
+            	start_suspended true
+            	command "k9s"
+            	args "--context" "aksdev"
+                name "DEV"
+            } 
+            pane {
+            	start_suspended true
+            	command "k9s"
+            	args "--context" "akstest"
+                name "TEST"
+            }
+            pane {
+            	start_suspended true
+	        	command "k9s"
+	        	args "--context" "aksprod-b" "--readonly"
+                name "PROD"
+            }
+        }
+    }
+}
