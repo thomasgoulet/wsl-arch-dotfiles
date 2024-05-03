@@ -4,7 +4,7 @@ module aliases {
   export alias c = clear
   export alias expl = explorer.exe .
   export alias f = lf
-  export alias jf = cd (dirname (fd -a | fzf --height 40% --reverse --inline-info --tiebreak length --bind 'tab:down' --bind 'shift-tab:up' --preview 'exa -T -L2 {1}'))
+  export alias jf = cd (dirname (fd -t f | fzf --height 40% --reverse --inline-info --tiebreak length --bind 'tab:down' --bind 'shift-tab:up' --preview 'exa -T -L2 {1}'))
   export alias k9t =  zellij action new-tab -c ~ -n k9s -l ~/.config/zellij/layouts/k9s.kdl
   export alias lg = lazygit
   export alias mp = mprocs -c ~/.config/mprocs/mprocs.yaml
