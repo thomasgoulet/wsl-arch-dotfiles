@@ -193,7 +193,7 @@ theme "onedark"
 
 themes {
     onedark {
-        fg         "#5C6370"
+        fg         "#ABB2BF"
         bg         "#2C323C"
         black      "#282C34"
         yellow     "#E5C07B"
