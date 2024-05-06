@@ -1,4 +1,4 @@
-theme = "thom"
+theme = "onedark-custom"
 
 [editor]
 bufferline = "always"
