@@ -189,25 +189,22 @@ ui {
     }
 }
 
-theme "onehalfdark"
+theme "onedark"
 
 themes {
-    onehalfdark {
-        fg 220 223 228
-        bg 40 44 52
-        black 27 29 35
-        red 227 63 76
-        yellow 229 192 123
-        cyan 86 182 194
-        white 233 225 254
-        // magenta 198 120 221
-        magenta 220 223 228 // Magenta UI elements are fg
-        // green 152 195 121
-        green 97 175 239 // Green UI elements are blue
-        // blue 97 175 239
-        blue 217 133 76 // Blue UI elements are orange
-        // orange 216 133 76
-        orange 152 195 121 // Orange UI elements are green
+    onedark {
+        fg         "#5C6370"
+        bg         "#2C323C"
+        black      "#282C34"
+        yellow     "#E5C07B"
+        blue       "#D19A66" // blue       "#61AFEF"
+        red        "#E06C75"
+        magenta    "#ABB2BF"
+        green      "#61AFEF" // green      "#98C379"
+        orange     "#98C379" // orange     "#D19A66"
+        cyan       "#56B6C2"
+        white      "#ABB2BF"
+        black      "#282C34"
     }
 }
 
