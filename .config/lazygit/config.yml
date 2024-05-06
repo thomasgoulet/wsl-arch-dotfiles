@@ -1,11 +1,17 @@
-notARepository: 'skip'
 gui:
-  timeFormat: '2006-01-02 / 15h04m'
   nerdFontsVersion: '2'
   showBottomLine: false
+  showPanelJumps: false
+  showRandomTip: false
+  statusPanelView: allBranchesLog
   theme:
     activeBorderColor:
       - blue
       - bold
+    inactiveBorderColor:
+      - purple
+      - bold
+  timeFormat: '2006-01-02 / 15h04m'
+notARepository: 'skip'
 os:
   editPreset: 'vscode'
