@@ -9,8 +9,10 @@ gui:
       - blue
       - bold
     inactiveBorderColor:
-      - purple
+      - white
       - bold
+    selectedLineBgColor:
+      - "#3B4048" # set to `default` to have no background colour
   timeFormat: '2006-01-02 / 15h04m'
 notARepository: 'skip'
 os:
