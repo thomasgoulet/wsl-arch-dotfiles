@@ -32,7 +32,7 @@ module kube {
     if $context == null {
       return (kubectl config get-contexts | from ssv -a)
     }
-    let match = (kubectl config get-contexts | from ssv -a | select NAME | where NAME =~ $context)
+    let match = (kubectl config get-contexts | from ssv -a | where NAME =~ $context)
     if ($match | length) != 1  {
       return "No matching context"
     }
@@ -46,10 +46,11 @@ module kube {
     if $namespace == null {
       return (kubectl get ns | from ssv)
     }
+    let match = (kubectl get namespaces | from ssv | where NAME != "default" | where NAME =~ $namespace)
     if $namespace == "NONE" {
       return (kubectl config set-context --current --namespace="")
     }
-    kubectl config set-context --current --namespace $namespace
+    kubectl config set-context --current --namespace ($match | get NAME | to text)
   }
 
   # Explore resources
