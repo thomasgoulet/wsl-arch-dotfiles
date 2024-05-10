@@ -6,7 +6,7 @@ let theme = {
     header: green_bold
     empty: blue
     bool: { || if $in { 'light_cyan' } else { 'light_gray' } }
-    int: white
+    int: yellow
     filesize: {|e|
       if $e == 0b {
         'white'
@@ -14,7 +14,7 @@ let theme = {
         'cyan'
       } else { 'blue' }
     }
-    duration: white
+    duration: cyan
     date: { || (date now) - $in |
       if $in < 1hr {
         'light_red'
@@ -33,16 +33,16 @@ let theme = {
       } else { 'dark_gray' }
     }    
     range: white
-    float: white
-    string: white
+    float: yellow
+    string: green
     nothing: white
     binary: white
-    cellpath: white
+    cellpath: cyan
     row_index: green_bold
     record: white
     list: white
     block: white
-    hints: dark_gray
+    hints: light_gray
 
     shape_and: purple_bold
     shape_binary: purple_bold
@@ -77,10 +77,6 @@ let theme = {
     shape_variable: purple
 }
 
-let fish_completer = {|spans|
-    fish --command $'complete "--do-complete=($spans | str join " ")"' | str trim | split row "\n" | each { |line| $line | split column "\t" value description } | flatten
-}
-
 $env.config = {
  
   ls: {
@@ -110,9 +106,8 @@ $env.config = {
     partial: true
     algorithm: "fuzzy"
     external: {
-      enable: true # set to false to prevent nushell looking into $env.PATH to find more suggestions, `false` recommended for WSL users as this look up my be very slow
+      enable: false # set to false to prevent nushell looking into $env.PATH to find more suggestions, `false` recommended for WSL users as this look up my be very slow
       max_results: 100 # setting it lower can improve completion performance at the cost of omitting some options
-      completer: $fish_completer
     }
   }
 

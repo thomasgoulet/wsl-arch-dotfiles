@@ -4,7 +4,7 @@ keybinds clear-defaults=true {
     shared_except "locked" "entersearch" "renametab" "renamepane" {
         // Stop all input to terminal when not in locked mode to prevent unintentional keystrokes
         bind "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "s" "t" "u" "v" "w" "x" "y" "z" "A" "B" "C" "D" "E" "F" "G" "H" "I" "J" "K" "L" "M" "N" "O" "P" "Q" "R" "S" "T" "U" "V" "W" "X" "Y" "Z" "1" "2" "3" "4" "5" "6" "7" "8" "9" "Backspace" "Left" "Right" "Up" "Down" "Home" "End" "PageUp" "PageDown" "Tab" "Delete" "Insert" "Space" "Enter" {}
-        bind "Esc" { SwitchToMode "Locked"; }
+        bind "Esc"    { SwitchToMode "Locked"; }
         bind "Ctrl q" { Quit; }
     }
     
@@ -15,7 +15,7 @@ keybinds clear-defaults=true {
     locked {
         // Master key is F1
         bind "Ctrl g" { SwitchToMode "Normal"; }
-        bind "F1" { SwitchToMode "Normal"; }
+        bind "F1"     { SwitchToMode "Normal"; }
     }
 
     normal {
@@ -28,25 +28,25 @@ keybinds clear-defaults=true {
         bind "t" { SwitchToMode "Tab"; }
         bind "m" { SwitchToMode "Move"; }
 
-        bind "f" { ToggleFloatingPanes; SwitchToMode "Locked"; }
-        bind "F" {  ToggleFocusFullscreen; SwitchToMode "Locked"; }
-        bind "1" { GoToTab 1; SwitchToMode "Locked"; }
-        bind "2" { GoToTab 2; SwitchToMode "Locked"; }
-        bind "3" { GoToTab 3; SwitchToMode "Locked"; }
-        bind "4" { GoToTab 4; SwitchToMode "Locked"; }
-        bind "5" { GoToTab 5; SwitchToMode "Locked"; }
-        bind "6" { GoToTab 6; SwitchToMode "Locked"; }
-        bind "7" { GoToTab 7; SwitchToMode "Locked"; }
-        bind "8" { GoToTab 8; SwitchToMode "Locked"; }
-        bind "9" { GoToTab 9; SwitchToMode "Locked"; }
+        bind "f"   { ToggleFloatingPanes; SwitchToMode "Locked"; }
+        bind "F"   {  ToggleFocusFullscreen; SwitchToMode "Locked"; }
+        bind "1"   { GoToTab 1; SwitchToMode "Locked"; }
+        bind "2"   { GoToTab 2; SwitchToMode "Locked"; }
+        bind "3"   { GoToTab 3; SwitchToMode "Locked"; }
+        bind "4"   { GoToTab 4; SwitchToMode "Locked"; }
+        bind "5"   { GoToTab 5; SwitchToMode "Locked"; }
+        bind "6"   { GoToTab 6; SwitchToMode "Locked"; }
+        bind "7"   { GoToTab 7; SwitchToMode "Locked"; }
+        bind "8"   { GoToTab 8; SwitchToMode "Locked"; }
+        bind "9"   { GoToTab 9; SwitchToMode "Locked"; }
         bind "Tab" { GoToNextTab; }
 
-        bind "h" "Left" { MoveFocus "Left"; }
+        bind "h" "Left"  { MoveFocus "Left"; }
         bind "l" "Right" { MoveFocus "Right"; }
-        bind "j" "Down" { MoveFocus "Down"; }
-        bind "k" "Up" { MoveFocus "Up"; }
-        bind "c" { CloseFocus; SwitchToMode "Locked"; }
-        bind "n" { NewPane; SwitchToMode "Locked"; }
+        bind "j" "Down"  { MoveFocus "Down"; }
+        bind "k" "Up"    { MoveFocus "Up"; }
+        bind "c"         { CloseFocus; SwitchToMode "Locked"; }
+        bind "n"         { NewPane; SwitchToMode "Locked"; }
 
         bind "C" {
             Run "zellij" "edit" "~/.config/zellij/config.kdl"{
@@ -56,16 +56,16 @@ keybinds clear-defaults=true {
     }
     
     resize {
-        bind "h" "Left" { Resize "Increase Left"; }
-        bind "j" "Down" { Resize "Increase Down"; }
-        bind "k" "Up" { Resize "Increase Up"; }
+        bind "h" "Left"  { Resize "Increase Left"; }
+        bind "j" "Down"  { Resize "Increase Down"; }
+        bind "k" "Up"    { Resize "Increase Up"; }
         bind "l" "Right" { Resize "Increase Right"; }
-        bind "H" { Resize "Decrease Left"; }
-        bind "J" { Resize "Decrease Down"; }
-        bind "K" { Resize "Decrease Up"; }
-        bind "L" { Resize "Decrease Right"; }
-        bind "=" "+" { Resize "Increase"; }
-        bind "-" { Resize "Decrease"; }
+        bind "H"         { Resize "Decrease Left"; }
+        bind "J"         { Resize "Decrease Down"; }
+        bind "K"         { Resize "Decrease Up"; }
+        bind "L"         { Resize "Decrease Right"; }
+        bind "=" "+"     { Resize "Increase"; }
+        bind "-"         { Resize "Decrease"; }
     }
 
     pane {
@@ -83,63 +83,63 @@ keybinds clear-defaults=true {
     }
 
     move {
-        bind "m" { MovePane; }    
-        bind "h" "Left" { MovePane "Left"; }
-        bind "j" "Down" { MovePane "Down"; }
-        bind "k" "Up" { MovePane "Up"; }
+        bind "m"         { MovePane; }
+        bind "h" "Left"  { MovePane "Left"; }
+        bind "j" "Down"  { MovePane "Down"; }
+        bind "k" "Up"    { MovePane "Up"; }
         bind "l" "Right" { MovePane "Right"; }
     }
     
     tab {
-        bind "r" { SwitchToMode "RenameTab"; TabNameInput 0; }
-        bind "h" "Left" "Up" "j" { GoToPreviousTab; }
+        bind "r"                    { SwitchToMode "RenameTab"; TabNameInput 0; }
+        bind "h" "Left" "Up" "j"    { GoToPreviousTab; }
         bind "l" "Right" "Down" "k" { GoToNextTab; }
-        bind "n" { NewTab; SwitchToMode "RenameTab"; TabNameInput 0; }
-        bind "c" { CloseTab; SwitchToMode "Locked"; }
-        bind "s" { ToggleActiveSyncTab; SwitchToMode "Locked"; }
-        bind "b" { BreakPane; SwitchToMode "Locked"; }
-        bind "]" { BreakPaneRight; SwitchToMode "Locked"; }
-        bind "[" { BreakPaneLeft; SwitchToMode "Locked"; }
+        bind "n"                    { NewTab; SwitchToMode "RenameTab"; TabNameInput 0; }
+        bind "c"                    { CloseTab; SwitchToMode "Locked"; }
+        bind "s"                    { ToggleActiveSyncTab; SwitchToMode "Locked"; }
+        bind "b"                    { BreakPane; SwitchToMode "Locked"; }
+        bind "]"                    { BreakPaneRight; SwitchToMode "Locked"; }
+        bind "["                    { BreakPaneLeft; SwitchToMode "Locked"; }
     }
 
     scroll {
-        bind "Enter" { ScrollToBottom; SwitchToMode "Normal"; }
-        bind "e" { EditScrollback; SwitchToMode "Normal"; }
-        bind "s" { SwitchToMode "EnterSearch"; SearchInput 0; }
+        bind "Enter"    { ScrollToBottom; SwitchToMode "Normal"; }
+        bind "e"        { EditScrollback; SwitchToMode "Normal"; }
+        bind "s"        { SwitchToMode "EnterSearch"; SearchInput 0; }
         bind "j" "Down" { ScrollDown; }
-        bind "k" "Up" { ScrollUp; }
-        bind "J" { HalfPageScrollDown; }
-        bind "K" { HalfPageScrollUp; }
+        bind "k" "Up"   { ScrollUp; }
+        bind "J"        { HalfPageScrollDown; }
+        bind "K"        { HalfPageScrollUp; }
     }
 
     search {
-        bind "Enter" { ScrollToBottom; SwitchToMode "Normal"; }
+        bind "Enter"    { ScrollToBottom; SwitchToMode "Normal"; }
         bind "j" "Down" { ScrollDown; }
-        bind "k" "Up" { ScrollUp; }
-        bind "l" { PageScrollDown; }
-        bind "h" { PageScrollUp; }
-        bind "J" { HalfPageScrollDown; }
-        bind "K" { HalfPageScrollUp; }
-        bind "n" { Search "down"; }
-        bind "N" { Search "up"; }
-        bind "c" { SearchToggleOption "CaseSensitivity"; }
-        bind "w" { SearchToggleOption "Wrap"; }
-        bind "o" { SearchToggleOption "WholeWord"; }
-        bind "s" { SwitchToMode "EnterSearch"; SearchInput 0; }
+        bind "k" "Up"   { ScrollUp; }
+        bind "l"        { PageScrollDown; }
+        bind "h"        { PageScrollUp; }
+        bind "J"        { HalfPageScrollDown; }
+        bind "K"        { HalfPageScrollUp; }
+        bind "n"        { Search "down"; }
+        bind "N"        { Search "up"; }
+        bind "c"        { SearchToggleOption "CaseSensitivity"; }
+        bind "w"        { SearchToggleOption "Wrap"; }
+        bind "o"        { SearchToggleOption "WholeWord"; }
+        bind "s"        { SwitchToMode "EnterSearch"; SearchInput 0; }
     }
 
     entersearch {
-        bind "Esc" { SwitchToMode "Scroll"; }
+        bind "Esc"   { SwitchToMode "Scroll"; }
         bind "Enter" { SwitchToMode "Search"; }
     }
 
     renametab {
-        bind "Esc" { UndoRenameTab; SwitchToMode "Normal"; }
+        bind "Esc"   { UndoRenameTab; SwitchToMode "Normal"; }
         bind "Enter" { SwitchToMode "Locked"; }
     }
 
     renamepane {
-        bind "Esc" { UndoRenamePane; SwitchToMode "Normal"; }
+        bind "Esc"   { UndoRenamePane; SwitchToMode "Normal"; }
         bind "Enter" { SwitchToMode "Locked"; }
     }
 
@@ -148,15 +148,15 @@ keybinds clear-defaults=true {
     }
 
     shared {
-        bind "Alt n" { NewPane; }
-        bind "Alt c" { CloseFocus; }
-        bind "Alt q" { CloseTab; }
-        bind "Alt f" { ToggleFloatingPanes; }
-        bind "Alt F" { ToggleFocusFullscreen; }
-        bind "Alt h" "Alt Left" { MoveFocus "Left"; }
+        bind "Alt n"             { NewPane; }
+        bind "Alt c"             { CloseFocus; }
+        bind "Alt q"             { CloseTab; }
+        bind "Alt f"             { ToggleFloatingPanes; }
+        bind "Alt F"             { ToggleFocusFullscreen; }
+        bind "Alt h" "Alt Left"  { MoveFocus "Left"; }
         bind "Alt l" "Alt Right" { MoveFocus "Right"; }
-        bind "Alt j" "Alt Down" { MoveFocus "Down"; }
-        bind "Alt k" "Alt Up" { MoveFocus "Up"; }
+        bind "Alt j" "Alt Down"  { MoveFocus "Down"; }
+        bind "Alt k" "Alt Up"    { MoveFocus "Up"; }
         bind "Alt s" {
             LaunchOrFocusPlugin "zellij:session-manager" {
                 floating true
@@ -164,21 +164,21 @@ keybinds clear-defaults=true {
             };
             SwitchToMode "Locked"
         }
-        bind "Alt S" { ToggleActiveSyncTab; }
-        bind "Alt t" { NewTab; SwitchToMode "RenameTab"; TabNameInput 0; }
-        bind "Alt T" { BreakPane; SwitchToMode "RenameTab"; TabNameInput 0; }
-        bind "Alt H" { GoToPreviousTab; }
-        bind "Alt L" { GoToNextTab; }
+        bind "Alt S"         { ToggleActiveSyncTab; }
+        bind "Alt t"         { NewTab; SwitchToMode "RenameTab"; TabNameInput 0; }
+        bind "Alt T"         { BreakPane; SwitchToMode "RenameTab"; TabNameInput 0; }
+        bind "Alt H"         { GoToPreviousTab; }
+        bind "Alt L"         { GoToNextTab; }
         bind "Alt =" "Alt +" { Resize "Increase"; }
-        bind "Alt -" { Resize "Decrease"; }
+        bind "Alt -"         { Resize "Decrease"; }
     }
 
 }
 
 plugins {
-    tab-bar { path "tab-bar"; }
-    status-bar { path "status-bar"; }
-    compact-bar { path "compact-bar"; }
+    tab-bar         { path "tab-bar"; }
+    status-bar      { path "status-bar"; }
+    compact-bar     { path "compact-bar"; }
     session-manager { path "session-manager"; }
 }
 
@@ -193,18 +193,18 @@ theme "onedark"
 
 themes {
     onedark {
-        fg         "#ABB2BF"
-        bg         "#2C323C"
-        black      "#282C34"
-        yellow     "#E5C07B"
-        blue       "#D19A66" // blue       "#61AFEF"
-        red        "#E06C75"
-        magenta    "#ABB2BF"
-        green      "#61AFEF" // green      "#98C379"
-        orange     "#98C379" // orange     "#D19A66"
-        cyan       "#56B6C2"
-        white      "#ABB2BF"
-        black      "#282C34"
+        fg      "#ABB2BF"
+        bg      "#2C323C"
+        black   "#282C34"
+        yellow  "#E5C07B"
+        blue    "#D19A66" // blue       "#61AFEF"
+        red     "#E06C75"
+        magenta "#ABB2BF"
+        green   "#61AFEF" // green      "#98C379"
+        orange  "#98C379" // orange     "#D19A66"
+        cyan    "#56B6C2"
+        white   "#ABB2BF"
+        black   "#282C34"
     }
 }
 

@@ -1,7 +1,7 @@
 add_newline = true
 
 format = '''
-[\[](white)$directory\]$kubernetes$git_status$git_branch
+[\[$directory\]](bright-white)$kubernetes$git_status$git_branch
 $env_var$character'''
 
 [env_var.PROMPT_EXTRA]
@@ -18,7 +18,7 @@ show_always = true
 [kubernetes]
 style = 'green'
 symbol = ''
-format = ' \[[$symbol$context([|](white)$namespace)]($style)\]'
+format = ' [\[[$symbol$context([/](bright-white)$namespace)]($style)\]](bright-white)'
 disabled = false
 
 [[kubernetes.contexts]]
@@ -47,12 +47,12 @@ truncate_to_repo = true
 style = 'red'
 deleted = 'x'
 diverged = '[⇡⇣](purple)'
-format = ' \[[$all_status$ahead_behind]($style)'
+format = ' [\[[$all_status$ahead_behind]($style)](bright-white)'
 
 [git_branch]
 style = 'yellow'
 symbol = ''
-format = '[$branch]($style)\]'
+format = '[[$branch]($style)\]](bright-white)'
 
 [character]
 success_symbol = ' [->](white)'
