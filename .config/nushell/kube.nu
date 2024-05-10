@@ -133,7 +133,7 @@ module kube {
     if ($resources | length) == 1 {
       $output = ($resources | into record | get $property)
     } else if ($resources| length) > 1 {
-      let resource_name = ($resources | get metadata.name |  str join (char -i 0) |  fzf --read0 --height 40% --reverse --inline-info --tiebreak length --bind 'tab:down' --bind 'shift-tab:up')
+      let resource_name = ($resources | get metadata.name | str join (char -i 0) |  fzf --read0 --height 40% --reverse --inline-info --tiebreak length --bind 'tab:down' --bind 'shift-tab:up')
       $output = ($resources | where metadata.name == $resource_name | into record | get $property)
     } else if ($resources | length) < 1 {
       return ("No resources matching the filter ; " + $search)

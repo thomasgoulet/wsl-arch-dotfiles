@@ -325,6 +325,10 @@ source ~/.cache/starship/init.nu
 source ~/.config/nushell/aliases.nu
 use aliases *
 
+# Source azure-cli aliases and functions
+source ~/.config/nushell/az.nu
+use az *
+
 # Git aliases and completion
 source ~/.config/nushell/git.nu
 use git *
