@@ -44,4 +44,10 @@ layout {
         }
     }
 
+    swap_floating_layout {
+        floating_panes max_panes=1 {
+            pane x="10%" y="10%" width="80%" height="80%"
+        }
+    }
+
 }
