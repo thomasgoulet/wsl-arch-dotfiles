@@ -38,16 +38,13 @@ layout {
             }
             pane stacked=true {
                 pane {
-                    name "TERM"
-                } 
+                    command "lazygit"
+                    name "GIT"
+                }
                 pane {
                     command "lf"
                     args "-config" "/home/thomas/.config/lf/lfrc-zellij"
                     name "FILES"
-                }
-                pane {
-                    command "lazygit"
-                    name "GIT"
                 }
             }
         }

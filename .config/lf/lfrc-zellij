@@ -9,6 +9,7 @@ cmd open &{{
     do
         zellij ac write-chars ":o ${f}"; zellij ac write 13
     done
+    zellij ac move-focus right
 }}
 
 cmd on-quit cd $fx
