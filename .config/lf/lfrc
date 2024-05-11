@@ -8,12 +8,6 @@ cmd on-quit cd $fx
 
 map <delete> delete
 
-cmd zi ${{
-	result="$(zoxide query -i)"
-	lf -remote "send $id cd $result"
-}}
-map J zi
-
 cmd fzf_content_search ${{
     res="$( \
         FZF_DEFAULT_COMMAND="rg -n -H --no-ignore-parent ." \
@@ -36,3 +30,7 @@ cmd open_shell ${{
     nu -e '$env.PROMPT_EXTRA = lf; $env.config.keybindings = ($env.config.keybindings | append {name: exit modifier: none keycode: esc mode: [emacs] event: {send: ctrld} })'
 }}
 map <enter> open_shell
+
+cmd on-select &{{
+    lf -remote "send $id set statfmt \"$(eza -ldg --git --color=always "$f")\""
+}}
