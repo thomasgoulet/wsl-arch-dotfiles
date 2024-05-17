@@ -16,13 +16,13 @@ module aliases {
   export alias vpnkit = wsl.exe -d wsl-vpnkit service wsl-vpnkit start
 
   # List directory content
-  export def ll [
+  export def l [
     path?:string  # Optional path to list directory for
   ] {
     if $path == null {
-      ls -la | select name mode size modified
+      ls -lad | select name mode user group size modified
     } else {
-      ls -la $path | select name mode size modified
+      ls -lad $path | select name mode user group size modified
     }
   }
 
