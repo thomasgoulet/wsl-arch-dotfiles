@@ -204,7 +204,6 @@ themes {
         orange  "#98C379" // orange     "#D19A66"
         cyan    "#56B6C2"
         white   "#ABB2BF"
-        black   "#282C34"
     }
 }
 

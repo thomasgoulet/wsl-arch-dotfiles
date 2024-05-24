@@ -5,21 +5,101 @@ layout {
     default_tab_template name="default_tab" {
         children
         pane size=1 borderless=true {
-            plugin location="zellij:compact-bar"
+            plugin location="https://github.com/dj95/zjstatus/releases/latest/download/zjstatus.wasm" {
+                format_left   "#[bg=#2C323C]{mode} #[fg=#ABB2BF,bg=#2C323C,bold]{session}"
+                format_center "#[bg=#2C323C]{tabs}"
+                format_right  "#[bg=#2C323C]{command_wttr}{datetime}"
+                format_space  "#[bg=#2C323C]"
+
+                border_enabled  "false"
+                border_char     "─"
+                border_format   "#[fg=#6C7086]{char}"
+                border_position "top"
+
+                hide_frame_for_single_pane "false"
+
+                mode_normal        "#[bg=blue] "
+                mode_locked        "#[bg=#ABB2BF] "
+                mode_resize        "#[fg=black,bg=yellow] R "
+                mode_pane          "#[fg=black,bg=green] P "
+                mode_tab           "#[fg=black,bg=cyan] T "
+                mode_scroll        "#[fg=black,bg=green] S "
+                mode_enter_search  "#[fg=black,bg=cyan] ES "
+                mode_search        "#[fg=black,bg=cyan] S "
+                mode_rename_tab    "#[fg=black,bg=yellow] R-T "
+                mode_rename_pane   "#[fg=black,bg=yellow] R-P "
+                mode_session       "#[fg=black,bg=green] SESSION "
+                mode_move          "#[fg=black,bg=green] M "
+                mode_prompt        "#[fg=black,bg=green] PR "
+                mode_tmux          "#[fg=black,bg=green] {name} "
+
+                tab_normal    "#[fg=#ABB2BF,bg=#2C323C] {name} "
+                tab_active    "#[fg=blue,bg=#2C323C,bold,italic] {name} "
+                tab_separator "#[fg=#ABB2BF,bg=#2C323C] / "
+
+                command_wttr_command    "curl wttr.in/Lévis?format=\"%c%t+(%f)+/+%p+/+%h+/\""
+                command_wttr_format     "#[fg=#ABB2BF,bg=#2C323C] {stdout} "
+                command_wttr_interval   "600"
+                command_wttr_rendermode "static"
+                
+                datetime        "#[fg=#ABB2BF,bg=#2C323C]{format}"
+                datetime_format "%H:%M %F"
+                datetime_timezone "America/Montreal"
+            }
         }
     }
     
     tab_template name="default_tab" {
         children
         pane size=1 borderless=true {
-            plugin location="zellij:compact-bar"
+            plugin location="https://github.com/dj95/zjstatus/releases/latest/download/zjstatus.wasm" {
+                format_left   "#[bg=#2C323C]{mode} #[fg=#ABB2BF,bg=#2C323C,bold]{session}"
+                format_center "#[bg=#2C323C]{tabs}"
+                format_right  "#[bg=#2C323C]{command_wttr}{datetime}"
+                format_space  "#[bg=#2C323C]"
+
+                border_enabled  "false"
+                border_char     "─"
+                border_format   "#[fg=#6C7086]{char}"
+                border_position "top"
+
+                hide_frame_for_single_pane "false"
+
+                mode_normal        "#[bg=blue] "
+                mode_locked        "#[bg=#ABB2BF] "
+                mode_resize        "#[fg=black,bg=yellow] R "
+                mode_pane          "#[fg=black,bg=green] P "
+                mode_tab           "#[fg=black,bg=cyan] T "
+                mode_scroll        "#[fg=black,bg=green] S "
+                mode_enter_search  "#[fg=black,bg=cyan] ES "
+                mode_search        "#[fg=black,bg=cyan] S "
+                mode_rename_tab    "#[fg=black,bg=yellow] R-T "
+                mode_rename_pane   "#[fg=black,bg=yellow] R-P "
+                mode_session       "#[fg=black,bg=green] SESSION "
+                mode_move          "#[fg=black,bg=green] M "
+                mode_prompt        "#[fg=black,bg=green] PR "
+                mode_tmux          "#[fg=black,bg=green] {name} "
+
+                tab_normal    "#[fg=#ABB2BF,bg=#2C323C] {name} "
+                tab_active    "#[fg=blue,bg=#2C323C,bold,italic] {name} "
+                tab_separator "#[fg=#ABB2BF,bg=#2C323C] / "
+
+                command_wttr_command    "curl wttr.in/Lévis?format=\"%c%t+(%f)+/+%p+/+%h+/\""
+                command_wttr_format     "#[fg=#ABB2BF,bg=#2C323C] {stdout} "
+                command_wttr_interval   "600"
+                command_wttr_rendermode "static"
+                
+                datetime        "#[fg=#ABB2BF,bg=#2C323C]{format}"
+                datetime_format "%H:%M %F"
+                datetime_timezone "America/Montreal"
+            }
         }
     }
 
     swap_tiled_layout name="STACK" {
         default_tab max_panes=2 {
             pane {
-                pane
+                pane borderless=true
             }
         }
         default_tab max_panes=9 {

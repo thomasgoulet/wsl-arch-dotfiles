@@ -28,9 +28,7 @@ let theme = {
         'green'
       } else if $in < 6wk {
         'blue'
-      } else if $in < 52wk {
-        'gray'
-      } else { 'dark_gray' }
+      } else { 'light_gray' }
     }    
     range: white
     float: yellow
