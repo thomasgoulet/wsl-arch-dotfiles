@@ -126,7 +126,15 @@ $env.config = {
   float_precision: 2
   use_ansi_coloring: true
   edit_mode: emacs
-  shell_integration: true
+  shell_integration: {
+    osc2: true
+    osc7: true
+    osc8: true
+    osc9_9: true
+    osc133: true
+    osc633: true
+    reset_application_mode: true
+}
   show_banner: false
 
   hooks: {

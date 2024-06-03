@@ -6,7 +6,7 @@ layout {
             plugin location="https://github.com/dj95/zjstatus/releases/latest/download/zjstatus.wasm" {
                 format_left   "#[bg=#2C323C]{mode} #[fg=#ABB2BF,bg=#2C323C,bold]{session}"
                 format_center "#[bg=#2C323C]{tabs}"
-                format_right  "#[bg=#2C323C]{command_wttr}{datetime}"
+                format_right  "#[bg=#2C323C]{datetime}"
                 format_space  "#[bg=#2C323C]"
 
                 border_enabled  "false"
@@ -35,11 +35,6 @@ layout {
                 tab_active    "#[fg=magenta,bg=#2C323C,bold,italic] {name} "
                 tab_separator "#[fg=#ABB2BF,bg=#2C323C] / "
 
-                command_wttr_command    "curl wttr.in/Lévis?format=\"%c%t+(%f)+/+%p+/+%h+/\""
-                command_wttr_format     "#[fg=#ABB2BF,bg=#2C323C] {stdout} "
-                command_wttr_interval   "600"
-                command_wttr_rendermode "static"
-                
                 datetime        "#[fg=#ABB2BF,bg=#2C323C]{format}"
                 datetime_format "%H:%M %F"
                 datetime_timezone "America/Montreal"
