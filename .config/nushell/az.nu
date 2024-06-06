@@ -18,7 +18,7 @@ module az {
 
   # Changes your subscription for you
   export def azs [
-    subscription?: string@"nu-complete azurecli subscriptions"
+    subscription?: string@"nu-complete azurecli subscriptions"  # Subscription to switch to
   ] {
     if $subscription == null {
       return (az account list | from json | get name)
@@ -35,6 +35,13 @@ module az {
       print ("Switching to subscription " + $match)
       az account set -s $match
     }
+  }
+
+  # Lists all active PRs for a Azure DevOps project
+  export def azpr [
+    project: string  # Project to list active PRs for
+  ] {
+    az repos pr list --project $project --top 10000 | from json | select createdBy.displayName repository.name title creationDate | rename AUTHOR REPO TITLE DATE
   }
 
 }
