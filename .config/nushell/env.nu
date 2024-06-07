@@ -7,6 +7,7 @@ zoxide init nushell --cmd j | save -f ~/.cache/zoxide/init.nu
 # Use starship
 mkdir ~/.cache/starship
 starship init nu | save -f ~/.cache/starship/init.nu
+$env.TRANSIENT_PROMPT_COMMAND = "\n" + (starship module character)
 
 # Environment variables
 $env.BROWSER = "wslview"
@@ -22,6 +23,10 @@ $env.ENV_CONVERSIONS = {
     from_string: { |s| $s | split row (char esep) | path expand -n }
     to_string: { |v| $v | path expand -n | str join (char esep) }
   }
+  "Path": {
+    from_string: { |s| $s | split row (char esep) | path expand -n }
+    to_string: { |v| $v | path expand -n | str join (char esep) }
+  }
 }
 
 $env.NU_LIB_DIRS = [
@@ -32,12 +37,10 @@ $env.NU_PLUGIN_DIRS = [
     ($nu.config-path | path dirname | path join 'plugins')
 ]
 
-$env.PATH = ($env.PATH | split row (char esep) | prepend '/some/path')
-$env.PATH = ($env.PATH | split row (char esep) | prepend '/home/thomas/go/bin')
-$env.PATH = ($env.PATH | split row (char esep) | prepend '/home/thomas/')
 $env.PATH = ($env.PATH | split row (char esep) | prepend 'local/bin')
-$env.PATH = ($env.PATH | split row (char esep) | prepend '/home/thomas/')
 $env.PATH = ($env.PATH | split row (char esep) | prepend 'cargo/bin')
+$env.PATH = ($env.PATH | split row (char esep) | prepend '/home/thomas/')
 $env.PATH = ($env.PATH | split row (char esep) | prepend '/home/thomas/bin')
-$env.PATH = ($env.PATH | split row (char esep) | prepend '/home/thomas/.config/carapace/bin')
+$env.PATH = ($env.PATH | split row (char esep) | prepend '/home/thomas/go/bin')
 $env.PATH = ($env.PATH | split row (char esep) | prepend '/home/thomas/.local/bin')
+$env.PATH = ($env.PATH | split row (char esep) | prepend '/home/thomas/.config/carapace/bin')

@@ -9,12 +9,6 @@ style = 'purple'
 variable = 'PROMPT_EXTRA'
 format = '[ $env_value]($style)'
 
-[username]
-style_user = 'green'
-style_root = 'purple'
-format = '[$user]($style)'
-show_always = true
-
 [kubernetes]
 style = 'green'
 symbol = ''

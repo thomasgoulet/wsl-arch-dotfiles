@@ -82,15 +82,23 @@ $env.config = {
     clickable_links: false
   }
 
+  rm: {
+    always_trash: false
+  }
+
   table: {
     mode: rounded
     index_mode: auto
+    padding: { left: 1, right: 1 }
     trim: {
       methodology: wrapping
       wrapping_try_keep_words: true
       truncating_suffix: "..."
     }
+    header_on_separator: false
   }
+
+  error_style: "fancy"
 
   history: {
     max_size: 10000
@@ -106,7 +114,9 @@ $env.config = {
     external: {
       enable: false # set to false to prevent nushell looking into $env.PATH to find more suggestions, `false` recommended for WSL users as this look up my be very slow
       max_results: 100 # setting it lower can improve completion performance at the cost of omitting some options
+      completer: null
     }
+    use_ls_colors: true
   }
 
   filesize: {
@@ -134,8 +144,14 @@ $env.config = {
     osc133: true
     osc633: true
     reset_application_mode: true
-}
+  }
+
   show_banner: false
+
+  render_right_prompt_on_last_line: false
+  use_kitty_protocol: false
+  highlight_resolved_externals: false
+  recursion_limit: 50
 
   hooks: {
     display_output: { ||
