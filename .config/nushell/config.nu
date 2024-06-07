@@ -347,19 +347,23 @@ source ~/.cache/starship/init.nu
 source ~/.config/nushell/aliases.nu
 use aliases *
 
-# Source azure-cli aliases and functions
+# argo aliases and functions
+source ~/.config/nushell/argo.nu
+use argo *
+
+# azure-cli aliases and functions
 source ~/.config/nushell/az.nu
 use az *
 
-# Git aliases and completion
+# git aliases and completion
 source ~/.config/nushell/git.nu
 use git *
 
-# Helix aliases and functions
+# helix aliases and functions
 source ~/.config/nushell/helix.nu
 use helix *
 
-# Source kubectl aliases and functions
+# kubectl aliases and functions
 source ~/.config/nushell/kube.nu
 use kube *
 

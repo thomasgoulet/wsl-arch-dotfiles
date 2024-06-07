@@ -1,4 +1,5 @@
 .config/argocd/config
+.config/argocd/.prev-ctx
 .config/btop/btop.log
 .config/gh/hosts.yml
 .config/go/telemetry/*

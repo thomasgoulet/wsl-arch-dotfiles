@@ -25,9 +25,9 @@ module kube {
     kubectl get $resource | from ssv | get NAME
   }
 
-  # Change context
+  # List and change context
   export def kcon [
-    context?: string@"nu-complete kubectl contexts"  # Context
+    context?: string@"nu-complete kubectl contexts"  # Context (fuzzy)
   ] {
     if $context == null {
       return (kubectl config get-contexts | from ssv -a)
