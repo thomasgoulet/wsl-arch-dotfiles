@@ -1,8 +1,9 @@
+.config/argocd/config
 .config/btop/btop.log
 .config/gh/hosts.yml
+.config/go/telemetry/*
 .config/helm/*
 .config/k9s/config.yml
 .config/lazygit/state.yml
 .config/nushell/history.*
 .config/wslu/*
-.config/go/telemetry/*
