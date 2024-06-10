@@ -2,11 +2,11 @@ module argo {
 
   # List apps
   export def "argo apps" [] {
-    let list = (argocd app list | from ssv -a)
+    let list = (argocd app list --grpc-web | from ssv -a)
     let kube_config = (open ~/.kube/config | from yaml)
     let kube_context = ($kube_config | get current-context)
     let kube_ns = ($kube_config | get contexts | where context.cluster == $kube_context | get context.namespace.0)
-    return ($list | where NAMESPACE =~ $kube_ns | select NAME PROJECT STATUS HEALTH SYNCPOLICY PATH TARGET)
+    return ($list | where NAMESPACE =~ $kube_ns | select NAME PROJECT STATUS HEALTH PATH)
   }
 
   # List and change context

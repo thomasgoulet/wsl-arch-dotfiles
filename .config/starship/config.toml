@@ -1,7 +1,7 @@
 add_newline = true
 
 format = '''
-[\[$directory\]](bright-white)$kubernetes$git_status$git_branch
+[\[$directory\]](bright-white)$kubernetes$custom$git_status$git_branch
 $env_var$character'''
 
 [env_var.PROMPT_EXTRA]
@@ -31,6 +31,14 @@ context_alias = 'test'
 context_pattern = '.*prod.*'
 context_alias = 'prod'
 style = 'red'
+
+[custom.argo]
+style = 'cyan'
+symbol = ''
+format = ' [\[[$symbol$output]($style)\]](bright-white)'
+command = 'argocd ctx | from ssv -a | where CURRENT == "*" | get NAME | to text'
+when = true
+
 
 [directory]
 style = 'blue'
