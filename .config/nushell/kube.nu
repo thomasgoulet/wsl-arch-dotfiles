@@ -14,6 +14,10 @@ module kube {
     kubectl get pods | from ssv | get NAME
   }
 
+  def "nu-complete kubectl es" [] {
+    kubectl get es | from ssv | get NAME
+  }
+
   def "nu-complete kubectl resources" [] {
     kubectl api-resources | from ssv | get SHORTNAMES NAME | flatten
   }
@@ -147,6 +151,13 @@ module kube {
       return $output
     }
 
+  }
+
+  # Refresh a ExternalSecret inside the cluster
+  export def "kubectl sync-secret" [
+    secret: string@"nu-complete kubectl es" # Name of the secret
+  ] {
+    kubectl annotate es $secret ("force-sync=" + (date now | format date %s)) --overwrite
   }
 
 }
