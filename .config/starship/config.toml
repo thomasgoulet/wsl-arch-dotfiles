@@ -36,7 +36,7 @@ style = 'red'
 style = 'cyan'
 symbol = ''
 format = ' [\[[$symbol$output]($style)\]](bright-white)'
-command = 'argocd ctx | from ssv -a | where CURRENT == "*" | get NAME | to text'
+command = 'open ~/.config/argocd/config | from yaml | get current-context'
 when = true
 
 
