@@ -59,6 +59,16 @@ module kube {
     mv ~/.kube/config.yaml ~/.kube/config
   }
 
+  # Creates a diff of a kustomize folder with the live resources
+  export def kdiff [
+    path?: string  # Path of the kustomize folder
+  ] {
+    if $path == null {
+      return (kubectl diff -k . | delta)
+    }
+    return (kubectl diff -k $path | delta)
+  }
+
   # Explore resources
   export def ke [
     resource?: string@"nu-complete kubectl resources"  # Resource
