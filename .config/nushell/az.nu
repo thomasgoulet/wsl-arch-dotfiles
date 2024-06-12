@@ -8,6 +8,7 @@ module az {
   export def azl [
     --silent (-s)  # Silent version of the command
   ] {
+    # FIX this currently does not properly check if I'm logged in or not
     let logged_in = (open ~/.azure/msal_token_cache.json | get AccessToken | rotate | filter {|$x| ($x.column0.expires_on | into int) > (date now | format date %s | into int) } | length) > 0
     if not $logged_in {
       az login out+err> /dev/null
