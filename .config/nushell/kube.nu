@@ -129,7 +129,7 @@ module kube {
     if ($possible_pods | length) == 1 {
       kubectl logs $possible_pods.0 | bat
     } else if ($possible_pods | length) > 1 {
-      let pod_name = ($possible_pods | str join (char -i 0) | fzf --read0 --height 40% --reverse --inline-info --tiebreak length --bind 'tab:down' --bind 'shift-tab:up')
+      let pod_name = ($possible_pods | input list -f)
       kubectl logs $pod_name | bat
     }
 
@@ -149,7 +149,7 @@ module kube {
     if ($resources | length) == 1 {
       $output = ($resources | into record | get $property)
     } else if ($resources| length) > 1 {
-      let resource_name = ($resources | get metadata.name | str join (char -i 0) |  fzf --read0 --height 40% --reverse --inline-info --tiebreak length --bind 'tab:down' --bind 'shift-tab:up')
+      let resource_name = ($resources | get metadata.name | input list -f)
       $output = ($resources | where metadata.name == $resource_name | into record | get $property)
     } else if ($resources | length) < 1 {
       return ("No resources matching the filter ; " + $search)

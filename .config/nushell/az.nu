@@ -32,7 +32,7 @@ module az {
       print ("Switching to subscription " + $match)
       az account set -s $match
     } else {
-      let match = $matches | get name | str join (char -i 0) | fzf --read0 --height 40% --reverse --inline-info --tiebreak length --bind 'tab:down' --bind 'shift-tab:up'
+      let match = $matches | get name | input list -f
       print ("Switching to subscription " + $match)
       az account set -s $match
     }

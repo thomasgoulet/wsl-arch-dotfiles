@@ -257,7 +257,7 @@ $env.config = {
       event: [
         {
           send: ExecuteHostCommand
-          cmd: "commandline (
+          cmd: "commandline edit (
             history
               | where exit_status == 0
               | get command
@@ -279,7 +279,7 @@ $env.config = {
       event: [
         {
           send: ExecuteHostCommand
-          cmd: "commandline (
+          cmd: "commandline edit (
             history
               | where exit_status == 0 and cwd == $env.PWD
               | get command
