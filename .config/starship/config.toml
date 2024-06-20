@@ -34,7 +34,7 @@ style = 'red'
 
 [custom.argo]
 style = 'cyan'
-symbol = ''
+symbol = '󰅟'
 format = ' [\[[$symbol$output]($style)\]](bright-white)'
 command = 'open ~/.config/argocd/config | from yaml | get current-context'
 when = true

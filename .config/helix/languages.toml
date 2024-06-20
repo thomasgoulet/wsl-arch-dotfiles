@@ -4,18 +4,26 @@ yaml = { command = "yaml-language-server", args = ["--stdio"], config = { yaml =
 none = { command = "" }
 
 [[language]]
-name = "python"
-auto-format = true
-indent = { tab-width = 4, unit = "	" }
-formatter = { command = "black", args = ["-", "-l160"]}
+name = "bash"
+language-servers = ["none"]
 
 [[language]]
 name = "c-sharp"
 language-servers = ["omnisharp"]
 
 [[language]]
-name = "bash"
-language-servers = ["none"]
+name = "html"
+formatter = { command = "npx", args = ["prettier", "--parser", "html"] }
+
+[[language]]
+name = "python"
+auto-format = true
+indent = { tab-width = 4, unit = "	" }
+formatter = { command = "black", args = ["-", "-l160"]}
+
+[[language]]
+name = "typescript"
+formatter = { command = "npx", args = ["prettier", "--parser", "typescript"] }
 
 [[language]]
 name = "yaml"
