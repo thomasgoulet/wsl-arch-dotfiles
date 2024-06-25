@@ -32,15 +32,25 @@ module kube {
   # List and change context
   export def kcon [
     context?: string@"nu-complete kubectl contexts"  # Context (fuzzy)
+    namespace?: string@"nu-complete kubectl namespaces"  # Namespace (fuzzy)
   ] {
     if $context == null {
       return (kubectl config get-contexts | from ssv -a)
     }
-    let match = (kubectl config get-contexts | from ssv -a | where NAME =~ $context)
-    if ($match | length) != 1  {
-      return "No matching context"
+    let context_match = (kubectl config get-contexts | from ssv -a | where NAME =~ $context)
+    if ($context_match | length) != 1  {
+      return "No or multiple matching contexts"
     }
-    kubectl config use-context ($match | get NAME | to text)
+    kubectl config use-context ($context_match | get NAME | to text)
+    if $namespace == null {
+      return
+    }
+    let namespace_match = (kubectl get namespace | from ssv -a | where NAME =~ $namespace)
+    if ($namespace_match | length) != 1 {
+      return "No or multiple matching namespaces"
+    } else {
+      kubectl config set-context ($context_match | get NAME | to text) --namespace ($namespace_match | get NAME | to text)
+    }
   }
 
   # Change configured namespace in context
