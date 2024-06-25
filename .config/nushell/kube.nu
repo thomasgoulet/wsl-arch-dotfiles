@@ -43,7 +43,7 @@ module kube {
     kubectl config use-context ($match | get NAME | to text)
   }
 
-  # Change configured namespace for all contexts
+  # Change configured namespace in context
   export def kns [
     namespace?: string@"nu-complete kubectl namespaces" # Namespace
   ] {
@@ -52,11 +52,9 @@ module kube {
     }
     let match = (kubectl get namespaces | from ssv | where NAME != "default" | where NAME =~ $namespace)
     if $namespace == "NONE" {
-      open ~/.kube/config | from yaml | select contexts | reject contexts.context.namespace | save ~/.kube/config.yaml
-    } else {
-      open ~/.kube/config | from yaml | upsert contexts.context.namespace { ($match | get NAME | to text) } | save ~/.kube/config.yaml
+      return (kubectl config set-context --current --namespace="")
     }
-    mv ~/.kube/config.yaml ~/.kube/config
+    kubectl config set-context --current --namespace ($match | get NAME | to text)
   }
 
   # Creates a diff of a kustomize folder with the live resources
