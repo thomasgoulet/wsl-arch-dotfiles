@@ -175,7 +175,8 @@ module kube {
 
   }
 
-  export def "krestart" [
+  # Force a deployment to restart it's pods
+  export def krestart [
     deployment: string@"nu-complete kubectl deployments"  # Deployment to restart
   ] {
     kubectl rollout restart deployment $deployment
