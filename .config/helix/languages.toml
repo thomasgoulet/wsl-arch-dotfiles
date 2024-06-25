@@ -13,7 +13,7 @@ language-servers = ["omnisharp"]
 
 [[language]]
 name = "html"
-formatter = { command = "npx", args = ["prettier", "--parser", "html"] }
+formatter = { command = "prettier", args = ["--parser", "html"] }
 
 [[language]]
 name = "python"
@@ -29,3 +29,5 @@ formatter = { command = "npx", args = ["prettier", "--parser", "typescript"] }
 name = "yaml"
 file-types = ["yaml", "yml"]
 language-servers = ["yaml"]
+auto-format = false
+formatter = { command = "prettier", args = ["--parser", "yaml"] }
