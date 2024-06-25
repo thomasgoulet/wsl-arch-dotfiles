@@ -10,6 +10,10 @@ module kube {
     kubectl get namespaces | from ssv | where NAME != "default" | get NAME | prepend NONE
   }
 
+  def "nu-complete kubectl deployments" [] {
+    kubectl get deployment | from ssv | get NAME
+  }
+
   def "nu-complete kubectl pods" [] {
     kubectl get pods | from ssv | get NAME
   }
@@ -171,9 +175,16 @@ module kube {
 
   }
 
+  export def "krestart" [
+    deployment: string@"nu-complete kubectl deployments"  # Deployment to restart
+  ] {
+    kubectl rollout restart deployment $deployment
+  }
+  
+  # FIX this is broken at the moment
   # Refresh a ExternalSecret inside the cluster
   export def "kubectl sync-secret" [
-    secret: string@"nu-complete kubectl es" # Name of the secret
+    secret: string@"nu-complete kubectl es"  # Name of the secret
   ] {
     kubectl annotate es $secret ("force-sync=" + (date now | format date %s)) --overwrite
   }
