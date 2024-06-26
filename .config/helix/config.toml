@@ -3,12 +3,13 @@ theme = "onedark-custom"
 [editor]
 bufferline = "always"
 color-modes = true
-idle-timeout = 0 # Time for auto-completion to pop-up
+idle-timeout = 0
+jump-label-alphabet = "hjklvbnmyuiopasdfg"
 line-number = "relative"
 mouse = false
 shell = ["nu", "-c"]
 true-color = true
-jump-label-alphabet = "hjklvbnmyuiopasdfg"
+undercurl = true
 
 [editor.statusline]
 left = ["mode", "spinner"]
@@ -59,7 +60,7 @@ render = true
 C-s = "split_selection_on_newline"
 C-w = "rotate_view"
 D = "delete_char_backward"
-G = "goto_last_line"
+G = "goto_word"
 H = ":bp"
 L = ":bn"
 S = ["select_all", "select_regex"]
@@ -73,8 +74,8 @@ space = ":wa"
 C = ":bc!"
 c = ":bc"
 f = "file_picker"
-F = [":sh zellij run -f -c -- lf"]
-G = [":wa", ":sh zellij run -f -c -- lazygit", ":reload-all"]
+F = ":fmt"
+G = ":reset-diff-change"
 q = ":q"
 Q = ":qa!"
 t = [":sh zellij run -f -c -n '' -- nu -e '$env.PROMPT_EXTRA = hx; $env.config.keybindings = ($env.config.keybindings | append {name: exit modifier: none keycode: esc mode: [emacs] event: {send: ctrld} })'"]
