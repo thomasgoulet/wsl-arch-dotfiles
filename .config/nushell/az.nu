@@ -38,11 +38,4 @@ module az {
     }
   }
 
-  # Lists all active PRs for a Azure DevOps project
-  export def azpr [
-    project: string  # Project to list active PRs for
-  ] {
-    az repos pr list --project $project --top 10000 | from json | select createdBy.displayName repository.name title creationDate | rename AUTHOR REPO TITLE DATE
-  }
-
 }
