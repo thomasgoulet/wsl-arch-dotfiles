@@ -40,7 +40,7 @@ module helix {
   }
 
   # Open folder from zoxide picker in a different zellij tab
-  export def hxt [
+  export def prj [
     hint?: string
   ] {
     mut dir = ""
