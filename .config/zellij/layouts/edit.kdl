@@ -50,7 +50,10 @@ layout {
         }
         default_tab max_panes=9 {
             pane split_direction="vertical" {
-                pane size="70%"
+                pane size="70%" stacked=true {
+                    pane
+                    pane
+                }
                 pane stacked=true {
                     pane
                     pane
@@ -72,10 +75,15 @@ layout {
 
     default_tab {
         pane split_direction="vertical" {
-            pane size="70%" {
-                command "helix"
-                args "."
-                name "EDITOR"
+            pane size="70%" stacked=true {
+                pane {
+                    name "TERM"
+                }
+                pane focus=true {
+                    command "helix"
+                    args "."
+                    name "EDITOR"
+                }
             }
             pane stacked=true {
                 pane {

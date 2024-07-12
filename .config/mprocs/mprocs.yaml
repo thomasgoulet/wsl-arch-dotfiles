@@ -1,21 +1,17 @@
 procs:
-  "Git Status":
-    shell: git status --short
-  "Git Diff":
-    shell: git diff
   "Gradle Run":
-    shell: ./gradlew bootRun
+    shell: "./gradlew bootRun"
     autostart: false
   "Gradle Test":
     shell: echo TESTING...;./gradlew clean test | rg "FAILED|SUCCESSFUL"
     autostart: false
   "Angular Serve":
-    shell: npm run ng serve
+    shell: npm run start
     autostart: false
-keymap_procs:
-  <l>: { c: focus-term }
-keymap_term:
-  <h>: { c: focus-procs }
-  <J>: { c: scroll-down }
-  <K>: { c: scroll-up }
+  "Prettier Format":
+    shell: npx prettier src/** --write
+    autostart: false
+  "YAML Format":
+    shell: yamlfmt */**/*.yaml
+    autostart: false
 hide_keymap_window: true
