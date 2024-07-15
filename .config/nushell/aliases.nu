@@ -18,7 +18,7 @@ module aliases {
 
   # List directory content
   export def l [
-    path?:string  # Optional path to list directory for
+    path?: string  # Optional path to list directory for
   ] {
     if $path == null {
       ls -lad | select name mode user group size modified
