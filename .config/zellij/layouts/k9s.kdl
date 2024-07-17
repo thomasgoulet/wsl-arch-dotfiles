@@ -67,17 +67,17 @@ layout {
         pane stacked=true {
             pane {
                 command "k9s"
-                args "--context" "aksdev"
+                args "--context" "aksdev" "--command" "pods"
                 name "DEV"
             } 
             pane {
                 command "k9s"
-                args "--context" "akstest"
+                args "--context" "akstest" "--command" "pods"
                 name "TEST"
             }
             pane {
                 command "k9s"
-                args "--context" "aksprod-b" "--readonly"
+                args "--context" "aksprod-b" "--readonly" "--command" "pods"
                 name "PROD"
             }
         }
