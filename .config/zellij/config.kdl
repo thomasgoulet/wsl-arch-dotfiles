@@ -169,6 +169,8 @@ keybinds clear-defaults=true {
         bind "Alt T"         { BreakPane; SwitchToMode "RenameTab"; TabNameInput 0; }
         bind "Alt H"         { GoToPreviousTab; }
         bind "Alt L"         { GoToNextTab; }
+        bind "Alt J"         { MoveTab "Left"; }
+        bind "Alt K"         { MoveTab "Right"; }
         bind "Alt =" "Alt +" { Resize "Increase"; }
         bind "Alt -"         { Resize "Decrease"; }
     }
