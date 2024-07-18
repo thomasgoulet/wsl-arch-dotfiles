@@ -14,7 +14,6 @@ module aliases {
   export alias r = zellij run -c --
   export alias tf = terraform
   export alias tg = terragrunt
-  export alias vpnkit = wsl.exe -d wsl-vpnkit service wsl-vpnkit start
 
   # List directory content
   export def l [
@@ -39,6 +38,11 @@ module aliases {
     paru -Slq |
      fzf -m --preview 'paru -Si {1}' --height 50% --reverse --bind 'tab:down' --bind 'shift-tab:up' --bind 'space:select' --bind 'ctrl-space:deselect' |
      xargs -ro paru -S
+  }
+
+  # Launch wsl-vpnkit
+  export def vpn [] {
+    wsl.exe -d wsl-vpnkit service wsl-vpnkit start out> /dev/null err> /dev/null
   }
 
 }
