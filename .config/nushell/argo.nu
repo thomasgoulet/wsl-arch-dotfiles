@@ -1,5 +1,9 @@
 module argo {
 
+  def "nu-complete argocd applications" [] {
+    argocd app list --grpc-web | from ssv -a | get NAME
+  }
+
   # List apps
   export def "argo apps" [] {
     let list = (argocd app list --grpc-web | from ssv -a)
@@ -28,6 +32,21 @@ module argo {
     url: string  # ArgoCD web url to login to
   ] {
     argocd login $url --sso
+  }
+
+  # Diff applications quickly
+  export def "argo diff" [
+    app: string@"nu-complete argocd applications"
+  ] {
+    let apps = (argocd app list --grpc-web | from ssv -a)
+    let app_match = ($apps | where NAME =~ $app)
+    if ($app_match | length) == 0 {
+      return "No matching application"
+    }
+    if not ($app_match | get PATH | to text | path exists) {
+      return "No matching path for this application. Make sure you at the root of the right repository"
+    }
+    argocd app diff --grpc-web ($app_match | get NAME | to text) --local ($app_match | get PATH | to text) --local-repo-root .
   }
 
 }
