@@ -25,14 +25,14 @@
 "variable.other.member" = { fg = "red" }
 "variable.parameter" = { fg = "red" }
 
-"markup.heading" = { fg = "cyan" }
+"markup.heading" = { fg = "blue", modifiers = ["underlined"] }
 "markup.raw.inline" = { fg = "green" }
 "markup.bold" = { fg = "gold", modifiers = ["bold"] }
 "markup.italic" = { fg = "purple", modifiers = ["italic"] }
 "markup.strikethrough" = { modifiers = ["crossed_out"] }
-"markup.list" = { fg = "red" }
+"markup.list" = { fg = "light-gray", modifiers = ["italic"] }
 "markup.quote" = { fg = "yellow" }
-"markup.link.url" = { fg = "cyan", modifiers = ["underlined"]}
+"markup.link.url" = { fg = "yellow", modifiers = ["underlined", "dim"]}
 "markup.link.text" = { fg = "purple" }
 
 "diff.plus" = "green"
