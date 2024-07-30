@@ -59,7 +59,7 @@ module kube {
 
   # Change configured namespace in context
   export def kns [
-    namespace?: string@"nu-complete kubectl namespaces" # Namespace
+    namespace?: string@"nu-complete kubectl namespaces"  # Namespace
   ] {
     if $namespace == null {
       return (kubectl get ns | from ssv)
@@ -149,10 +149,10 @@ module kube {
 
   # Get a specific YAML property from a resource
   export def kgp [
-    property: cell-path # Cell-path to the property
+    property: cell-path  # Cell-path to the property
     resource: string@"nu-complete kubectl resources"  # Resource
     search: string@"nu-complete kubectl resource instances"  # Filter resource's name with this value
-    --decode (-d) # Decode the property using base64
+    --decode (-d)  # Decode the property using base64
   ] {
     mut resources = (kubectl get $resource -o json | from json | get items)
     mut output = ""
@@ -180,6 +180,22 @@ module kube {
     deployment: string@"nu-complete kubectl deployments"  # Deployment to restart
   ] {
     kubectl rollout restart deployment $deployment
+  }
+
+  # List vulnerabilities reported inside kubernetes
+  export def ktrivy [
+    --all (-a)  # Show non-critical vulnerabilities
+  ] {
+    let vulerabilities =  kubectl get policyreports -l trivy-operator.source=VulnerabilityReport -o yaml 
+      | from yaml 
+      | get items.results 
+      | flatten 
+      | select resources.0.name policy severity message 
+      | rename RESOURCE POLICY SEVERITY MESSAGE
+    if ($all) {
+      return $vulerabilities
+    }
+    return ($vulerabilities | where SEVERITY == critical)
   }
   
   # FIX this is broken at the moment
