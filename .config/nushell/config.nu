@@ -337,6 +337,8 @@ $env.config = {
   ]
 }
 
+use std *
+
 # Use zoxide
 source ~/.cache/zoxide/init.nu
 
