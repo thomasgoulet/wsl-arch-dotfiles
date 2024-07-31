@@ -19,11 +19,8 @@ module az {
 
   # Changes your subscription for you
   export def azs [
-    subscription?: string@"nu-complete azurecli subscriptions"  # Subscription to switch to
+    subscription: string@"nu-complete azurecli subscriptions"  # Subscription to switch to
   ] {
-    if $subscription == null {
-      return (az account list | from json | get name)
-    }
     let matches = (az account list | from json | where name =~ $subscription)
     if ($matches | length) == 0 {
       print ("No matching subscription")
