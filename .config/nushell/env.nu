@@ -19,14 +19,14 @@ $env.STARSHIP_CONFIG = "/home/thomas/.config/starship/config.toml"
 $env._ZO_FZF_OPTS = "--height 40% --reverse --inline-info --tiebreak length --bind 'tab:down' --bind 'shift-tab:up' --preview 'exa -T -L2 {2}'"
 
 $env.ENV_CONVERSIONS = {
-  "PATH": {
-    from_string: { |s| $s | split row (char esep) | path expand -n }
-    to_string: { |v| $v | path expand -n | str join (char esep) }
-  }
-  "Path": {
-    from_string: { |s| $s | split row (char esep) | path expand -n }
-    to_string: { |v| $v | path expand -n | str join (char esep) }
-  }
+    "PATH": {
+        from_string: { |s| $s | split row (char esep) | path expand -n }
+        to_string: { |v| $v | path expand -n | str join (char esep) }
+    }
+    "Path": {
+        from_string: { |s| $s | split row (char esep) | path expand -n }
+        to_string: { |v| $v | path expand -n | str join (char esep) }
+    }
 }
 
 $env.NU_LIB_DIRS = [

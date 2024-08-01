@@ -40,18 +40,22 @@ module az {
         if (($matches | length) == 0) {
             return "No matching subscription"
         } else if (($matches | length) == 1) {
-                let match = $matches
+            let match = (
+                $matches
                 | get 0
                 | get name
-                | to text;
+                | to text
+            );
             print $"Switching to subscription ($match)";
             az account set -s $match;
         } else {
-                let match = $matches
-                    | get name
-                    | input list -f;
-                print $"Switching to subscription ($match)";
-                az account set -s $match;
+            let match = (
+                $matches
+                | get name
+                | input list -f
+            );
+            print $"Switching to subscription ($match)";
+            az account set -s $match;
         }
     }
 }

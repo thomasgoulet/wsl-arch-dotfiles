@@ -104,9 +104,11 @@ module kube {
     def "nu-complete kubectl kind instances" [
         context: string
     ] {
-        let kind = $context
+        let kind = (
+            $context
             | split row ' '
-            | get 1;
+            | get 1
+        );
         cache 15 $"kind.($kind)" {||
             kubectl get $kind
             | from ssv
@@ -132,9 +134,11 @@ module kube {
     ] {
         cache-invalidate
 
-        let context_match = kubectl config get-contexts
+        let context_match = (
+            kubectl config get-contexts
             | from ssv -a
-            | where NAME =~ $context;
+            | where NAME =~ $context
+        );
 
         if ($context_match | length) != 1 {
             return "No or multiple matching contexts";
@@ -143,7 +147,7 @@ module kube {
         kubectl config use-context ($context_match | get NAME | to text) o> (null-device);
 
         if ($namespace != null) {
-                  kubectl config set-context ($context_match | get NAME | to text) --namespace $namespace o> (null-device);
+            kubectl config set-context ($context_match | get NAME | to text) --namespace $namespace o> (null-device);
         }
     }
 
@@ -169,7 +173,9 @@ module kube {
     ] {
 
         mut output = [[];[]];
-        mut extra_arg = (if $all {["-A"]} else {[]});
+        mut extra_arg = (
+            if $all {["-A"]} else {[]}
+        );
 
         # Custom columns defined here per-resource
         if (not $full_definitions) {
@@ -233,25 +239,33 @@ module kube {
     export def "nu-complete kg path" [
         context: string
     ] {
-        let resource_info = $context
+        let resource_info = (
+            $context
             | split row ' '
-            | first 3;
+            | first 3
+        );
         let kind = $resource_info.1;
         let instance = $resource_info.2;
 
-        let current_path = $context
+        let current_path = (
+            $context
             | split row ' '
             | skip 3
-            | drop 1;
-        let cell_path = $current_path
+            | drop 1
+        );
+        let cell_path = (
+            $current_path
             | each {|in| let $i = $in; try {$i | into int} catch {$i} }
-            | into cell-path;
+            | into cell-path
+        );
 
         let resource = cache 30 $"($kind).($instance)" {||
             kubectl get $kind $instance -o yaml | from yaml
         };
-        let yaml = $resource
+        let yaml = (
+            $resource
             | get $cell_path
+        );
 
         if ($yaml | describe | str starts-with record) {
             return (
@@ -261,10 +275,10 @@ module kube {
             );
         }
         if ($yaml | describe | str starts-with table) {
-                    return (
-                    0..(($yaml | length) - 1)
-                    | each {|in| let i = $in; {value: ($i | into string), description: ($yaml | get ($i | into cell-path) | to text)}}
-                );
+            return (
+                0..(($yaml | length) - 1)
+                | each {|in| let i = $in; {value: ($i | into string), description: ($yaml | get ($i | into cell-path) | to text)}}
+            );
         }
     }
 
@@ -276,18 +290,22 @@ module kube {
         ...property: any@"nu-complete kg path"  # Path to filter
         --decode (-d)  # Decode the property using base64
     ] {
-        let yaml = kubectl get $kind $name -o yaml
-            | from yaml;
+        let yaml = (
+            kubectl get $kind $name -o yaml
+            | from yaml
+        );
 
         try {
-                let output = $yaml
-                | get ($property | into cell-path);
+            let output = (
+                $yaml
+                | get ($property | into cell-path)
+            );
             if ($decode) {
                 return ($output | base64 -d);
             }
             return $output;
         } catch {
-                return "Path was not valid for the resource";
+            return "Path was not valid for the resource";
         }
     }
 
