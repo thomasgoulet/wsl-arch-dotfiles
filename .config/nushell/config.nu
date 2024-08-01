@@ -250,50 +250,50 @@ $env.config = {
             mode: [emacs, vi_normal, vi_insert] # Note: You can add the same keybinding to all modes by using a list
             event: { send: menuprevious }
         }
-        # {
-        #     name: fuzzy_history
-        #     modifier: control
-        #     keycode: char_h
-        #     mode: [emacs, vi_normal, vi_insert]
-        #     event: [
-        #         {
-        #             send: ExecuteHostCommand
-        #             cmd: "commandline edit (
-        #                       history
-        #                       | where exit_status == 0
-        #                       | get command
-        #                       | reverse
-        #                       | uniq
-        #                       | str join (char -i 0)
-        #                       | fzf --read0 --height 40% --reverse --inline-info +s --bind 'tab:down' --bind 'shift-tab:up' -q (commandline)
-        #                       | decode utf-8
-        #                       | str trim
-        #                   )"
-        #         }
-        #     ]
-        # }
-        # {
-        #     name: fuzzy_local_history
-        #     modifier: control
-        #     keycode: char_r
-        #     mode: [emacs, vi_normal, vi_insert]
-        #     event: [
-        #         {
-        #             send: ExecuteHostCommand
-        #             cmd: "commandline edit (
-        #                       history
-        #                       | where exit_status == 0 and cwd == $env.PWD
-        #                       | get command
-        #                       | reverse
-        #                       | uniq
-        #                       | str join (char -i 0)
-        #                       | fzf --read0 --height 40% --reverse --inline-info +s --bind 'tab:down' --bind 'shift-tab:up' -q (commandline)
-        #                       | decode utf-8
-        #                       | str trim
-        #                   )"
-        #         }
-        #     ]
-        # }
+        {
+            name: fuzzy_history
+            modifier: control
+            keycode: char_h
+            mode: [emacs, vi_normal, vi_insert]
+            event: [
+                {
+                    send: ExecuteHostCommand
+                    cmd: "commandline edit (
+                              history
+                              | where exit_status == 0
+                              | get command
+                              | reverse
+                              | uniq
+                              | str join (char -i 0)
+                              | fzf --read0 --height 40% --reverse --inline-info +s --bind 'tab:down' --bind 'shift-tab:up' -q (commandline)
+                              | decode utf-8
+                              | str trim
+                          )"
+                }
+            ]
+        }
+        {
+            name: fuzzy_local_history
+            modifier: control
+            keycode: char_r
+            mode: [emacs, vi_normal, vi_insert]
+            event: [
+                {
+                    send: ExecuteHostCommand
+                    cmd: "commandline edit (
+                              history
+                              | where exit_status == 0 and cwd == $env.PWD
+                              | get command
+                              | reverse
+                              | uniq
+                              | str join (char -i 0)
+                              | fzf --read0 --height 40% --reverse --inline-info +s --bind 'tab:down' --bind 'shift-tab:up' -q (commandline)
+                              | decode utf-8
+                              | str trim
+                          )"
+                }
+            ]
+        }
         {
             name: yank
             modifier: control

@@ -2,7 +2,7 @@ module aliases {
 
     export alias bye = wsl.exe --shutdown
     export alias c = clear
-    export alias decode = base64 -d
+    export alias b64 = decode base64
     export alias expl = explorer.exe .
     export alias f = lf
     export alias k9t =  zellij action new-tab -c ~ -n k9s -l ~/.config/zellij/layouts/k9s.kdl
