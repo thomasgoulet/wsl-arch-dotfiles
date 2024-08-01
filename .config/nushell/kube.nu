@@ -1,13 +1,43 @@
 module kube {
 
+  ### Aliases
+
   export alias k = kubectl
 
+  ### Helpers
+
+  def cache [
+    timeout: int  # Timeout in seconds after which the cache is invalidated
+    key: string  # Cache key
+    closure: closure  # Will only be run if timeout is exceeded to refresh the cache value
+  ] {
+    try { stor create -t kubecache -c {key: str, expirystamp: int, value: str} }
+    let cache = (stor open).kubecache
+
+    # If key is in cache and has not timed out
+    if ($cache | where key == $key and expirystamp > (date now | format date %s | into int) | length | into bool) {
+      return ($cache | where key == $key and expirystamp > (date now | format date %s | into int) | first | get value | from json)
+    }
+
+    # If key is not present or expired
+    let value = do $closure
+    try { stor delete -t kubecache -w $"key == '($key)'"}
+    stor insert -t kubecache -d {key: $key, expirystamp: ($"in ($timeout) seconds" | into datetime | format date %s | into int), value: ($value | to json)}
+    return $value
+  }
+
+  def cache-invalidate [] {
+    try { stor delete -t kubecache }
+  }
+
+  ### Completions
+  
   def "nu-complete kubectl contexts" [] {
-    kubectl config get-contexts | from ssv -a | get NAME
+    cache 60 contexts {|| kubectl config get-contexts | from ssv -a | get NAME}
   }
 
   def "nu-complete kubectl namespaces" [] {
-    kubectl get namespaces | from ssv | where NAME != "default" | get NAME | prepend NONE
+    cache 60 namespaces {|| kubectl get namespaces | from ssv | where NAME != "default" | get NAME | prepend NONE}
   }
 
   def "nu-complete kubectl pods" [] {
@@ -19,25 +49,28 @@ module kube {
   }
 
   def "nu-complete kubectl kinds" [] {
-    kubectl api-resources | from ssv | select SHORTNAMES NAME | insert len { $in.NAME | str length } | sort-by len | get NAME SHORTNAMES | flatten | uniq
+    cache 60 kinds {|| kubectl api-resources | from ssv | select SHORTNAMES NAME | insert len { $in.NAME | str length } | sort-by len | get NAME SHORTNAMES | flatten | uniq}
   }
 
-  def "nu-complete kubectl resource instances" [
+  def "nu-complete kubectl kind instances" [
     context: string
   ] {
-    let resource = ($context | split row ' ' | get 1)
-    kubectl get $resource | from ssv | get NAME
+    let kind = ($context | split row ' ' | get 1)
+    cache 15 $"kind.($kind)" {|| kubectl get $kind | from ssv | get NAME}
   }
 
   def "nu-complete kubectl restartable" [] {
-    ["deployment" "statefulset" "daemonset"] | par-each {kubectl get $in e> (null-device) | from ssv -a} | flatten | get NAME
+    cache 15 restartable {|| ["deployment" "statefulset" "daemonset"] | par-each {kubectl get $in e> (null-device) | from ssv -a} | flatten | get NAME}
   }
 
+  ### Public Commands
+  
   # List and change context
   export def kcon [
     context: string@"nu-complete kubectl contexts"  # Context (fuzzy)
     namespace?: string@"nu-complete kubectl namespaces"  # Namespace
   ] {
+    cache-invalidate
     let context_match = (kubectl config get-contexts | from ssv -a | where NAME =~ $context)
     if ($context_match | length) != 1  { return "No or multiple matching contexts" }
     kubectl config use-context ($context_match | get NAME | to text) o> (null-device)
@@ -50,6 +83,7 @@ module kube {
   export def kns [
     namespace: string@"nu-complete kubectl namespaces"  # Namespace
   ] {
+    cache-invalidate
     if $namespace == "NONE" { return (kubectl config set-context --current --namespace="" o> (null-device)) }
     kubectl config set-context --current --namespace $namespace o> (null-device)
   }
@@ -65,7 +99,7 @@ module kube {
   # List resources
   export def kl [
     kind = "pods": string@"nu-complete kubectl kinds"  # Resource
-    search?: string@"nu-complete kubectl resource instances"  # Filter resource's name with this value
+    search?: string@"nu-complete kubectl kind instances"  # Filter resource's name with this value
     --all (-a)  # Search in all namespaces
     --full_definitions (-f)  # Output full definitionss for resources
   ] {
@@ -121,11 +155,14 @@ module kube {
     context: string
   ] {
     let resource_info = $context | split row ' ' | first 3
+    let kind = $resource_info.1
+    let instance = $resource_info.2
+
     let current_path = $context | split row ' ' | skip 3 | drop 1
-    # Converts string to int in the cell-path when possible to allow interaction with tables
     let cell_path = $current_path | each {|in| let $i = $in; try {$i | into int} catch {$i} } | into cell-path
 
-    let yaml = kubectl get $resource_info.1 $resource_info.2 -o yaml | from yaml | get $cell_path
+    let resource = cache 30 $"($kind).($instance)" {|| kubectl get $kind $instance -o yaml | from yaml}
+    let yaml = $resource | get $cell_path
     if ($yaml | describe | str starts-with record) {
       return ($yaml | columns | each { |in| let i = $in; {value: $i, description: ($yaml | get $i | to text)} })
     }
@@ -138,7 +175,7 @@ module kube {
   # Get a specific resource and it's full specification
   export def kg [
     kind: string@"nu-complete kubectl kinds"  # Kind
-    name: string@"nu-complete kubectl resource instances"  # Name
+    name: string@"nu-complete kubectl kind instances"  # Name
     ...property: any@"nu-complete kg path"  # Path to filter
     --decode (-d)  # Decode the property using base64
   ] {
