@@ -82,10 +82,19 @@ module kube {
         | get NAME;
     }
 
-    def "nu-complete kubectl es" [] {
-        kubectl get es
-        | from ssv
-        | get NAME;
+    def "nu-complete kubectl shell" [] {
+        cache 15 restartable {||
+            kubectl get pods -o wide
+            | from ssv -a
+            | select NAME NODE
+            | rename value description
+            | append (
+                kubectl get nodes -o wide
+                | from ssv -a
+                | select NAME INTERNAL-IP
+                | rename value description
+            );
+        };
     }
 
     def "nu-complete kubectl kinds" [] {
@@ -321,6 +330,40 @@ module kube {
                 kubectl rollout restart $i $set o> (null-device);
             }
         };
+    }
+
+    # Exec into a pod or a node
+    export def ksh [
+        name: string@"nu-complete kubectl shell"  # Name of node or pod to exec into
+        --new (-n)  # Start a new pod with the specified name using an alpine image
+    ] {
+        if ($new) {
+            kubectl run $name --rm -it --image=alpine -- sh;
+            return;
+        }
+
+        let pods = (
+            kubectl get pods
+            | from ssv -a
+            | get NAME
+        );
+        if ($name in $pods) {
+            kubectl exec --stdin --tty $name -- /bin/bash;
+            return;
+        } 
+
+        try {
+            let nodes = (
+                kubectl get nodes
+                | from ssv -a
+                | get NAME
+            );
+            if ($name in $nodes) {
+                kubectl node_shell $name;
+                return;
+            }
+        }
+        return $"No resource called ($name). Specify '-n' to launch a new pod with that name"
     }
 
     # List vulnerabilities reported inside kubernetes
