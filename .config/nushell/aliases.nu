@@ -6,6 +6,7 @@ module aliases {
     export alias expl = explorer.exe .
     export alias f = lf
     export alias k9t =  zellij action new-tab -c ~ -n k9s -l ~/.config/zellij/layouts/k9s.kdl
+    export alias l = ls -las
     export alias lg = lazygit
     export alias procs = mprocs -c ~/.config/mprocs/mprocs.yaml
     export alias pshell = powershell.exe -NoExit -Command "Set-Location $env:USERPROFILE"
@@ -16,19 +17,6 @@ module aliases {
 
     export alias jf = cd (
     dirname (fd -t f | fzf --height 40% --reverse --inline-info --tiebreak length --bind 'tab:down' --bind 'shift-tab:up' --preview 'exa -T -L2 {1}'))
-
-    # List directory content
-    export def l [
-        path?: string  # Optional path to list directory for
-    ] {
-        if $path == null {
-            ls -lad
-            | select name mode user group size modified;
-        } else {
-            ls -lad $path
-            | select name mode user group size modified;
-        }
-    }
 
     # Search pacman's packages via fzf and install
     export def pac [] {
