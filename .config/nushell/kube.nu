@@ -4,62 +4,10 @@ module kube {
 
     export alias k = kubectl;
 
-    ### Helpers
-
-    def cache [
-        timeout: int  # Timeout in seconds after which the cache is invalidated
-        key: string  # Cache key
-        closure: closure  # Will only be run if timeout is exceeded to refresh the cache value
-    ] {
-        try {
-            stor create -t kubecache -c {
-                key: str,
-                expirystamp: int,
-                value: str
-            };
-        }
-
-        let cache = (stor open).kubecache;
-
-        # If key is in cache and has not timed out
-        if (
-            $cache
-            | where key == $key and expirystamp > (date now | format date %s | into int)
-            | length
-            | into bool
-        ) {
-            return (
-                $cache
-                | where key == $key and expirystamp > (date now | format date %s | into int)
-                | first
-                | get value
-                | from json
-            );
-        }
-
-        # If key is not present or expired
-        let value = do $closure;
-        try {
-            stor delete -t kubecache -w $"key == '($key)'";
-        };
-        stor insert -t kubecache -d {
-            key: $key,
-            expirystamp: ($"in ($timeout) seconds" | into datetime | format date %s | into int),
-            value: ($value | to json)
-        };
-        return $value;
-    }
-
-    def cache-invalidate [] {
-        try {
-            stor delete -t kubecache;
-        }
-    }
-
     ### Completions
  
     def "nu-complete kubectl contexts" [] {
-        cache 60 contexts {||
+        cache hit kube.contexts 60 {||
             kubectl config get-contexts
             | from ssv -a
             | get NAME
@@ -67,7 +15,7 @@ module kube {
     }
 
     def "nu-complete kubectl namespaces" [] {
-        cache 60 namespaces {||
+        cache hit kube.namespaces 60 {||
             kubectl get namespaces
             | from ssv
             | where NAME != "default"
@@ -77,7 +25,7 @@ module kube {
     }
 
     def "nu-complete kubectl pods" [] {
-        cache 15 pods {||
+        cache hit kube.pods 15 {||
             kubectl get pods
             | from ssv
             | get NAME
@@ -85,7 +33,7 @@ module kube {
     }
 
     def "nu-complete kubectl shell" [] {
-        cache 15 restartable {||
+        cache hit kube.restartable 15 {||
             kubectl get pods -o wide
             | from ssv -a
             | select NAME NODE
@@ -100,7 +48,7 @@ module kube {
     }
 
     def "nu-complete kubectl kinds" [] {
-        cache 60 kinds {||
+        cache hit kube.kinds 60 {||
             kubectl api-resources
             | from ssv
             | select SHORTNAMES NAME
@@ -120,7 +68,7 @@ module kube {
             | split row ' '
             | get 1
         );
-        cache 15 $"kind.($kind)" {||
+        cache hit $"kube.kind.($kind)" 15 {||
             kubectl get $kind
             | from ssv
             | get NAME
@@ -128,7 +76,7 @@ module kube {
     }
 
     def "nu-complete kubectl restartable" [] {
-        cache 15 restartable {||
+        cache hit kube.restartable 15 {||
             ["deployment" "statefulset" "daemonset"]
             | par-each {kubectl get $in e> (null-device) | from ssv -a}
             | flatten
@@ -143,7 +91,7 @@ module kube {
         context: string@"nu-complete kubectl contexts"  # Context (fuzzy)
         namespace?: string@"nu-complete kubectl namespaces"  # Namespace
     ] {
-        cache-invalidate
+        cache invalidate
 
         let context_match = (
             kubectl config get-contexts
@@ -166,7 +114,7 @@ module kube {
     export def kns [
         namespace: string@"nu-complete kubectl namespaces"  # Namespace
     ] {
-        cache-invalidate
+        cache invalidate
 
         if ($namespace == "NONE") {
             return (kubectl config set-context --current --namespace="" o> (null-device));
@@ -270,7 +218,7 @@ module kube {
             | into cell-path
         );
 
-        let resource = cache 30 $"($kind).($instance)" {||
+        let resource = cache hit $"kube.($kind).($instance)" 30 {||
             kubectl get $kind $instance -o yaml | from yaml
         };
         let yaml = (

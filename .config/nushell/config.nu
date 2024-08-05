@@ -327,7 +327,11 @@ $env.config = {
     ]
 }
 
+# Required modules
 use std *
+
+source ~/.config/nushell/cache.nu
+use cache
 
 # Use zoxide
 source ~/.cache/zoxide/init.nu
