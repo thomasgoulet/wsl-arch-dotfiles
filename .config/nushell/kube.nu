@@ -77,9 +77,11 @@ module kube {
     }
 
     def "nu-complete kubectl pods" [] {
-        kubectl get pods
-        | from ssv
-        | get NAME;
+        cache 15 pods {||
+            kubectl get pods
+            | from ssv
+            | get NAME
+        };
     }
 
     def "nu-complete kubectl shell" [] {
