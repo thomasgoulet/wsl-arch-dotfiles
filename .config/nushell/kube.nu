@@ -43,7 +43,7 @@ module kube {
                 | from ssv -a
                 | select NAME INTERNAL-IP
                 | rename value description
-            );
+            )
         };
     }
 
@@ -72,6 +72,26 @@ module kube {
             kubectl get $kind
             | from ssv
             | get NAME
+        };
+    }
+
+    def "nu-complete kubectl pod ports" [
+        context: string
+    ] {
+        let pod = (
+            $context
+            | split row ' '
+            | get 1
+        );
+        cache hit $"kube.ports.($pod)" 15 {||
+            kubectl get pods $pod -o yaml
+            | from yaml
+            | select spec.containers.ports
+            | flatten
+            | flatten
+            | flatten
+            | select containerPort name
+            | rename value description
         };
     }
 
@@ -268,6 +288,13 @@ module kube {
         }
     }
 
+    export def kpf [
+        pod: string@"nu-complete kubectl pods"
+        port: string@"nu-complete kubectl pod ports"
+    ] {
+        kubectl port-forward $pod $"($port):($port)";
+    }
+
     # Force a deployment to restart it's pods
     export def krestart [
         set: string@"nu-complete kubectl restartable"  # Restartable set to restart
@@ -285,6 +312,7 @@ module kube {
     # Exec into a pod or a node
     export def ksh [
         name: string@"nu-complete kubectl shell"  # Name of node or pod to exec into
+        shell="/bin/bash"  # Process to launch (when specifying a pod)
         --new (-n)  # Start a new pod with the specified name using an alpine image
     ] {
         if ($new) {
@@ -298,7 +326,7 @@ module kube {
             | get NAME
         );
         if ($name in $pods) {
-            kubectl exec --stdin --tty $name -- /bin/bash;
+            kubectl exec --stdin --tty $name -- $shell;
             return;
         } 
 
