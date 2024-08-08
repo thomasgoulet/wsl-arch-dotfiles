@@ -17,7 +17,7 @@ disabled = false
 
 [[kubernetes.contexts]]
 context_pattern = '.*sandbox.*'
-context_alias = 'sb'
+context_alias = 'sandbox'
 
 [[kubernetes.contexts]]
 context_pattern = '.*dev.*'
