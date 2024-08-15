@@ -1,9 +1,12 @@
 module argo {
 
     def "nu-complete argocd applications" [] {
-        argocd app list --grpc-web
-        | from ssv -a
-        | get NAME;
+        cache hit argo.apps 15 {||
+            argocd app list --grpc-web
+            | from ssv -a
+            | select NAME PATH
+            | rename value description
+        };
     }
 
     # List apps
