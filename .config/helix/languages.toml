@@ -1,7 +1,7 @@
 [language-server]
 jdtls = { command = "jdtls", args = ["--jvm-arg=-javaagent:/home/thomas/.config/helix/java/lombok-1.18.32.jar"] }
 omnisharp = { command = "omnisharp", args = ["--languageserver"] }
-yaml = { command = "yaml-language-server", args = ["--stdio"], config = { yaml = { format = { enable = true }, keyOrdering = true } } } # https://github.com/redhat-developer/yaml-language-server#language-server-settings
+yaml = { command = "yaml-language-server", args = ["--stdio"], config = { yaml = { format = { enable = true }, keyOrdering = false } } } # https://github.com/redhat-developer/yaml-language-server#language-server-settings
 none = { command = "" }
 
 [[language]]
@@ -15,6 +15,10 @@ language-servers = ["omnisharp"]
 [[language]]
 name = "html"
 formatter = { command = "prettier", args = ["--parser", "html"] }
+
+[[language]]
+name = "nu"
+indent = { tab-width = 2, unit = "  " }
 
 [[language]]
 name = "python"

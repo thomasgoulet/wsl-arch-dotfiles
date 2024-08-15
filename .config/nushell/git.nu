@@ -1,5 +1,17 @@
 module git {
 
+    # Git alias
+    export alias g = git
+
+    # Add all files
+    export alias ga = git add .
+
+    # Pull and prune
+    export alias gpl = git pull --prune
+
+    # Push
+    export alias gps = git push
+
     def "nu-complete git branches" [] {
         ^git branch
         | lines
@@ -26,11 +38,10 @@ module git {
         | uniq;
     }
 
-    # Git alias
-    export alias g = git
-
-    # Add all files
-    export alias ga = git add .
+    # Merge with another branch
+    export extern "git merge" [
+        branch: string@"nu-complete git branches"  # Branch to checkout
+    ]
 
     # List branches
     export def gb [] {
@@ -44,21 +55,7 @@ module git {
     ] {
         git branch -D $branch;
     }
-
-    # Switch to a new branch
-    export def gsc [
-        name: string
-    ] {
-        git switch -c $name;
-    }
   
-    # Switch branch
-    export def gsw [
-        target: string@"nu-complete git remote branches"  # Target to switch to
-    ] {
-        git switch $target;
-    }
-
     # Show git diff
     export alias gd = git diff
 
@@ -85,16 +82,24 @@ module git {
         }
     }
 
-    # Merge with another branch
-    export extern "git merge" [
-        branch: string@"nu-complete git branches"  # Branch to checkout
-    ]
-
-    # Pull and prune
-    export alias gpl = git pull --prune
-
-    # Push
-    export alias gps = git push
+    # Pull all repos under the current folder recursively
+    export def gpla [
+        branch = "master"  # Default branch name to use
+    ] {
+        if (".git" | path exists) {
+            print $"Pulling (pwd)";
+            git switch $branch o> (null-device);
+            git pull --prune o> (null-device);
+            return
+        }
+        ls -a
+        | where type == dir
+        | par-each {|s|
+            cd $s.name;
+            gpla;
+        }
+        return;
+    }
 
     # Show status
     export def gs [] {
@@ -102,5 +107,20 @@ module git {
         | from ssv -m 1 -n
         | rename STATUS FILE
     }
+
+    # Switch to a new branch
+    export def gsc [
+        name: string
+    ] {
+        git switch -c $name;
+    }
+
+    # Switch branch
+    export def gsw [
+        target: string@"nu-complete git remote branches"  # Target to switch to
+    ] {
+        git switch $target;
+    }
+
 
 }
