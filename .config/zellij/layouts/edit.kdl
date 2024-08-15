@@ -77,7 +77,9 @@ layout {
         pane split_direction="vertical" {
             pane size="70%" stacked=true {
                 pane {
-                    name "TERM"
+                    command "lf"
+                    args "-config" "/home/thomas/.config/lf/lfrc-zellij"
+                    name "FILES"
                 }
                 pane focus=true {
                     command "helix"
@@ -87,13 +89,11 @@ layout {
             }
             pane stacked=true {
                 pane {
-                    command "lazygit"
-                    name "GIT"
+                    name "TERM"
                 }
                 pane {
-                    command "lf"
-                    args "-config" "/home/thomas/.config/lf/lfrc-zellij"
-                    name "FILES"
+                    command "lazygit"
+                    name "GIT"
                 }
             }
         }
