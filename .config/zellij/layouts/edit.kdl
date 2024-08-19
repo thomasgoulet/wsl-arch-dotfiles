@@ -89,9 +89,6 @@ layout {
             }
             pane stacked=true {
                 pane {
-                    name "TERM"
-                }
-                pane {
                     command "lazygit"
                     name "GIT"
                 }

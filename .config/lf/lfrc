@@ -10,21 +10,36 @@ map <delete> delete
 
 cmd fzf_content_search ${{
     res="$( \
-        FZF_DEFAULT_COMMAND="rg -n -H --no-ignore-parent ." \
-        fzf --inline-info --tiebreak index --bind "tab:down" --bind "shift-tab:up" --reverse | cut -d':' -f1
+        fzf --inline-info --disabled \
+        --reverse \
+        --bind 'start:reload:rg -n -H --no-ignore-parent .' \
+        --bind 'change:reload:try {rg {q} -n -H --no-ignore-parent}' \
+        --bind 'tab:down' \
+        --bind 'shift-tab:up' \
+        --delimiter=: \
+        --with-nth=1..2 \
+        --preview '~/.config/lf/fzf-content-preview.sh {1} {2}' \
+        --preview-window 'right:70%,border-none' \
+        | cut -d':' -f1
     )"
     [ ! -z "$res" ] && lf -remote "send $id select \"$res\""
 }}
 map F fzf_content_search
 
-cmd fzf_filefilesearch ${{
+cmd fzf_file_search ${{
     res="$( \
-        FZF_DEFAULT_COMMAND="fd -p --no-ignore-parent" \
-        fzf --inline-info --tiebreak index --bind "tab:down" --bind "shift-tab:up" --reverse | cut -d':' -f1
+        fd -p --no-ignore-parent \
+        | fzf --inline-info \
+        --reverse \
+        --bind 'tab:down' \
+        --bind 'shift-tab:up' \
+        --preview '~/.config/lf/fzf-file-preview.sh {1}' \
+        --preview-window 'right:70%,border-none' \
+        | cut -d':' -f1
     )"
     [ ! -z "$res" ] && lf -remote "send $id select \"$res\""
 }}
-map f fzf_filefilesearch
+map f fzf_file_search
 
 cmd open_shell ${{
     nu -e '$env.PROMPT_EXTRA = lf; $env.config.keybindings = ($env.config.keybindings | append {name: exit modifier: none keycode: esc mode: [emacs] event: {send: ctrld} })'
