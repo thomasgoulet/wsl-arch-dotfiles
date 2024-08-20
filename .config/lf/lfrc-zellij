@@ -3,6 +3,8 @@ set icons
 set previewer ~/.config/lf/preview.sh
 set ratios 2:2:9
 
+map <space> :toggle
+
 cmd open &{{
     zellij ac move-focus down
     for f in $fx
