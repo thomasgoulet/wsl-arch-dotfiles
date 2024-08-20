@@ -4,9 +4,30 @@ set previewer ~/.config/lf/preview.sh
 set ratios 2:2:9
 
 cmd open $helix $fx
-cmd on-quit cd $fx
 
-map <delete> delete
+map gt cd ~/.trash
+map gb push ''
+
+cmd go_root ${{
+    while [ ! -d ".git" ]; do
+        cd ..
+        if [[ "$PWD" == '/' ]]; then
+            break
+        fi
+    done
+    lf -remote "send $id select \"$PWD\""
+}}
+map gr go_root
+
+cmd create_file %touch $@
+map m push :create_file<space>
+
+cmd create_dir %mkdir $@
+map M push :create_dir<space>
+
+${{ mkdir -p ~/.trash }}
+cmd trash ${{ IFS="$(printf '\n\t')"; mv $fx ~/.trash }}
+map D trash
 
 cmd fzf_content_search ${{
     res="$( \
