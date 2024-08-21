@@ -3,8 +3,6 @@ set icons
 set previewer ~/.config/lf/preview.sh
 set ratios 2:2:9
 
-map <space> :toggle
-
 cmd open &{{
     zellij ac move-focus down
     for f in $fx
@@ -14,8 +12,20 @@ cmd open &{{
     zellij ac move-focus up
 }}
 
-map gt cd ~/.trash
-map gb push ''
+cmd open_shell ${{
+    nu -e '
+        $env.PROMPT_EXTRA = lf;
+        $env.config.keybindings = ($env.config.keybindings | append {name: exit modifier: none keycode: esc mode: [emacs] event: {send: ctrld} });
+        let f = ($env.fx | lines);
+        let fx = ($env.fx);
+    '
+}}
+
+${{ mkdir -p ~/.trash }}
+cmd trash ${{ IFS="$(printf '\n\t')"; mv $fx ~/.trash }}
+
+cmd create_file %touch $@
+cmd create_dir %mkdir $@
 
 cmd go_root ${{
     while [ ! -d ".git" ]; do
@@ -26,17 +36,6 @@ cmd go_root ${{
     done
     lf -remote "send $id select \"$PWD\""
 }}
-map gr go_root
-
-cmd create_file %touch $@
-map m push :create_file<space>
-
-cmd create_dir %mkdir $@
-map M push :create_dir<space>
-
-${{ mkdir -p ~/.trash }}
-cmd trash ${{ IFS="$(printf '\n\t')"; mv $fx ~/.trash }}
-map D trash
 
 cmd fzf_content_search ${{
     res="$( \
@@ -54,7 +53,6 @@ cmd fzf_content_search ${{
     )"
     [ ! -z "$res" ] && lf -remote "send $id select \"$res\""
 }}
-map F fzf_content_search
 
 cmd fzf_file_search ${{
     res="$( \
@@ -69,13 +67,28 @@ cmd fzf_file_search ${{
     )"
     [ ! -z "$res" ] && lf -remote "send $id select \"$res\""
 }}
-map f fzf_file_search
 
-cmd open_shell ${{
-    nu -e '$env.PROMPT_EXTRA = lf; $env.config.keybindings = ($env.config.keybindings | append {name: exit modifier: none keycode: esc mode: [emacs] event: {send: ctrld} })'
+cmd for_each_selected ${{
+    echo "$fx" | xargs -L1 -- $@
 }}
-map <enter> open_shell
 
 cmd on-select &{{
     lf -remote "send $id set statfmt \"$(eza -ldg --git --color=always "$f")\""
 }}
+
+map <space> :toggle
+map <enter> open_shell
+
+map D trash
+
+map m push :create_file<space>
+map M push :create_dir<space>
+
+map gt cd ~/.trash
+map gb push ''
+map gr go_root
+
+map f
+map ff fzf_file_search
+map f/ fzf_content_search
+map fe push :for_each_selected<space>
