@@ -83,5 +83,6 @@ map gr go_root
 
 map f
 map ff fzf_file_search
+map fl fzf_content_search
 map f/ fzf_content_search
 map fe push :for_each_selected<space>

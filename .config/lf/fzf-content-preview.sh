@@ -15,4 +15,4 @@ fi
 declare -i -r start=$(( line - center ))
 declare -i -r end=$(( lines + start ))
 
-exec bat -f --style=changes --highlight-line $line --line-range $start:$end --paging never "$file"
+exec bat -f --style="changes,numbers" --highlight-line $line --line-range $start:$end --paging never "$file"
