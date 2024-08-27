@@ -59,7 +59,9 @@ module kube {
         cache hit kube.contexts 60 {||
             kubectl config get-contexts
             | from ssv -a
-            | get NAME
+            | iter filter-map {|c|
+                {value: ($c.NAME), description: $"cluster: ($c.CLUSTER), namespace:  ($c.NAMESPACE)"}
+            }
         };
     }
 
@@ -157,20 +159,33 @@ module kube {
     ] {
         cache invalidate
 
-        let context_match = (
+        mut match = [];
+        $match = (
             kubectl config get-contexts
             | from ssv -a
-            | where NAME =~ $context
+            | where NAME == $context
         );
-
-        if ($context_match | length) != 1 {
-            return "No or multiple matching contexts";
+        if ($match == []) {
+            $match = (
+                kubectl config get-contexts
+                | from ssv -a
+                | where NAME =~ $context
+            );
         }
 
-        kubectl config use-context ($context_match | get NAME | to text) o> (null-device);
+        if (($match | length) != 1) {
+            return "No or multiple matching contexts";
+        } else {
+            $match = (
+                $match
+                | first
+            );
+        }
+
+        kubectl config use-context ($match | get NAME | to text) o> (null-device);
 
         if ($namespace != null) {
-            kubectl config set-context ($context_match | get NAME | to text) --namespace $namespace o> (null-device);
+            kubectl config set-context ($match | get NAME | to text) --namespace $namespace o> (null-device);
         }
     }
 
