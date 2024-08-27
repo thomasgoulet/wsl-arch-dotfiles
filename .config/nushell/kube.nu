@@ -4,8 +4,57 @@ module kube {
 
     export alias k = kubectl;
 
+    ### Utility
+
+    export def argparse [
+        context: string  # Context string passed to completer function
+    ] {
+        mut args = (
+            $context
+            | split row ' '
+        );
+
+        mut flags = [];
+
+        let namespace_position = (
+            $args
+            | iter find-index {|s|
+                $s == "-n" or $s == "--namespace"
+            }
+        );
+
+        if ($namespace_position != -1) {
+            $flags = [
+                "-n"
+                ($args | get ($namespace_position + 1))
+            ];
+            $args = (
+                $args
+                | drop nth $namespace_position
+                | drop nth $namespace_position
+            );
+        }
+
+        let all_position = (
+            $args
+            | iter find-index {|s|
+                $s == "-A" or $s == "-a" or $s == "--all"
+            }
+        );
+
+        if ($all_position != -1) {
+            $flags = ["-A"];
+            $args = (
+                $args
+                | drop nth $all_position
+            )
+        }
+
+        return {command: ($args.0), args: ($args | skip 1), flags: $flags, flag_id: ($flags | str join ".")}
+    }
+
     ### Completions
- 
+
     def "nu-complete kubectl contexts" [] {
         cache hit kube.contexts 60 {||
             kubectl config get-contexts
@@ -24,9 +73,12 @@ module kube {
         };
     }
 
-    def "nu-complete kubectl pods" [] {
-        cache hit kube.pods 15 {||
-            kubectl get pods
+    def "nu-complete kubectl pods" [
+        context: string
+    ] {
+        let ctx = argparse $context;
+        cache hit $"kube.pods.($ctx.flag_id)" 15 {||
+            kubectl get pods ...$ctx.flags
             | from ssv
             | get NAME
         };
@@ -63,13 +115,9 @@ module kube {
     def "nu-complete kubectl kind instances" [
         context: string
     ] {
-        let kind = (
-            $context
-            | split row ' '
-            | get 1
-        );
-        cache hit $"kube.kind.($kind)" 15 {||
-            kubectl get $kind
+        let ctx = argparse $context
+        cache hit $"kube.kind.($ctx.args.0).($ctx.flag_id)" 15 {||
+            kubectl get $ctx.args.0 ...$ctx.flags
             | from ssv
             | get NAME
         };
@@ -78,13 +126,9 @@ module kube {
     def "nu-complete kubectl pod ports" [
         context: string
     ] {
-        let pod = (
-            $context
-            | split row ' '
-            | get 1
-        );
-        cache hit $"kube.ports.($pod)" 15 {||
-            kubectl get pods $pod -o yaml
+        let ctx = argparse $context
+        cache hit $"kube.ports.($ctx.args.0)" 15 {||
+            kubectl get pods $ctx.args.0 -o yaml
             | from yaml
             | select spec.containers.ports
             | flatten
@@ -105,7 +149,7 @@ module kube {
     }
 
     ### Exported Functions
- 
+
     # List and change context
     export def kcon [
         context: string@"nu-complete kubectl contexts"  # Context (fuzzy)
@@ -130,44 +174,38 @@ module kube {
         }
     }
 
-    # Change configured namespace in context
-    export def kns [
-        namespace: string@"nu-complete kubectl namespaces"  # Namespace
-    ] {
-        cache invalidate
-
-        if ($namespace == "NONE") {
-            return (kubectl config set-context --current --namespace="" o> (null-device));
-        }
-
-        kubectl config set-context --current --namespace $namespace o> (null-device);
-    }
-
     # List resources
     export def kl [
         kind = "pods": string@"nu-complete kubectl kinds"  # Resource
         search?: string@"nu-complete kubectl kind instances"  # Filter resource's name with this value
+        --namespace (-n): string@"nu-complete kubectl namespaces"  # Namespace to list resources in
         --all (-a)  # Search in all namespaces
         --full_definitions (-f)  # Output full definitionss for resources
     ] {
 
         mut output = [[];[]];
-        mut extra_arg = (
-            if $all {["-A"]} else {[]}
+        mut flags = (
+            if $all {
+                ["-A"]
+            } else if ($namespace != null) {
+                ["-n" $namespace]
+            } else {
+                []
+            }
         );
 
         # Custom columns defined here per-resource
         if (not $full_definitions) {
             # Custom columns for some resources
             if ($kind == "deploy") {
-                $extra_arg = (
-                    $extra_arg
+                $flags = (
+                    $flags
                     | append ["-o" "custom-columns=NAME:metadata.name,READY:status.readyReplicas,CPU:spec.template.spec.containers[*].resources.requests.cpu,RAM:spec.template.spec.containers[*].resources.requests.memory,IMAGE:spec.template.spec.containers[*].image"]
                 );
             }
             # Populate output with simple get
             $output = (
-                kubectl get $kind ...$extra_arg e> (null-device)
+                kubectl get $kind ...$flags e> (null-device)
                 | from ssv
             );
             # Refine output by NAME
@@ -182,7 +220,7 @@ module kube {
         if ($full_definitions) {
             # Populate output with json
             $output = (
-                kubectl get $kind -o json ...$extra_arg e> (null-device)
+                kubectl get $kind -o json ...$flags e> (null-device)
                 | from json
                 | get items
             );
@@ -218,18 +256,13 @@ module kube {
     export def "nu-complete kg path" [
         context: string
     ] {
-        let resource_info = (
-            $context
-            | split row ' '
-            | first 3
-        );
-        let kind = $resource_info.1;
-        let instance = $resource_info.2;
+        let ctx = argparse $context
+        let kind = $ctx.args.0;
+        let instance = $ctx.args.1;
 
         let current_path = (
-            $context
-            | split row ' '
-            | skip 3
+            $ctx.args
+            | skip 2
             | drop 1
         );
         let cell_path = (
@@ -239,7 +272,7 @@ module kube {
         );
 
         let resource = cache hit $"kube.($kind).($instance)" 30 {||
-            kubectl get $kind $instance -o yaml | from yaml
+            kubectl get $kind $instance ...$ctx.flags -o yaml | from yaml
         };
         let yaml = (
             $resource
@@ -267,10 +300,16 @@ module kube {
         kind: string@"nu-complete kubectl kinds"  # Kind
         name: string@"nu-complete kubectl kind instances"  # Name
         ...property: any@"nu-complete kg path"  # Path to filter
+        --namespace (-n): string@"nu-complete kubectl namespaces"  # Namespace to list resources in
+        --all (-a)  # Search in all namespaces
         --decode (-d)  # Decode the property using base64
     ] {
+        mut extra_arg = (
+            if $all {["-A"]} else if ($namespace != null) {["-n" $namespace]} else {[]}
+        );
+
         let yaml = (
-            kubectl get $kind $name -o yaml
+            kubectl get $kind $name ...$extra_arg -o yaml
             | from yaml
         );
 
@@ -328,7 +367,7 @@ module kube {
         if ($name in $pods) {
             kubectl exec --stdin --tty $name -- $shell;
             return;
-        } 
+        }
 
         try {
             let nodes = (
