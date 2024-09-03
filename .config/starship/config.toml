@@ -1,7 +1,7 @@
 add_newline = true
 
 format = '''
-[\[$directory\]](bright-white)$kubernetes$custom$git_status$git_branch
+[ $directory](bright-white)$kubernetes$git_status$git_branch
 $env_var$character'''
 
 [env_var.PROMPT_EXTRA]
@@ -12,38 +12,18 @@ format = '[ $env_value]($style)'
 [kubernetes]
 style = 'green'
 symbol = ''
-format = ' [\[[$symbol$context([/](bright-white)$namespace)]($style)\]](bright-white)'
+format = ' [\[[$symbol$context([/](bright-white)[$namespace](purple))]($style)\]](bright-white)'
 disabled = false
 
 [[kubernetes.contexts]]
-context_pattern = '.*sandbox.*'
-context_alias = 'sandbox'
-
-[[kubernetes.contexts]]
-context_pattern = '.*dev.*'
-context_alias = 'dev'
-
-[[kubernetes.contexts]]
-context_pattern = '.*test.*'
-context_alias = 'test'
-
-[[kubernetes.contexts]]
 context_pattern = '.*prod.*'
-context_alias = 'prod'
 style = 'red'
-
-[custom.argo]
-style = 'cyan'
-symbol = '󰅟'
-format = ' [\[[$symbol$output]($style)\]](bright-white)'
-command = 'open ~/.config/argocd/config | from yaml | get current-context'
-when = true
-
 
 [directory]
 style = 'blue'
 format = '[$path]($style)'
 truncate_to_repo = true
+fish_style_pwd_dir_length = 1
 
 [git_status]
 style = 'red'
@@ -57,5 +37,5 @@ symbol = ''
 format = '[[$branch]($style)\]](bright-white)'
 
 [character]
-success_symbol = ' [->](white)'
+success_symbol = ' [->](bright-white)'
 error_symbol = ' [|>](red)'

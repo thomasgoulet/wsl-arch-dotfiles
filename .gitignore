@@ -8,3 +8,4 @@
 .config/lazygit/state.yml
 .config/nushell/history.*
 .config/wslu/*
+.config/glow/glow.yml
